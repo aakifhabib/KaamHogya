@@ -1,70 +1,83 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, Send } from 'lucide-react';
-import { sanitizeText, } from '@/lib/format';
-import { WHATSAPP_URL } from '@/lib/constants';
+import { CheckCircle2, Mail, Send } from 'lucide-react';
+import { sanitizeText } from '@/lib/format';
+
+const CONTACT_EMAIL = 'hello@kaamhogya.pk';
+
+const TOPICS = [
+  'Report a wrong fee or outdated guide',
+  'Submit a correction for your city',
+  'Ask about the document check service',
+  'Request data deletion',
+  'Report a scam using our name',
+];
 
 export function ContactFeedbackForm() {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [city, setCity] = useState('Rawalpindi');
-  const [topic, setTopic] = useState('Report a fee or rule update');
+  const [topic, setTopic] = useState(TOPICS[0]);
   const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [mailtoHref, setMailtoHref] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const cleanName = sanitizeText(name, 80);
-    const cleanMsg = sanitizeText(message, 500);
-    if (!cleanName || !cleanMsg) return;
+    const cleanEmail = sanitizeText(email, 120);
+    const cleanMsg = sanitizeText(message, 800);
+    if (!cleanName || !cleanEmail || !cleanMsg) return;
 
-    const mailBody = `Name: ${cleanName}\nCity: ${city}\nTopic: ${topic}\n\nMessage:\n${cleanMsg}`;
-    const waText = `Salam KaamHoGaya team! ${topic} (${city}) — from ${cleanName}: ${cleanMsg}`;
+    const subject =
+      topic === 'Request data deletion'
+        ? 'Data Request'
+        : `${topic} (${city}) — KaamHoGaya.pk`;
+    const body = `Name: ${cleanName}\nEmail: ${cleanEmail}\nCity: ${city}\nTopic: ${topic}\n\nMessage:\n${cleanMsg}`;
 
-    setSubmitted(true);
-    // Provide clean WhatsApp handoff link without silent black-hole submission
-    const mailLink = document.getElementById('khg-wa-handoff') as HTMLAnchorElement | null;
-    if (mailLink) {
-      mailLink.href = `${WHATSAPP_URL}?text=${encodeURIComponent(waText)}`;
-    }
-    void mailBody;
+    const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    setMailtoHref(href);
   };
 
   return (
     <div className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-bold text-ink">
-        Report a Fee Change or Request a New City Guide
-      </h2>
+      <h2 className="text-xl font-bold text-ink">Send Us a Message</h2>
       <p className="mt-1 text-xs text-gray-600 sm:text-sm">
-        Spotted a changed fee, shifted office address, or want us to cover a process in
-        your city? Tell us below.
+        Fill in your name, email, and message below to prepare your email to{' '}
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          className="font-semibold text-brand hover:underline"
+        >
+          {CONTACT_EMAIL}
+        </a>
+        . We reply within 2 working days, Monday to Friday.
       </p>
 
-      {submitted ? (
+      {mailtoHref ? (
         <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-brand-dark">
           <p className="flex items-center gap-2 font-bold">
             <CheckCircle2 className="h-5 w-5 text-brand" />
-            Shukriya! Your message is ready to send.
+            Shukriya! Your email is ready to send.
           </p>
           <p className="mt-1.5 text-xs text-gray-700">
-            For the fastest response from our editorial team, tap below to send your
-            details directly via WhatsApp, or email us at{' '}
-            <strong>support@kaamhogaya.pk</strong>.
+            Click below to open your email app with your message pre-filled for{' '}
+            <strong>{CONTACT_EMAIL}</strong>. Remember never to include CNIC numbers,
+            passport numbers, OTPs, bank PINs, or passwords.
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             <a
-              id="khg-wa-handoff"
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={mailtoHref}
               className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-4 py-2 text-xs font-bold text-white hover:bg-brand-dark"
             >
-              Send on WhatsApp
+              <Mail className="h-3.5 w-3.5" />
+              Open Email to {CONTACT_EMAIL}
             </a>
             <button
               type="button"
               onClick={() => {
-                setSubmitted(false);
+                setMailtoHref(null);
                 setMessage('');
               }}
               className="rounded-xl border border-gray-300 bg-white px-4 py-2 text-xs font-semibold text-ink hover:bg-gray-50"
@@ -93,6 +106,48 @@ export function ContactFeedbackForm() {
                 placeholder="e.g. Bilal Ahmed"
                 className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm focus:border-brand focus:bg-white focus:outline-none"
               />
+            </div>
+
+            <div>
+              <label
+                htmlFor="c-email"
+                className="mb-1 block text-xs font-semibold text-gray-700"
+              >
+                Your Email *
+              </label>
+              <input
+                id="c-email"
+                type="email"
+                required
+                maxLength={120}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm focus:border-brand focus:bg-white focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label
+                htmlFor="c-topic"
+                className="mb-1 block text-xs font-semibold text-gray-700"
+              >
+                Topic
+              </label>
+              <select
+                id="c-topic"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm focus:border-brand focus:bg-white focus:outline-none"
+              >
+                {TOPICS.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -129,26 +184,6 @@ export function ContactFeedbackForm() {
 
           <div>
             <label
-              htmlFor="c-topic"
-              className="mb-1 block text-xs font-semibold text-gray-700"
-            >
-              Topic
-            </label>
-            <select
-              id="c-topic"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-              className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm focus:border-brand focus:bg-white focus:outline-none"
-            >
-              <option>Report a fee or rule update</option>
-              <option>Request a new process or city guide</option>
-              <option>Rs. 500 WhatsApp document check inquiry</option>
-              <option>General feedback</option>
-            </select>
-          </div>
-
-          <div>
-            <label
               htmlFor="c-msg"
               className="mb-1 block text-xs font-semibold text-gray-700"
             >
@@ -158,12 +193,16 @@ export function ContactFeedbackForm() {
               id="c-msg"
               required
               rows={4}
-              maxLength={500}
+              maxLength={800}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Share the process name, updated fee or address, and official link if available..."
+              placeholder="Share the guide name, updated fee or correction, or your inquiry..."
               className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm focus:border-brand focus:bg-white focus:outline-none"
             />
+            <p className="mt-1.5 text-[11px] font-medium text-red-700">
+              Never include your CNIC number, passport number, OTP, bank PIN, or
+              password.
+            </p>
           </div>
 
           <button
@@ -171,7 +210,7 @@ export function ContactFeedbackForm() {
             className="inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-dark"
           >
             <Send className="h-4 w-4" />
-            Prepare Message
+            Prepare Email Message
           </button>
         </form>
       )}

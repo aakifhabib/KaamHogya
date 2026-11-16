@@ -132,12 +132,12 @@ export function Footer() {
                 </li>
                 <li>
                   <Link href="/contact" className="text-emerald-100 hover:text-white">
-                    Contact &amp; Report Fee Change
+                    Contact Us
                   </Link>
                 </li>
                 <li>
                   <Link href="/disclaimer" className="text-emerald-100 hover:text-white">
-                    Non-Government Disclaimer
+                    Disclaimer
                   </Link>
                 </li>
                 <li>
@@ -147,7 +147,12 @@ export function Footer() {
                 </li>
                 <li>
                   <Link href="/terms" className="text-emerald-100 hover:text-white">
-                    Terms of Use
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/cookie-policy" className="text-emerald-100 hover:text-white">
+                    Cookie Policy
                   </Link>
                 </li>
                 <li>
