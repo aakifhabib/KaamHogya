@@ -46,7 +46,7 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
   );
   const [selectedCity, setSelectedCity] = useState<string>(defaultCity);
   const [includePhotos, setIncludePhotos] = useState<boolean>(() =>
-    documents.some((d) => d.name.toLowerCase().includes('photo'))
+    documents.some((d) => d.name.toLowerCase().includes('passport-size photo'))
   );
 
   const activeOption = useMemo(
