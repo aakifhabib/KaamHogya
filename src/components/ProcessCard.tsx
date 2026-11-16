@@ -64,9 +64,17 @@ export function ProcessCard({ process }: ProcessCardProps) {
       {/* Key metrics grid */}
       <dl className="mt-4 grid grid-cols-2 gap-2.5 rounded-xl bg-surface p-3 text-xs">
         <div>
-          <dt className="text-gray-500">Official Fee</dt>
+          <dt className="text-gray-500">
+            {process.slug === 'e-challan-check-and-payment'
+              ? 'Typical Fine'
+              : 'Official Fee'}
+          </dt>
           <dd className="mt-0.5 font-bold text-ink">
-            {formatPKR(process.fee_normal)}
+            {process.slug === 'e-challan-check-and-payment' &&
+            process.fee_normal === 2000 &&
+            process.fee_executive === 10000
+              ? 'PKR 2,000 – 10,000'
+              : formatPKR(process.fee_normal)}
           </dd>
         </div>
         <div>

@@ -24,7 +24,7 @@ export default async function WaitTimesPage() {
   ]);
 
   const lastUpdated =
-    data.recentReports[0]?.created_at ?? '2026-11-16T08:00:00Z';
+    data.recentReports[0]?.created_at ?? '2026-11-17T00:00:00Z';
 
   return (
     <>

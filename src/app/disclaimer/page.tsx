@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
 import { ExternalLink, ShieldAlert } from 'lucide-react';
 import { PageMetaBar } from '@/components/PageMetaBar';
-import { OFFICIAL_DIRECTORY_URL, SITE_NAME, SITE_URL } from '@/lib/constants';
+import {
+  FEE_CHECK_DISCLAIMER,
+  OFFICIAL_DIRECTORY_URL,
+  SITE_NAME,
+  SITE_URL,
+} from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Disclaimer — Independent Citizen Guide (Not a Government Website)',
@@ -26,7 +31,7 @@ export default function DisclaimerPage() {
     <>
       <PageMetaBar
         breadcrumbs={[{ label: 'Disclaimer', href: '/disclaimer' }]}
-        lastUpdated="2026-11-16T08:00:00Z"
+        lastUpdated="2026-11-17T00:00:00Z"
         sourceUrl={OFFICIAL_DIRECTORY_URL}
         sourceLabel="pakistan.gov.pk"
       />
@@ -39,9 +44,12 @@ export default function DisclaimerPage() {
             </div>
             <div>
               <h1 className="text-2xl font-extrabold text-ink sm:text-3xl">
-                Non-Government Website Disclaimer
+                Fee Verification &amp; Non-Government Website Disclaimer
               </h1>
-              <p className="mt-2 text-sm leading-relaxed text-amber-950 sm:text-base">
+              <p className="mt-2 rounded-xl bg-white/90 px-4 py-3 text-sm font-bold leading-relaxed text-ink shadow-sm ring-1 ring-amber-300/70 sm:text-base">
+                {FEE_CHECK_DISCLAIMER}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-amber-950 sm:text-base">
                 <strong>{SITE_NAME}</strong> is an independent, privately operated
                 citizen information resource. We are <strong>NOT</strong> an official
                 government website, and we are <strong>NOT</strong> affiliated with,

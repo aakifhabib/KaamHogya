@@ -76,8 +76,8 @@ export default async function CityPage({ params }: CityPageProps) {
   const lastUpdated =
     citySpecificProcesses.reduce(
       (latest, p) => (p.last_updated > latest ? p.last_updated : latest),
-      allProcesses[0]?.last_updated ?? '2026-11-16T08:00:00Z'
-    ) || '2026-11-16T08:00:00Z';
+      allProcesses[0]?.last_updated ?? '2026-11-17T00:00:00Z'
+    ) || '2026-11-17T00:00:00Z';
 
   const portal = CITY_PORTAL_LINKS[city.slug] ?? {
     label: 'pakistan.gov.pk',

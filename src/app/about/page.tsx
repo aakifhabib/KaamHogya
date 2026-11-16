@@ -24,7 +24,7 @@ export default function AboutPage() {
     <>
       <PageMetaBar
         breadcrumbs={[{ label: 'About', href: '/about' }]}
-        lastUpdated="2026-11-16T08:00:00Z"
+        lastUpdated="2026-11-17T00:00:00Z"
         sourceUrl={OFFICIAL_DIRECTORY_URL}
         sourceLabel="pakistan.gov.pk"
       />
@@ -65,7 +65,7 @@ export default function AboutPage() {
             {
               icon: Clock,
               title: 'Crowdsourced Wait Times',
-              desc: 'Real citizens share how long they waited at Rehmanabad RPO, NADRA Mega Centers, or Police Khidmat Markaz so you pick the right day and hour.',
+              desc: 'Real citizens share how long they waited at GT Road RPO, Saddar NADRA Mega Center, or Police Khidmat Markaz so you pick the right day and hour.',
             },
             {
               icon: CheckCircle2,

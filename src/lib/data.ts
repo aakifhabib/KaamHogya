@@ -466,7 +466,7 @@ export async function getAllProcessesWithDocuments(): Promise<ChecklistProcessBu
 
 export async function getSiteLastUpdated(): Promise<string> {
   const { data } = await getProcessSummaries();
-  if (data.length === 0) return '2026-11-16T08:00:00Z';
+  if (data.length === 0) return '2026-11-17T00:00:00Z';
   return data.reduce(
     (latest, p) => (p.last_updated > latest ? p.last_updated : latest),
     data[0].last_updated

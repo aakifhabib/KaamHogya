@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { ExternalLink, Info } from 'lucide-react';
-import { DISCLAIMER_SHORT, OFFICIAL_DIRECTORY_URL } from '@/lib/constants';
+import {
+  DISCLAIMER_SHORT,
+  FEE_CHECK_DISCLAIMER,
+  OFFICIAL_DIRECTORY_URL,
+} from '@/lib/constants';
 import { sanitizeHttpUrl } from '@/lib/format';
 
 interface DisclaimerBoxProps {
@@ -15,7 +19,7 @@ export function DisclaimerBox({
   const safeUrl = sanitizeHttpUrl(officialSourceUrl || OFFICIAL_DIRECTORY_URL);
   return (
     <aside
-      aria-label="Non-government website disclaimer"
+      aria-label="Fee schedule and non-government disclaimer"
       className={`rounded-xl border border-amber-300/80 bg-amber-50/70 ${
         compact ? 'p-4' : 'p-5 sm:p-6'
       }`}
@@ -26,8 +30,9 @@ export function DisclaimerBox({
         </div>
         <div className="space-y-1.5 text-xs leading-relaxed text-amber-950 sm:text-sm">
           <h3 className="font-bold text-ink">
-            Important Notice: Independent Citizen Guide (Not a Government Website)
+            Important Notice: Fee Verification &amp; Non-Government Disclaimer
           </h3>
+          <p className="font-semibold text-ink">{FEE_CHECK_DISCLAIMER}</p>
           <p>{DISCLAIMER_SHORT}</p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 text-xs font-semibold">
             <a

@@ -26,8 +26,8 @@ export default async function ChecklistPage() {
   const lastUpdated =
     bundles.reduce(
       (latest, b) => (b.last_updated > latest ? b.last_updated : latest),
-      bundles[0]?.last_updated ?? '2026-11-16T08:00:00Z'
-    ) || '2026-11-16T08:00:00Z';
+      bundles[0]?.last_updated ?? '2026-11-17T00:00:00Z'
+    ) || '2026-11-17T00:00:00Z';
 
   return (
     <>

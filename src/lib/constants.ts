@@ -10,8 +10,11 @@ export const WHATSAPP_CTA_TEXT =
 
 export const OFFICIAL_DIRECTORY_URL = 'https://pakistan.gov.pk';
 
+export const FEE_CHECK_DISCLAIMER =
+  'Fees checked on 17 Nov 2026 from DGIP, NADRA, DLIMS, PKM, and FBR public schedules. Fees change. Always confirm on official site before paying.';
+
 export const DISCLAIMER_SHORT =
-  'KaamHoGaya.pk is an independent citizen information guide — NOT an official Government of Pakistan, NADRA, DGIP, or FBR website. Always confirm current fees and rules on the linked official portal.';
+  'KaamHoGaya.pk is an independent citizen information guide — NOT an official Government of Pakistan, NADRA, DGIP, DLIMS, PKM, or FBR website.';
 
 export const CITY_PORTAL_LINKS: Record<string, { label: string; url: string }> = {
   rawalpindi: {
@@ -56,7 +59,7 @@ export const CITY_EXTRA_COST_ESTIMATES: Record<
   Rawalpindi: {
     photocopyPerSheet: 20,
     photoSetCost: 250,
-    transportNote: 'Shops outside Rehmanabad / Liaquat Bagh charge Rs. 15–25 per copy',
+    transportNote: 'Shops near Saddar / GT Road / District Complex charge Rs. 15–25 per copy',
   },
   Islamabad: {
     photocopyPerSheet: 25,

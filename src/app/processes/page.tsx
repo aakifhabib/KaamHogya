@@ -27,8 +27,8 @@ export default async function AllProcessesPage() {
   const lastUpdated =
     processes.reduce(
       (latest, p) => (p.last_updated > latest ? p.last_updated : latest),
-      processes[0]?.last_updated ?? '2026-11-16T08:00:00Z'
-    ) || '2026-11-16T08:00:00Z';
+      processes[0]?.last_updated ?? '2026-11-17T00:00:00Z'
+    ) || '2026-11-17T00:00:00Z';
 
   return (
     <>

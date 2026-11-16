@@ -22,6 +22,7 @@ import { DocumentChecklistBlock } from '@/components/process/DocumentChecklistBl
 import { FaqAccordion } from '@/components/process/FaqAccordion';
 import { FeeCalculatorBlock } from '@/components/process/FeeCalculatorBlock';
 import { WaitTimeSection } from '@/components/process/WaitTimeSection';
+import { getRichFeeSchedule } from '@/data/fee-schedules';
 import {
   formatDate,
   formatDomain,
@@ -133,6 +134,7 @@ export function ProcessDetailView({
 
   const safeOfficialUrl = sanitizeHttpUrl(process.official_source_url);
   const totalStepMinutes = process.steps.reduce((acc, s) => acc + s.time_minutes, 0);
+  const richFeeSchedule = getRichFeeSchedule(process.slug, process.fee_normal);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
@@ -275,7 +277,7 @@ export function ProcessDetailView({
             </dl>
           </section>
 
-          {/* (c) Fee Breakdown Table (Normal, Urgent, Executive in exact PKR) */}
+          {/* (c) Fee Breakdown Table (Exact PKR) */}
           <section
             id="fees"
             aria-labelledby="fees-heading"
@@ -285,40 +287,92 @@ export function ProcessDetailView({
               Fee Breakdown (Exact PKR)
             </h2>
             <p className="mt-1 text-xs text-gray-600 sm:text-sm">
-              Official government fee tiers in Pakistani Rupees (PKR).
+              {richFeeSchedule?.subtitle ||
+                'Official government fee tiers in Pakistani Rupees (PKR).'}
             </p>
 
+            {richFeeSchedule?.alertBanner && (
+              <div className="mt-3 rounded-xl border border-brand/25 bg-emerald-50 px-3.5 py-2.5 text-xs font-semibold text-brand-dark">
+                {richFeeSchedule.alertBanner}
+              </div>
+            )}
+
             <div className="mt-4 overflow-x-auto rounded-xl border border-gray-200">
-              <table className="w-full min-w-[320px] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="bg-surface text-xs font-bold uppercase tracking-wider text-gray-600">
-                    <th className="px-4 py-3">Service Tier</th>
-                    <th className="px-4 py-3 text-right">Official Fee (PKR)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-4 py-3.5 font-semibold text-ink">Normal</td>
-                    <td className="px-4 py-3.5 text-right font-extrabold text-brand">
-                      {formatPKR(process.fee_normal)}
-                    </td>
-                  </tr>
-                  <tr className="bg-surface/40">
-                    <td className="px-4 py-3.5 font-semibold text-ink">Urgent</td>
-                    <td className="px-4 py-3.5 text-right font-extrabold text-ink">
-                      {formatPKR(process.fee_urgent)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3.5 font-semibold text-ink">
-                      Executive / Fast Track
-                    </td>
-                    <td className="px-4 py-3.5 text-right font-extrabold text-ink">
-                      {formatPKR(process.fee_executive)}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              {richFeeSchedule ? (
+                <table className="w-full min-w-[320px] border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="bg-surface text-xs font-bold uppercase tracking-wider text-gray-600">
+                      {richFeeSchedule.columns.map((col) => (
+                        <th
+                          key={col.label}
+                          className={`px-4 py-3 ${
+                            col.align === 'right' ? 'text-right' : 'text-left'
+                          }`}
+                        >
+                          {col.label}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {richFeeSchedule.rows.map((row, rIdx) => (
+                      <tr
+                        key={`${row[0]}-${rIdx}`}
+                        className={rIdx % 2 === 1 ? 'bg-surface/40' : ''}
+                      >
+                        {row.map((cell, cIdx) => {
+                          const align = richFeeSchedule.columns[cIdx]?.align;
+                          return (
+                            <td
+                              key={`${rIdx}-${cIdx}`}
+                              className={`px-4 py-3.5 ${
+                                align === 'right'
+                                  ? `text-right font-extrabold ${
+                                      cIdx === 1 ? 'text-brand' : 'text-ink'
+                                    }`
+                                  : 'font-semibold text-ink'
+                              }`}
+                            >
+                              {cell}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <table className="w-full min-w-[320px] border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="bg-surface text-xs font-bold uppercase tracking-wider text-gray-600">
+                      <th className="px-4 py-3">Service Tier</th>
+                      <th className="px-4 py-3 text-right">Official Fee (PKR)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr>
+                      <td className="px-4 py-3.5 font-semibold text-ink">Normal</td>
+                      <td className="px-4 py-3.5 text-right font-extrabold text-brand">
+                        {formatPKR(process.fee_normal)}
+                      </td>
+                    </tr>
+                    <tr className="bg-surface/40">
+                      <td className="px-4 py-3.5 font-semibold text-ink">Urgent</td>
+                      <td className="px-4 py-3.5 text-right font-extrabold text-ink">
+                        {formatPKR(process.fee_urgent)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3.5 font-semibold text-ink">
+                        Executive / Fast Track
+                      </td>
+                      <td className="px-4 py-3.5 text-right font-extrabold text-ink">
+                        {formatPKR(process.fee_executive)}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              )}
             </div>
 
             {process.fee_notes && (

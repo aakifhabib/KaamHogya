@@ -19,7 +19,7 @@ export default function AdminPage() {
     <>
       <PageMetaBar
         breadcrumbs={[{ label: 'Admin Dashboard', href: '/admin' }]}
-        lastUpdated="2026-11-16T08:00:00Z"
+        lastUpdated="2026-11-17T00:00:00Z"
         sourceUrl={OFFICIAL_DIRECTORY_URL}
         sourceLabel="Official Portals Reference"
       />

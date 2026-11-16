@@ -12,7 +12,7 @@ export function formatPKR(amount: number, showFreeLabel = true): string {
 export function formatDate(isoOrDate: string | Date): string {
   const date = typeof isoOrDate === 'string' ? new Date(isoOrDate) : isoOrDate;
   if (Number.isNaN(date.getTime())) {
-    return '16 Nov 2026';
+    return '17 Nov 2026';
   }
   return new Intl.DateTimeFormat('en-GB', {
     day: 'numeric',

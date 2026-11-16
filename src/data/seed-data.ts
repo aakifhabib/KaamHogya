@@ -26,42 +26,42 @@ export const SEED_CATEGORIES: Category[] = [
     name: 'Identity',
     slug: 'identity',
     urdu_label: 'شناختی کارڈ',
-    description: 'CNIC renewal, Smart Card upgrades, CRC/B-Form, and NADRA corrections.',
+    description: 'Smart CNIC and Ordinary CNIC renewal, Pak-ID online options, and NADRA guides.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000002',
     name: 'Passport',
     slug: 'passport',
     urdu_label: 'پاسپورٹ',
-    description: 'New passports, renewals, child passports under 18, and Fast Track guidance.',
+    description: 'Pakistani e-Passport renewals, child e-passports under 18, and DGIP tracking.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000003',
     name: 'Driving',
     slug: 'driving',
     urdu_label: 'ڈرائیونگ لائسنس',
-    description: 'Driving licence renewal, learner permits, DLIMS tracking, and e-Challan payments.',
+    description: 'Punjab driving licence renewal via Khidmat Markaz / Dastak, and PSCA E-Challan payments.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000004',
     name: 'Tax',
     slug: 'tax',
     urdu_label: 'ٹیکس اور این ٹی این',
-    description: 'FBR NTN registration, IRIS setup for freelancers, and Active Taxpayer List guides.',
+    description: 'Free online FBR NTN registration on IRIS for freelancers and IT exporters.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000005',
     name: 'Certificates',
     slug: 'certificates',
     urdu_label: 'سرٹیفکیٹس',
-    description: 'Domicile, birth certificates, police character certificates, and e-Khidmat guides.',
+    description: 'Domicile certificates, Union Council birth certificates, and Police Character Certificates.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000006',
     name: 'Family',
     slug: 'family',
     urdu_label: 'خاندانی دستاویزات',
-    description: 'Post-marriage CNIC name changes, FRC, Nikahnama registration, and family records.',
+    description: 'Post-marriage CNIC name and marital status updates via Union Council MRC and NADRA.',
   },
 ];
 
@@ -79,252 +79,273 @@ export const PROCESS_IDS = {
 } as const;
 
 export const SEED_PROCESSES: ProcessRecord[] = [
+  // 1. Passport Renewal in Rawalpindi
   {
     id: PROCESS_IDS.passportRenewal,
     slug: 'passport-renewal-rawalpindi',
     title: 'Passport Renewal in Rawalpindi',
     urdu_title: 'پاسپورٹ کی تجدید — راولپنڈی',
     summary:
-      'Complete step-by-step guide to renewing your 36-page Pakistani Machine Readable Passport (5-year validity) at Regional Passport Office Rawalpindi using Passport Fee Asaan or NBP challan.',
+      'Step-by-step guide to renewing your 36-page Pakistani e-Passport at Regional Passport Office, GT Road, Rawalpindi (or online via DGIP portal). Pakistan issues only e-passports since Oct 2026 — MRP is discontinued.',
     category: 'Passport',
     city: 'Rawalpindi',
-    fee_normal: 4500,
-    fee_urgent: 7500,
-    fee_executive: 12500,
+    fee_normal: 9000,
+    fee_urgent: 15000,
+    fee_executive: 22500,
     fee_notes:
-      'Fees shown are for a 36-page, 5-year Ordinary Machine Readable Passport (DGIP standard schedule). 10-year validity costs Rs. 6,700 (Normal), Rs. 11,200 (Urgent), and Rs. 16,200 (Fast Track).',
-    time_required: 'Normal: 21 working days | Urgent: 5 working days | Fast Track: 2 working days',
-    office_name: 'Regional Passport Office Rawalpindi',
-    office_address: 'Near Rehmanabad Chowk, Main Murree Road (Opposite Sixth Road Metro Station), Rawalpindi',
-    office_timings: 'Mon–Thu: 8:30 AM – 2:00 PM | Fri: 8:30 AM – 12:30 PM (Closed Sat–Sun)',
-    best_day_to_go: 'Tuesday or Wednesday, arrive by 8:00 AM before token rush',
-    official_source_url: 'https://dgip.gov.pk/passport/ordinary-passport.php',
-    last_updated: '2026-11-15T09:00:00Z',
+      'Pakistan now issues only e-passports since Oct 2026; MRP is discontinued. For a 36-page e-passport: 5 years is Rs. 9,000 Normal and Rs. 15,000 Urgent; 10 years is Rs. 13,500 Normal and Rs. 22,500 Urgent.',
+    time_required: 'Normal: 21 working days | Urgent: 5 working days | Executive: 2 working days at Executive Offices',
+    office_name: 'Regional Passport Office, Rawalpindi (GT Road)',
+    office_address: 'Regional Passport Office, GT Road, Rawalpindi. Also available online via DGIP portal.',
+    office_timings: 'Mon–Thu: 8:30 AM – 2:00 PM | Fri: 8:30 AM – 12:30 PM (DGIP Online Portal 24/7)',
+    best_day_to_go: 'Tuesday to Thursday, 8:30 AM to 10:00 AM (Monday is the most crowded day)',
+    official_source_url: 'https://dgip.gov.pk/',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 1,
   },
+
+  // 2. CNIC Renewal in Rawalpindi
   {
     id: PROCESS_IDS.cnicRenewal,
     slug: 'cnic-renewal-rawalpindi',
     title: 'CNIC Renewal in Rawalpindi',
     urdu_title: 'شناختی کارڈ کی تجدید — راولپنڈی',
     summary:
-      'How to renew an expired or expiring Smart National Identity Card (SNIC) at NADRA Mega Center Rehmanabad Rawalpindi without paying an agent.',
+      'Complete guide to renewing your Smart CNIC or Ordinary CNIC at NADRA Mega Center, Saddar, Rawalpindi (or online via the Pak-ID app), with exact 2026 fees and delivery times.',
     category: 'Identity',
     city: 'Rawalpindi',
     fee_normal: 750,
     fee_urgent: 1500,
     fee_executive: 2500,
     fee_notes:
-      'Official NADRA Smart CNIC renewal fee schedule. Optional NADRA SMS alert & home courier delivery add roughly Rs. 100–250 at the counter.',
-    time_required: 'Normal: 31 days | Urgent: 15 days | Executive: 7 days',
-    office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)',
-    office_address: 'Ground Floor, Rehmanabad Plaza, Main Murree Road near Rehmanabad Metro Station, Rawalpindi',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Mega Center operates double shift; Closed Sun)',
-    best_day_to_go: 'Wednesday or Thursday between 2:30 PM – 4:30 PM (post-lunch dip)',
-    official_source_url: 'https://www.nadra.gov.pk/identity/identity-cnic',
-    last_updated: '2026-11-15T08:30:00Z',
+      'Smart CNIC renewal: Rs. 750 Normal (~31 days), Rs. 1,500 Urgent (~23 days), Rs. 2,500 Executive (~9 days). Ordinary non-smart CNIC renewal: Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), Rs. 2,150 Executive (6 days).',
+    time_required: '45 mins–1.5 hrs at Mega Center (2+ hrs Sat) | Smart: ~31/23/9 days | Ordinary: 15/12/6 days',
+    office_name: 'NADRA Mega Center, Saddar, Rawalpindi',
+    office_address: 'NADRA Mega Center, Saddar, Rawalpindi. Also available online via Pak-ID app.',
+    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Pak-ID app available 24/7)',
+    best_day_to_go: 'Weekday 9:00 AM to 11:00 AM (avoid Saturday — 2+ hours wait)',
+    official_source_url: 'https://www.nadra.gov.pk/',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 2,
   },
+
+  // 3. Driving Licence Renewal in Rawalpindi
   {
     id: PROCESS_IDS.drivingLicence,
     slug: 'driving-licence-renewal-rawalpindi',
     title: 'Driving Licence Renewal in Rawalpindi',
     urdu_title: 'ڈرائیونگ لائسنس کی تجدید — راولپنڈی',
     summary:
-      'Step-by-step instructions to renew your expired or expiring Punjab car/motorcycle driving licence at City Traffic Police Licensing Branch Rawalpindi or Khidmat Markaz.',
+      'How to renew your Punjab motorcycle, car/jeep, or LTV/HTV driving licence at Police Khidmat Markaz Rawalpindi or online via Dastak Punjab and DLIMS with home courier delivery.',
     category: 'Driving',
     city: 'Rawalpindi',
-    fee_normal: 1800,
-    fee_urgent: 2800,
-    fee_executive: 3800,
+    fee_normal: 1830,
+    fee_urgent: 930,
+    fee_executive: 2330,
     fee_notes:
-      'Normal Rs. 1,800 covers standard 1-year Car/Jeep renewal including card & test/medical ticket. Urgent/Executive estimates reflect 3-year and 5-year Punjab DLIMS multi-year renewal options plus e-Licence download.',
-    time_required: 'Same-day e-Licence PDF | Physical PVC card delivered in 7–15 days',
-    office_name: 'City Traffic Police Licensing Branch Rawalpindi',
-    office_address: 'Traffic Police Headquarters, Race Course Ground, Main Peshawar Road, Rawalpindi',
-    office_timings: 'Mon–Sat: 8:30 AM – 4:00 PM | Khidmat Markaz Liaquat Bagh open till 8:00 PM',
-    best_day_to_go: 'Tuesday or Thursday morning at 8:30 AM (avoid Monday backlog)',
+      'Punjab 1-year renewal + Rs. 480 courier fee: Motorcycle Rs. 450 (Rs. 930 with courier), Car/Jeep Rs. 1,350 (Rs. 1,830 with courier), LTV/HTV Rs. 1,850 (Rs. 2,330 with courier). Late fine for car: Rs. 675 (1–3 months late) and Rs. 1,350 (3–6 months late).',
+    time_required: '20–30 mins at center | 10 mins online | Courier delivery: 7–10 days',
+    office_name: 'Police Khidmat Markaz, Rawalpindi',
+    office_address: 'Police Khidmat Markaz, Rawalpindi. Also available online via Dastak Punjab and DLIMS.',
+    office_timings: 'Mon–Sat: 9:00 AM – 5:00 PM (Dastak Punjab & DLIMS online 24/7)',
+    best_day_to_go: 'Weekday 9:00 AM to 11:00 AM (avoid Saturday)',
     official_source_url: 'https://dlims.punjab.gov.pk/',
-    last_updated: '2026-11-14T11:00:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 3,
   },
+
+  // 4. FBR NTN Registration for Freelancers
   {
     id: PROCESS_IDS.fbrNtn,
     slug: 'fbr-ntn-for-freelancers',
     title: 'FBR NTN Registration for Freelancers',
     urdu_title: 'فری لانسرز کے لیے ایف بی آر این ٹی این',
     summary:
-      '100% free online guide to registering your National Tax Number (NTN) on FBR IRIS portal from home so freelancers can open business bank accounts, register with PSEB, and become a Filer.',
+      '100% free online guide to getting your National Tax Number (NTN) on FBR IRIS (iris.fbr.gov.pk) in 1 to 3 working days — no office visit required for basic registration.',
     category: 'Tax',
     city: 'Islamabad',
     fee_normal: 0,
     fee_urgent: 0,
     fee_executive: 0,
     fee_notes:
-      'FBR NTN registration on IRIS is completely FREE (Rs. 0). Becoming an Active Taxpayer (ATL Filer) only requires filing your annual return; late ATL surcharge is Rs. 1,000 for individuals.',
-    time_required: '15–25 minutes online (instant NTN certificate download)',
-    office_name: 'FBR IRIS Online Portal & RTO Islamabad Facilitation Desk',
-    office_address: 'Online via iris.fbr.gov.pk (Walk-in helpdesk: Regional Tax Office, Plot 20, Mauve Area, G-9/1, Islamabad)',
-    office_timings: 'Online Portal: 24/7 | RTO Helpdesk Mon–Fri: 9:00 AM – 3:30 PM',
-    best_day_to_go: 'Complete online any weekday morning (OTP SMS arrives fastest before 12 PM)',
+      'Fee is Rs. 0 (Free). Getting a National Tax Number takes 1 to 3 working days through FBR IRIS portal and costs nothing. It is linked directly to your CNIC number.',
+    time_required: 'Same day to 3 working days for approval (100% online)',
+    office_name: 'Online Only — FBR IRIS Portal (iris.fbr.gov.pk)',
+    office_address: 'Online only via iris.fbr.gov.pk. No need to visit an FBR office for basic registration.',
+    office_timings: 'Online 24/7 (Weekday mornings are faster — site is slower at night)',
+    best_day_to_go: 'Weekday morning (portal is faster and OTPs arrive quickly)',
     official_source_url: 'https://iris.fbr.gov.pk/',
-    last_updated: '2026-11-16T07:00:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: true,
     popularity_rank: 4,
   },
+
+  // 5. Domicile Certificate in Rawalpindi
   {
     id: PROCESS_IDS.domicile,
     slug: 'domicile-certificate-rawalpindi',
     title: 'Domicile Certificate in Rawalpindi',
     urdu_title: 'ڈومیسائل سرٹیفکیٹ — راولپنڈی',
     summary:
-      'Exact document list, e-Khidmat Markaz counter flow, and challan details for getting a computerized Punjab Domicile Certificate in Rawalpindi for university admission or government jobs.',
+      'Exact 2026 fee breakdown (Rs. 550 total), required forms (Form P & AC Verification Form), and steps for getting a Domicile Certificate at e-Khidmat Markaz, District Complex, Rawalpindi or via Maryam Ki Dastak.',
     category: 'Certificates',
     city: 'Rawalpindi',
-    fee_normal: 500,
-    fee_urgent: 1000,
-    fee_executive: 1500,
+    fee_normal: 550,
+    fee_urgent: 1450,
+    fee_executive: 1750,
     fee_notes:
-      'Government treasury challan is Rs. 200 plus e-Khidmat processing/stamp paper cost (~Rs. 300 total = Rs. 500 Normal). Urgent/Executive figures reflect expedited facilitation & extra stamp affidavit if needed.',
-    time_required: 'Normal: 10–15 working days | Urgent: 5 working days',
-    office_name: 'e-Khidmat Markaz Rawalpindi',
-    office_address: 'Liaquat Bagh Sports Complex, Main Murree Road, Rawalpindi',
-    office_timings: 'Mon–Sat: 9:00 AM – 5:00 PM (Break 1:00 PM – 2:00 PM; Closed Sun)',
-    best_day_to_go: 'Wednesday morning around 9:15 AM (avoid university admission deadline weeks)',
+      'In Punjab, the 2026 total official fee is Rs. 550 (Rs. 200 fee + Rs. 300 e-affidavit + Rs. 50 PITB charge). If you use Maryam Ki Dastak home delivery, add Rs. 900 to Rs. 1,200 service charge.',
+    time_required: '16 working days standard | 2–3 days if Dastak fast track is available in your area',
+    office_name: 'e-Khidmat Markaz, District Complex, Rawalpindi',
+    office_address: 'e-Khidmat Markaz, District Complex, Rawalpindi. Also available via Maryam Ki Dastak for home delivery.',
+    office_timings: 'Mon–Sat: 9:00 AM – 5:00 PM (Maryam Ki Dastak home service available)',
+    best_day_to_go: 'Tuesday to Thursday, 9:00 AM to 11:00 AM',
     official_source_url: 'https://ekhidmat.punjab.gov.pk/',
-    last_updated: '2026-11-14T10:15:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 5,
   },
+
+  // 6. Birth Certificate from Union Council in Rawalpindi
   {
     id: PROCESS_IDS.birthCertificate,
     slug: 'birth-certificate-rawalpindi',
-    title: 'Birth Certificate in Rawalpindi',
-    urdu_title: 'پیدائش کا سرٹیفکیٹ — راولپنڈی',
+    title: 'Birth Certificate from Union Council in Rawalpindi',
+    urdu_title: 'پیدائش کا سرٹیفکیٹ (یونین کونسل) — راولپنڈی',
     summary:
-      'How to get a computerized NADRA / Union Council Birth Registration Certificate (and subsequent B-Form/CRC) in Rawalpindi Municipal Corporation or Cantonment Board areas.',
+      'How to register a birth and collect a computerized Birth Certificate from your local Union Council, Municipal Committee, or Cantonment Board (NOT NADRA) — completely free within 7 years.',
     category: 'Certificates',
     city: 'Rawalpindi',
-    fee_normal: 500,
-    fee_urgent: 1000,
-    fee_executive: 1500,
+    fee_normal: 0,
+    fee_urgent: 500,
+    fee_executive: 2000,
     fee_notes:
-      'Standard timely registration (within 60 days of birth) at Union Council / e-Khidmat costs Rs. 300–500. Late registration (after 1 year) involves an extra magistrate/court affidavit and fee.',
-    time_required: 'Normal: 7–10 working days | Urgent: 3–5 working days',
-    office_name: 'Union Council / e-Khidmat Markaz & RCB Rawalpindi',
-    office_address: 'e-Khidmat Markaz Liaquat Bagh, Murree Road (For Cantt residents: Rawalpindi Cantonment Board, The Mall, Saddar)',
-    office_timings: 'Mon–Fri: 9:00 AM – 3:30 PM | e-Khidmat Mon–Sat: 9:00 AM – 5:00 PM',
-    best_day_to_go: 'Tuesday or Wednesday before 10:30 AM',
+      'Within 7 years: Free (Rs. 0). Late registration after 7 years: Rs. 200 to Rs. 1,000 for Pakistani citizens. Foreign national child: Rs. 2,000. Correction or change in details: Rs. 500. Use the birth certificate afterward to apply for B-Form at NADRA (Rs. 50 normal, Rs. 500 executive).',
+    time_required: 'Same day to 3 days if documents are complete',
+    office_name: 'Local Union Council, Municipal Committee, or Cantonment Board',
+    office_address: 'Your local Union Council, Municipal Committee, or Cantonment Board in Rawalpindi (NOT NADRA office).',
+    office_timings: 'Mon–Fri: 9:00 AM – 2:00 PM (Secretary is usually available 9:00 AM – 12:00 PM)',
+    best_day_to_go: 'Weekday 9:00 AM to 12:00 PM (Secretary is usually available in the morning)',
     official_source_url: 'https://lgcd.punjab.gov.pk/',
-    last_updated: '2026-11-13T14:00:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 6,
   },
+
+  // 7. Police Character Certificate in Rawalpindi
   {
     id: PROCESS_IDS.policeCharacter,
     slug: 'police-character-certificate-rawalpindi',
     title: 'Police Character Certificate in Rawalpindi',
     urdu_title: 'پولیس کریکٹر سرٹیفکیٹ — راولپنڈی',
     summary:
-      'Fast, clean walkthrough for obtaining a QR-verified Punjab Police Character Certificate for foreign visa, study abroad, immigration, or employment at Police Khidmat Markaz Rawalpindi.',
+      'Fast guide to getting your QR-verified Police Character Certificate (Rs. 500, 3 working days courier delivery) from Police Khidmat Markaz at Rescue 15 Liaqat Bagh Metro Station or Punjab centers.',
     category: 'Certificates',
     city: 'Rawalpindi',
     fee_normal: 500,
-    fee_urgent: 1000,
-    fee_executive: 1500,
+    fee_urgent: 500,
+    fee_executive: 300,
     fee_notes:
-      'Official Punjab Police Khidmat Markaz fee is Rs. 500 for standard verification. Overseas/urgent attestation or additional address verification may add Rs. 500–1,000.',
-    time_required: '3 working days (SMS alert when ready for collection or online download)',
-    office_name: 'Police Khidmat Markaz Rawalpindi',
-    office_address: 'Police Khidmat Markaz, Near Liaquat Bagh / Commercial Market Satellite Town, Rawalpindi',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Closed Sunday)',
-    best_day_to_go: 'Wednesday or Thursday between 10:00 AM – 12:30 PM',
+      'Police Character Certificate costs Rs. 500 (delivered by courier in 3 working days with QR code for verification). General Police Verification costs Rs. 300 — for foreign visas, always apply for Character Certificate (Rs. 500), not general verification.',
+    time_required: '30–45 mins at center | 3 working days courier delivery',
+    office_name: 'Police Khidmat Markaz, Rawalpindi (Rescue 15 Liaqat Bagh)',
+    office_address:
+      'Any Police Khidmat Markaz in Punjab. In Rawalpindi: Rescue 15 Office, Liaqat Bagh Metro Station, Murree Road, plus Taxila, Murree, Gujar Khan, and Kahuta centers.',
+    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Best window: 9:00 AM – 11:00 AM)',
+    best_day_to_go: 'Weekday 9:00 AM to 11:00 AM',
     official_source_url: 'https://pkm.punjab.gov.pk/',
-    last_updated: '2026-11-15T12:00:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 7,
   },
+
+  // 8. Child Passport Under 18 in Rawalpindi
   {
     id: PROCESS_IDS.childPassport,
     slug: 'child-passport-under-18',
-    title: 'Child Passport (Under 18) in Rawalpindi',
-    urdu_title: 'بچوں کا پاسپورٹ (18 سال سے کم)',
+    title: 'Child Passport Under 18 in Rawalpindi',
+    urdu_title: 'بچوں کا پاسپورٹ (18 سال سے کم) — راولپنڈی',
     summary:
-      'Everything parents need to know to apply for a newborn or minor (under 18) Pakistani passport in Rawalpindi using NADRA CRC (B-Form) or Smart Juvenile Card.',
+      'Complete checklist and step-by-step instructions for applying for a minor e-Passport (under 18) at Regional Passport Office Rawalpindi — including parent presence rules and B-Form requirements.',
     category: 'Passport',
     city: 'Rawalpindi',
-    fee_normal: 4500,
-    fee_urgent: 7500,
-    fee_executive: 12500,
+    fee_normal: 9000,
+    fee_urgent: 15000,
+    fee_executive: 15000,
     fee_notes:
-      'Children under 15 years are issued 5-year validity passports only (10-year option is for 15+ years). Fees shown are for a 36-page 5-year MRP.',
-    time_required: 'Normal: 21 working days | Urgent: 5 working days | Fast Track: 2 working days',
-    office_name: 'Regional Passport Office Rawalpindi (Family Counter)',
-    office_address: 'Near Rehmanabad Chowk, Main Murree Road (Opposite Sixth Road Metro Station), Rawalpindi',
+      'A child’s e-passport uses the same fee table as adults: Rs. 9,000 Normal and Rs. 15,000 Urgent for 36 pages and 5 years. Children under 15 get only 5-year validity.',
+    time_required: 'Normal: 21 working days | Urgent: 5 working days (courier delivery)',
+    office_name: 'Regional Passport Office, Rawalpindi',
+    office_address:
+      'Regional Passport Office, GT Road, Rawalpindi. Both parents must be present, or one parent with an attested consent affidavit.',
     office_timings: 'Mon–Thu: 8:30 AM – 2:00 PM | Fri: 8:30 AM – 12:30 PM',
-    best_day_to_go: 'Tuesday or Thursday at 8:15 AM (dedicated family lane moves faster early)',
-    official_source_url: 'https://dgip.gov.pk/passport/minor-passport.php',
-    last_updated: '2026-11-14T16:30:00Z',
+    best_day_to_go: '9:00 AM on a weekday, with both parents',
+    official_source_url: 'https://dgip.gov.pk/',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
     popularity_rank: 8,
   },
+
+  // 9. Name Change on CNIC After Marriage
   {
     id: PROCESS_IDS.nameChangeMarriage,
     slug: 'name-change-cnic-after-marriage',
     title: 'Name Change on CNIC After Marriage',
     urdu_title: 'شادی کے بعد شناختی کارڈ میں نام کی تبدیلی',
     summary:
-      'How to update marital status, add husband’s name, and optionally update surname on your Smart CNIC at NADRA Mega Center Rawalpindi with Computerized MRC.',
+      'How to update marital status, add spouse name, and optionally change surname at NADRA Mega Center, Saddar, Rawalpindi (or Pak-ID app) after obtaining your Union Council Computerized MRC.',
     category: 'Family',
     city: 'Rawalpindi',
-    fee_normal: 750,
-    fee_urgent: 1500,
-    fee_executive: 2500,
+    fee_normal: 400,
+    fee_urgent: 1150,
+    fee_executive: 2150,
     fee_notes:
-      'Standard NADRA Smart CNIC modification fee (Rs. 750 Normal, Rs. 1,500 Urgent, Rs. 2,500 Executive). Both marital status update and name change can be done in the same single fee.',
-    time_required: 'Normal: 31 days | Urgent: 15 days | Executive: 7 days',
-    office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)',
-    office_address: 'Ground Floor, Rehmanabad Plaza, Main Murree Road near Rehmanabad Metro Station, Rawalpindi',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Dedicated ladies & family waiting area)',
-    best_day_to_go: 'Tuesday or Wednesday at 9:00 AM (husband and wife should visit together)',
-    official_source_url: 'https://www.nadra.gov.pk/identity/identity-cnic',
-    last_updated: '2026-11-15T11:20:00Z',
+      'Ordinary CNIC modification: Rs. 400 Normal (15 days), Rs. 1,150 Urgent, Rs. 2,150 Executive (6 days). Smart CNIC modification: Rs. 750 Normal, Rs. 1,500 Urgent, Rs. 2,500 Executive. Updating marital status in NADRA database only (without a new printed card) costs Rs. 100.',
+    time_required: '45 mins at center | Delivery: 15 days Normal / 6 days Executive (Ordinary CNIC)',
+    office_name: 'NADRA Mega Center, Saddar, Rawalpindi',
+    office_address: 'NADRA Mega Center, Saddar, Rawalpindi. Also available online via Pak-ID app.',
+    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Pak-ID app available 24/7)',
+    best_day_to_go: 'Weekday morning',
+    official_source_url: 'https://www.nadra.gov.pk/',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
-    is_nationwide: false,
+    is_nationwide: true,
     popularity_rank: 9,
   },
+
+  // 10. E-Challan Check and Payment in Punjab
   {
     id: PROCESS_IDS.eChallan,
     slug: 'e-challan-check-and-payment',
-    title: 'E-Challan Check and Payment (PSCA / Traffic)',
-    urdu_title: 'ای چالان چیک اور ادائیگی',
+    title: 'E-Challan Check and Payment in Punjab',
+    urdu_title: 'پنجاب ای چالان چیک اور ادائیگی',
     summary:
-      'Check pending Safe City camera e-Challans by vehicle number & CNIC and pay online in 2 minutes using PSID code via JazzCash, Easypaisa, or any Pakistani banking app.',
+      'Check and pay Punjab Safe Cities (PSCA) traffic e-Challans online in 2 minutes via echallan.psca.gop.pk and e-Pay Punjab 17-digit PSID — with common violation fines and SMS scam warnings.',
     category: 'Driving',
     city: 'Lahore',
-    fee_normal: 200,
-    fee_urgent: 500,
-    fee_executive: 2000,
+    fee_normal: 2000,
+    fee_urgent: 5000,
+    fee_executive: 10000,
     fee_notes:
-      'Traffic fines vary by violation: Rs. 200 (typical helmet/minor motorcycle violation), Rs. 500 (lane/seatbelt/standard car violation), up to Rs. 2,000 (red signal jump or overspeeding). Zero portal service fee via e-Pay Punjab.',
-    time_required: '2–5 minutes online (instant digital receipt & PSCA clearance)',
-    office_name: 'Punjab Safe Cities Authority (PSCA) E-Challan Portal',
-    office_address: 'Online via echallan.psca.gop.pk (In-person dispute center: Qurban Lines, Jail Road, Lahore / Local Traffic HQ)',
-    office_timings: 'Online Check & Pay: 24/7 | Dispute Desk Mon–Sat: 9:00 AM – 4:00 PM',
-    best_day_to_go: 'Pay online immediately within 10 days to avoid late-payment escalation',
+      'Fine depends on violation. Common Punjab fines: No helmet Rs. 2,000; Red light Rs. 2,000 to Rs. 5,000; No licence Rs. 5,000; Overspeeding Rs. 2,000 to Rs. 10,000. Check your exact fine on echallan.psca.gop.pk and pay within 10 days to avoid extra penalty.',
+    time_required: 'Check takes 2 mins | Payment reflects on portal in 10 mins to 2 hours',
+    office_name: 'Online Only — PSCA E-Challan Portal (echallan.psca.gop.pk)',
+    office_address: 'Online only at echallan.psca.gop.pk. No need to visit an office.',
+    office_timings: 'Online 24 hours / 7 days a week',
+    best_day_to_go: 'Anytime — portal is open 24 hours (pay within 10 days to avoid extra penalty)',
     official_source_url: 'https://echallan.psca.gop.pk/',
-    last_updated: '2026-11-16T06:45:00Z',
+    last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: true,
     popularity_rank: 10,
@@ -332,332 +353,318 @@ export const SEED_PROCESSES: ProcessRecord[] = [
 ];
 
 export const SEED_DOCUMENTS: ProcessDocument[] = [
-  // 1. Passport Renewal Rawalpindi
-  { id: 'd1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, name: 'Original Valid CNIC / Smart Card (Asal Shanakhti Card)', type: 'original', copies_needed: 1, note: 'Must not be expired. If your CNIC is expired, renew CNIC at NADRA first.', sort_order: 1 },
-  { id: 'd1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, name: 'CNIC Photocopy (Front & Back on one page)', type: 'photocopy', copies_needed: 2, note: 'Keep clear front-and-back copies on A4 paper. No attestation needed.', sort_order: 2 },
-  { id: 'd1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, name: 'Original Previous Passport (Purana Asal Passport)', type: 'original', copies_needed: 1, note: 'Mandatory for renewal. Office will punch/cancel it and return it with valid visas intact.', sort_order: 3 },
-  { id: 'd1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, name: 'Photocopy of Old Passport (Bio-data Page)', type: 'photocopy', copies_needed: 1, note: 'Copy of the main photo/information page of your expiring passport.', sort_order: 4 },
-  { id: 'd1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, name: 'Paid Fee Challan / Passport Fee Asaan PSID Receipt', type: 'original', copies_needed: 1, note: 'Pay via Passport Fee Asaan app (1Link / JazzCash / Bank App) and bring printed SMS/PDF receipt — saves 45 minutes of NBP bank queue!', sort_order: 5 },
-  { id: 'd1010000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.passportRenewal, name: 'NOC from Department (Government Employees Only)', type: 'original', copies_needed: 1, note: 'Only required if you are a serving government/armed forces employee.', sort_order: 6 },
+  // 1. Passport Renewal in Rawalpindi
+  { id: 'd1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, name: 'Original Old Passport (Current or Expired)', type: 'original', copies_needed: 1, note: 'Bring your original old passport even if it has already expired.', sort_order: 1 },
+  { id: 'd1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, name: 'Photocopy of Old Passport (First 2 Pages)', type: 'photocopy', copies_needed: 1, note: '1 clear photocopy of the first 2 pages of your old/expired passport.', sort_order: 2 },
+  { id: 'd1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, name: 'Original Valid CNIC', type: 'original', copies_needed: 1, note: 'Your CNIC must be valid — expired CNICs are rejected immediately.', sort_order: 3 },
+  { id: 'd1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, name: 'CNIC Photocopy (Front and Back)', type: 'photocopy', copies_needed: 1, note: '1 clear photocopy showing both front and back of your valid CNIC.', sort_order: 4 },
+  { id: 'd1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, name: 'Address Proof (Utility Bill — Only for Address Change)', type: 'photocopy', copies_needed: 1, note: 'Only needed if you are changing your address on the passport.', sort_order: 5 },
 
-  // 2. CNIC Renewal Rawalpindi
-  { id: 'd1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, name: 'Original Expired / Expiring CNIC (Purana Asal Card)', type: 'original', copies_needed: 1, note: 'If lost, bring an FIR/Police Roznamcha Lost Report instead.', sort_order: 1 },
-  { id: 'd1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, name: 'Photocopy of Old CNIC', type: 'photocopy', copies_needed: 1, note: 'Helpful to keep for your own record once NADRA punches the old card.', sort_order: 2 },
-  { id: 'd1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, name: 'Original CNIC of Any Blood Relative (Only if changing address)', type: 'original', copies_needed: 1, note: 'Not needed for simple renewal with no changes. Needed only if updating address or family tree.', sort_order: 3 },
-  { id: 'd1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, name: 'Utility Bill Copy (Only if updating present address)', type: 'photocopy', copies_needed: 1, note: 'Electricity, gas, or water bill showing your new Rawalpindi address.', sort_order: 4 },
-  { id: 'd1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, name: 'Active Mobile Phone (SIM registered on your CNIC)', type: 'original', copies_needed: 1, note: 'For receiving NADRA tracking token & SMS updates when your card is ready.', sort_order: 5 },
+  // 2. CNIC Renewal in Rawalpindi
+  { id: 'd1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, name: 'Original Old CNIC', type: 'original', copies_needed: 1, note: 'Bring your original old CNIC card.', sort_order: 1 },
+  { id: 'd1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, name: 'Old CNIC Photocopy', type: 'photocopy', copies_needed: 1, note: '1 clear front-and-back photocopy of your old CNIC.', sort_order: 2 },
+  { id: 'd1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, name: 'Utility Bill or Rent Agreement (If Address Changed)', type: 'photocopy', copies_needed: 1, note: 'Required only if you are updating your current or permanent address.', sort_order: 3 },
+  { id: 'd1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, name: 'Computerized Marriage Certificate (If Marital Status Changed)', type: 'original', copies_needed: 1, note: 'Required only if your marital status changed since your previous CNIC.', sort_order: 4 },
 
-  // 3. Driving Licence Renewal Rawalpindi
-  { id: 'd1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, name: 'Original Valid CNIC (Asal Shanakhti Card)', type: 'original', copies_needed: 1, note: 'Must be valid for biometric verification at Traffic Police counter.', sort_order: 1 },
-  { id: 'd1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, name: 'Photocopy of CNIC (Front & Back)', type: 'photocopy', copies_needed: 2, note: 'Clear front and back copy on one sheet.', sort_order: 2 },
-  { id: 'd1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, name: 'Original Expired / Expiring Driving Licence', type: 'original', copies_needed: 1, note: 'Old PVC licence card must be surrendered at the counter.', sort_order: 3 },
-  { id: 'd1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, name: 'Photocopy of Previous Driving Licence', type: 'photocopy', copies_needed: 1, note: 'Keep one copy for your file and DLIMS licence number lookup.', sort_order: 4 },
-  { id: 'd1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, name: 'Medical Fitness Certificate (Form B — if age 50+)', type: 'original', copies_needed: 1, note: 'Required for applicants aged 50 or older (or LTV/HTV renewals). Available from authorized medical officer inside Traffic HQ.', sort_order: 5 },
-  { id: 'd1030000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.drivingLicence, name: 'Passport-Size Photos (Blue/White Background)', type: 'original', copies_needed: 2, note: 'Live photo is captured at the counter, but carry 2 backup photos for manual medical form if needed.', sort_order: 6 },
+  // 3. Driving Licence Renewal in Rawalpindi
+  { id: 'd1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, name: 'Original Old Driving Licence', type: 'original', copies_needed: 1, note: 'Your original expiring or expired Punjab driving licence.', sort_order: 1 },
+  { id: 'd1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, name: 'Photocopy of Old Driving Licence', type: 'photocopy', copies_needed: 1, note: '1 photocopy of your old licence (or photo/scan to upload in Dastak app).', sort_order: 2 },
+  { id: 'd1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, name: 'Original Valid CNIC', type: 'original', copies_needed: 1, note: 'Bring your original CNIC for verification.', sort_order: 3 },
+  { id: 'd1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, name: 'CNIC Photocopy', type: 'photocopy', copies_needed: 1, note: '1 front-and-back photocopy of your CNIC.', sort_order: 4 },
+  { id: 'd1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, name: '1 Fresh Passport-Size Photo (White Background)', type: 'original', copies_needed: 1, note: 'Recent passport-size photograph with a plain white background.', sort_order: 5 },
+  { id: 'd1030000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.drivingLicence, name: 'Medical Certificate (If Over 60 or Renewing After Long Expiry)', type: 'original', copies_needed: 1, note: 'Only required if you are over 60 years old or renewing after a long expiry.', sort_order: 6 },
 
-  // 4. FBR NTN for Freelancers
-  { id: 'd1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, name: 'Original CNIC (13-digit CNIC Number)', type: 'original', copies_needed: 1, note: 'Your CNIC number becomes your NTN in Pakistan. Keep it handy to type accurately.', sort_order: 1 },
-  { id: 'd1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, name: 'Mobile SIM Registered in Your Own Name (Apne Naam ki SIM)', type: 'original', copies_needed: 1, note: 'CRITICAL: FBR IRIS rejects SIMs registered on a parent or spouse CNIC.', sort_order: 2 },
-  { id: 'd1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, name: 'Active Personal Email Address', type: 'original', copies_needed: 1, note: 'You will receive a separate 6-digit email verification OTP alongside your SMS OTP.', sort_order: 3 },
-  { id: 'd1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, name: 'Recent Electricity Bill Copy (24-digit Meter/Reference Number)', type: 'photocopy', copies_needed: 1, note: 'Needed to fill residential address / utility meter field in your IRIS Form 181 profile.', sort_order: 4 },
-  { id: 'd1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, name: 'Personal Bank Account IBAN', type: 'photocopy', copies_needed: 1, note: 'Required if you also want to add your freelance bank account and business name in IRIS.', sort_order: 5 },
+  // 4. FBR NTN Registration for Freelancers
+  { id: 'd1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, name: 'CNIC Front & Back Scan (PDF or JPG Under 2MB)', type: 'photocopy', copies_needed: 1, note: 'Clear digital scan of both sides of your CNIC in PDF or JPG format under 2MB.', sort_order: 1 },
+  { id: 'd1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, name: 'Mobile SIM Registered on Your Own CNIC', type: 'original', copies_needed: 1, note: 'Mandatory — FBR SMS OTP will fail if the SIM is registered on someone else’s CNIC.', sort_order: 2 },
+  { id: 'd1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, name: 'Personal Email Address You Check Regularly', type: 'original', copies_needed: 1, note: 'Used to receive your FBR email OTP and IRIS account credentials.', sort_order: 3 },
+  { id: 'd1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, name: 'Bank Account Maintenance Certificate (Scanned PDF)', type: 'photocopy', copies_needed: 1, note: 'Account maintenance certificate in your own name, scanned as a PDF.', sort_order: 4 },
+  { id: 'd1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, name: 'Proof of Business Address & Paid Utility Bill (If Running a Business)', type: 'photocopy', copies_needed: 1, note: 'Proof of premises and a paid utility bill not older than 3 months — required if you run a business.', sort_order: 5 },
 
-  // 5. Domicile Certificate Rawalpindi
-  { id: 'd1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, name: 'Original CNIC or NADRA B-Form (if under 18)', type: 'original', copies_needed: 1, note: 'Permanent OR present address on CNIC should be in District Rawalpindi.', sort_order: 1 },
-  { id: 'd1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, name: 'Photocopy of Applicant CNIC & Father’s CNIC', type: 'photocopy', copies_needed: 2, note: 'Two clear sets of front & back copies (attested by Grade 17 officer if applying manually).', sort_order: 2 },
-  { id: 'd1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, name: 'Utility Bill Proof of Rawalpindi Residence', type: 'photocopy', copies_needed: 2, note: 'Recent IESCO electricity or SNGPL gas bill (or registered rent agreement) showing Rawalpindi address.', sort_order: 3 },
-  { id: 'd1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, name: 'Matric / Educational Certificate Copy', type: 'photocopy', copies_needed: 1, note: 'School/Matric certificate or student card to verify date of birth and Rawalpindi residence.', sort_order: 4 },
-  { id: 'd1050000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.domicile, name: 'Affidavit on Rs. 100 Stamp Paper (Bayan-e-Halfi)', type: 'original', copies_needed: 1, note: 'Stating you do not hold a domicile from any other district of Pakistan, attested by Oath Commissioner.', sort_order: 5 },
-  { id: 'd1050000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.domicile, name: 'Passport-Size Photos (Blue Background)', type: 'original', copies_needed: 3, note: '3 recent clear photographs without cap or sunglasses.', sort_order: 6 },
-  { id: 'd1050000-0000-4000-8000-000000000007', process_id: PROCESS_IDS.domicile, name: 'Domicile Challan Form 32-A (Rs. 200 NBP / e-Pay)', type: 'original', copies_needed: 1, note: 'Pay via e-Pay Punjab app or NBP branch and attach original paid receipt.', sort_order: 7 },
+  // 5. Domicile Certificate in Rawalpindi
+  { id: 'd1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, name: 'Your CNIC Original + 1 Copy (or B-Form / Birth Certificate if Under 18)', type: 'original', copies_needed: 1, note: 'Bring your original CNIC + 1 photocopy, or B-Form / birth certificate if under 18.', sort_order: 1 },
+  { id: 'd1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, name: 'Father, Mother, or Spouse CNIC Copy', type: 'photocopy', copies_needed: 1, note: 'Mandatory — bringing only your own CNIC is not enough.', sort_order: 2 },
+  { id: 'd1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, name: 'AC Verification Form', type: 'original', copies_needed: 1, note: 'Available at the e-Khidmat center — your file will be returned without it.', sort_order: 3 },
+  { id: 'd1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, name: 'Form P', type: 'original', copies_needed: 1, note: 'Standard domicile application form, available at the e-Khidmat center.', sort_order: 4 },
+  { id: 'd1050000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.domicile, name: 'Affidavit on Stamp Paper (Rs. 300)', type: 'original', copies_needed: 1, note: 'Rs. 300 e-affidavit, available directly at the e-Khidmat center.', sort_order: 5 },
+  { id: 'd1050000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.domicile, name: '2 Fresh Passport-Size Photos', type: 'original', copies_needed: 2, note: 'Bring 2 recent passport-size photographs.', sort_order: 6 },
+  { id: 'd1050000-0000-4000-8000-000000000007', process_id: PROCESS_IDS.domicile, name: 'Proof of Residence (Property Papers, Utility Bill, Rent Agreement, or Voter List Entry)', type: 'photocopy', copies_needed: 1, note: 'Address on your proof of residence must match your CNIC or declared address.', sort_order: 7 },
 
-  // 6. Birth Certificate Rawalpindi
-  { id: 'd1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, name: 'Hospital Birth Slip / Vaccination Card (Original)', type: 'original', copies_needed: 1, note: 'Signed & stamped discharge/birth slip from hospital (or Lady Health Worker card for home birth).', sort_order: 1 },
-  { id: 'd1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, name: 'Photocopy of Hospital Birth Slip', type: 'photocopy', copies_needed: 2, note: 'Attach two clear copies to the Union Council application.', sort_order: 2 },
-  { id: 'd1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, name: 'Father & Mother Original CNICs', type: 'original', copies_needed: 1, note: 'Both parents’ CNICs must be valid; mother’s CNIC should preferably reflect married status.', sort_order: 3 },
-  { id: 'd1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, name: 'Photocopies of Parents’ CNICs & Grandfather’s CNIC', type: 'photocopy', copies_needed: 2, note: 'Front and back copies of father, mother, and paternal grandfather (if available).', sort_order: 4 },
-  { id: 'd1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, name: 'Computerized Nikahnama / NADRA MRC Copy', type: 'photocopy', copies_needed: 1, note: 'Required by Union Council to confirm parents’ marriage record.', sort_order: 5 },
-  { id: 'd1060000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.birthCertificate, name: 'Late Registration Affidavit (Only if child is older than 60 days)', type: 'original', copies_needed: 1, note: 'Rs. 100 stamp paper affidavit attested by Oath Commissioner (for births > 1 year old, court order/ADLG permission may be needed).', sort_order: 6 },
+  // 6. Birth Certificate from Union Council in Rawalpindi
+  { id: 'd1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, name: 'Hospital Birth Slip or Discharge Slip (If Available)', type: 'original', copies_needed: 1, note: 'Bring the hospital birth or discharge slip if available.', sort_order: 1 },
+  { id: 'd1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, name: 'Father CNIC Original + 1 Copy', type: 'original', copies_needed: 1, note: 'Father’s original CNIC along with 1 photocopy.', sort_order: 2 },
+  { id: 'd1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, name: 'Mother CNIC Original + 1 Copy', type: 'original', copies_needed: 1, note: 'Mother’s original CNIC along with 1 photocopy.', sort_order: 3 },
+  { id: 'd1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, name: 'Nikahnama (If Asked for Verification)', type: 'photocopy', copies_needed: 1, note: 'Keep a photocopy of the Nikahnama ready in case the UC Secretary requests verification.', sort_order: 4 },
+  { id: 'd1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, name: 'Affidavit & Proof of Birth (For Late Registration After 7 Years)', type: 'original', copies_needed: 1, note: 'Required only if registering a birth after 7 years (late fee Rs. 200 to Rs. 1,000 applies).', sort_order: 5 },
 
-  // 7. Police Character Certificate Rawalpindi
-  { id: 'd1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, name: 'Original Valid CNIC (or B-Form if under 18)', type: 'original', copies_needed: 1, note: 'Required for live biometric and NADRA record check.', sort_order: 1 },
-  { id: 'd1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, name: 'Photocopy of CNIC (Front & Back)', type: 'photocopy', copies_needed: 2, note: 'Two clear photocopies on A4 sheet.', sort_order: 2 },
-  { id: 'd1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, name: 'Original Passport & Bio-data Page Copy', type: 'photocopy', copies_needed: 1, note: 'Mandatory if applying for foreign visa, study abroad, or immigration — passport number is printed on the certificate.', sort_order: 3 },
-  { id: 'd1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, name: 'Proof of Rawalpindi Address (Utility Bill or Rent Agreement)', type: 'photocopy', copies_needed: 1, note: 'Needed if your CNIC permanent address is outside Rawalpindi and you want verification for your Rawalpindi stay period.', sort_order: 4 },
-  { id: 'd1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, name: 'Authority Letter (Only if blood relative is applying for overseas Pakistani)', type: 'original', copies_needed: 1, note: 'Required only when applicant is abroad and a father/brother/spouse applies on their behalf.', sort_order: 5 },
+  // 7. Police Character Certificate in Rawalpindi
+  { id: 'd1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, name: 'Original CNIC or B-Form + Photocopy (Front & Back)', type: 'original', copies_needed: 1, note: 'Your CNIC address should match your current residence address.', sort_order: 1 },
+  { id: 'd1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, name: 'Original Passport + Photocopy (Required for Visa Purpose)', type: 'original', copies_needed: 1, note: 'Mandatory for visa, immigration, or study/work abroad applications.', sort_order: 2 },
+  { id: 'd1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, name: '2 Passport-Size Photos', type: 'original', copies_needed: 2, note: 'Bring 2 recent passport-size photographs.', sort_order: 3 },
+  { id: 'd1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, name: 'Old Character Certificate (If Renewing)', type: 'original', copies_needed: 1, note: 'Only needed if you are renewing an earlier character certificate.', sort_order: 4 },
+  { id: 'd1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, name: 'Visa or Job Letter (For Abroad, If Available)', type: 'photocopy', copies_needed: 1, note: 'Optional, helps clearly mention the purpose on the certificate.', sort_order: 5 },
 
-  // 8. Child Passport Under 18
-  { id: 'd1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, name: 'Original NADRA CRC (B-Form) or Smart Juvenile Card', type: 'original', copies_needed: 1, note: 'Must be computerized NADRA CRC with 13-digit number (for ages 10–18, Smart Juvenile Card or CRC with child’s photo is strongly preferred).', sort_order: 1 },
-  { id: 'd1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, name: 'Photocopy of NADRA B-Form / CRC', type: 'photocopy', copies_needed: 2, note: 'Check that child’s name spelling matches birth certificate & school record exactly.', sort_order: 2 },
-  { id: 'd1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, name: 'Original Valid CNICs of Both Father and Mother', type: 'original', copies_needed: 1, note: 'At least one parent must accompany the child with both parents’ original CNICs (both parents recommended to avoid consent form delays).', sort_order: 3 },
-  { id: 'd1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, name: 'Photocopies of Both Parents’ CNICs', type: 'photocopy', copies_needed: 2, note: 'Front and back copies of father’s and mother’s CNICs.', sort_order: 4 },
-  { id: 'd1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, name: 'Paid Fee Challan / Passport Fee Asaan Receipt', type: 'original', copies_needed: 1, note: 'Generate PSID against the child’s 13-digit B-Form number, NOT the father’s CNIC!', sort_order: 5 },
-  { id: 'd1080000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.childPassport, name: 'Previous Passport (If renewing child passport)', type: 'original', copies_needed: 1, note: 'Only required if the child already held a Pakistani passport earlier.', sort_order: 6 },
+  // 8. Child Passport Under 18 in Rawalpindi
+  { id: 'd1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, name: 'Child B-Form / CRC Original + Copy (With Photo & Fingerprints if Age 10–17)', type: 'original', copies_needed: 1, note: 'For children aged 10 to 17, the B-Form MUST include photo and fingerprints — otherwise update it at NADRA first.', sort_order: 1 },
+  { id: 'd1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, name: 'Father CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Father’s CNIC must be valid (not expired) + 1 photocopy.', sort_order: 2 },
+  { id: 'd1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, name: 'Mother CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Mother’s CNIC must be valid (not expired) + 1 photocopy.', sort_order: 3 },
+  { id: 'd1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, name: 'Computerized Birth Certificate from Union Council', type: 'original', copies_needed: 1, note: 'Bring the child’s computerized birth certificate issued by the Union Council.', sort_order: 4 },
+  { id: 'd1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, name: 'Attested Consent Affidavit from Absent Parent (If One Parent Is Absent)', type: 'original', copies_needed: 1, note: 'Mandatory if only one parent visits the Passport Office — file is rejected without it.', sort_order: 5 },
+  { id: 'd1080000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.childPassport, name: 'Old Child Passport (If Renewal)', type: 'original', copies_needed: 1, note: 'Bring the child’s previous passport if renewing.', sort_order: 6 },
 
   // 9. Name Change on CNIC After Marriage
-  { id: 'd1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Original Wife’s Existing CNIC', type: 'original', copies_needed: 1, note: 'Will be updated to married status with husband’s name.', sort_order: 1 },
-  { id: 'd1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Original Computerized NADRA Marriage Registration Certificate (MRC)', type: 'original', copies_needed: 1, note: 'Handwritten green Nikahnama alone is NO LONGER sufficient — get computerized MRC from your Union Council first!', sort_order: 2 },
-  { id: 'd1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Photocopy of Computerized MRC & Nikahnama', type: 'photocopy', copies_needed: 1, note: 'Keep one photocopy for counter attachment.', sort_order: 3 },
-  { id: 'd1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Husband’s Original CNIC (Plus Physical Presence for Biometrics)', type: 'original', copies_needed: 1, note: 'Husband must accompany wife for live thumbprint verification. If husband is abroad, an attested undertaking/affidavit is needed.', sort_order: 4 },
-  { id: 'd1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Photocopy of Husband’s CNIC', type: 'photocopy', copies_needed: 1, note: 'Front and back copy.', sort_order: 5 },
+  { id: 'd1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Your Old CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Bring your original current CNIC plus 1 photocopy.', sort_order: 1 },
+  { id: 'd1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Computerized Marriage Certificate (MRC) from Union Council — Original + Copy', type: 'original', copies_needed: 1, note: 'Mandatory before visiting NADRA — manual Nikahnama alone is not accepted.', sort_order: 2 },
+  { id: 'd1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Husband CNIC Copy (For Wife Updating Record)', type: 'photocopy', copies_needed: 1, note: 'Required when the wife updates marital status / spouse name.', sort_order: 3 },
+  { id: 'd1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Wife CNIC Copy (For Husband Updating Record)', type: 'photocopy', copies_needed: 1, note: 'Required when the husband updates his NADRA marital record (update both so FRC matches later).', sort_order: 4 },
+  { id: 'd1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Nikahnama Showing New Name (If Changing Surname)', type: 'photocopy', copies_needed: 1, note: 'Bring if you are also updating your surname on CNIC.', sort_order: 5 },
 
-  // 10. E-Challan Check and Payment
-  { id: 'd1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, name: 'Vehicle Registration Number (Number Plate)', type: 'original', copies_needed: 1, note: 'Example: LEA-1234 or RIL-4567 (from your Excise Smart Card or registration book).', sort_order: 1 },
-  { id: 'd1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, name: 'Vehicle Owner’s 13-Digit CNIC Number', type: 'original', copies_needed: 1, note: 'Must match the CNIC registered on Excise & Taxation record for that vehicle.', sort_order: 2 },
-  { id: 'd1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, name: 'Active Banking App, JazzCash, or Easypaisa Account', type: 'original', copies_needed: 1, note: 'Used to pay the 17-digit PSID code under Government Payments → e-Pay Punjab / PSCA.', sort_order: 3 },
-  { id: 'd1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, name: 'Printed / Saved E-Challan Payment Receipt (PDF Screenshot)', type: 'photocopy', copies_needed: 1, note: 'Save digital confirmation receipt on your phone in case a traffic warden checks.', sort_order: 4 },
+  // 10. E-Challan Check and Payment in Punjab
+  { id: 'd1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, name: 'Vehicle Registration Number', type: 'original', copies_needed: 1, note: 'Your vehicle number plate, for example LEA-1234 or GAA-123.', sort_order: 1 },
+  { id: 'd1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, name: 'Owner CNIC Number (13 Digits Without Dashes) or Chassis Number', type: 'original', copies_needed: 1, note: 'Enter the owner’s 13-digit CNIC without dashes, or your vehicle chassis number.', sort_order: 2 },
 ];
 
 export const SEED_STEPS: ProcessStep[] = [
-  // 1. Passport Renewal Rawalpindi
-  { id: 'e1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, step_number: 1, title: 'Pay Fee Online Before Leaving Home (Passport Fee Asaan)', description: 'Download the official "Passport Fee Asaan" app by DGIP, select Passport Renewal (36 pages, 5 or 10 years, Normal/Urgent/Fast Track), enter your CNIC, and generate a PSID code. Pay via JazzCash, Easypaisa, or any Pakistani bank app and print the confirmation receipt.', time_minutes: 10 },
-  { id: 'e1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, step_number: 2, title: 'Entry Gate Verification & Token Counter', description: 'Arrive at Regional Passport Office Rawalpindi near Rehmanabad by 8:00 AM. Show your original CNIC, old passport, and printed fee receipt at the gate to collect your numbered token slip.', time_minutes: 20 },
-  { id: 'e1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, step_number: 3, title: 'Biometrics & Live Photograph Counter', description: 'When your token appears on the screen, proceed to the Biometrics booth. The operator captures your fingerprints and live passport photo (do not wear a white shirt — dark/medium collar looks best against the white backdrop).', time_minutes: 15 },
-  { id: 'e1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, step_number: 4, title: 'Data Entry & Draft Review', description: 'Move to the Data Entry counter. The officer pulls your NADRA data and prints a draft verification sheet. Carefully check spelling of your name, father’s name, date of birth, and CNIC before signing — errors after printing cost a full new fee.', time_minutes: 15 },
-  { id: 'e1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, step_number: 5, title: 'Assistant Director (AD) Final Verification Interview', description: 'Wait for your token at the Assistant Director desk. The officer verifies your old passport, punches it as cancelled (leaving valid visas uncut), approves your renewal in the system, and hands you the collection token.', time_minutes: 20 },
-  { id: 'e1010000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.passportRenewal, step_number: 6, title: 'Track SMS & Collect New Passport', description: 'Watch for the SMS from 9988 when your passport is ready (21 working days Normal, 5 Urgent, 2 Fast Track). Bring your original CNIC, cancelled old passport, and original token slip to the Delivery Window for collection.', time_minutes: 15 },
+  // 1. Passport Renewal Rawalpindi (4 steps)
+  { id: 'e1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, step_number: 1, title: 'Go to Token Counter & Get Renewal Token', description: 'Arrive at Regional Passport Office, GT Road, Rawalpindi (best window: Tuesday to Thursday, 8:30 AM to 10:00 AM) and get a token for e-passport renewal.', time_minutes: 15 },
+  { id: 'e1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, step_number: 2, title: 'Biometric Verification & Photo at Counter', description: 'Complete biometric verification and have your live photograph taken at the counter. Do not bring your own photo — photos are captured directly at the office.', time_minutes: 20 },
+  { id: 'e1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, step_number: 3, title: 'Pay Fee via Bank Counter or PSID', description: 'Pay the official e-passport fee at the bank counter inside the office or online via PSID (5-year 36-page e-passport: Rs. 9,000 Normal or Rs. 15,000 Urgent; 10-year: Rs. 13,500 Normal or Rs. 22,500 Urgent).', time_minutes: 15 },
+  { id: 'e1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, step_number: 4, title: 'Collect Receipt with Tracking ID & Track on dgip.gov.pk', description: 'Collect your receipt with the tracking ID and track your application status on dgip.gov.pk. Delivery takes 21 working days (Normal), 5 working days (Urgent), or 2 working days (Executive at Executive Offices).', time_minutes: 10 },
 
-  // 2. CNIC Renewal Rawalpindi
-  { id: 'e1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, step_number: 1, title: 'Enter NADRA Mega Center & Collect Token', description: 'Walk into NADRA Mega Center Rehmanabad (main entrance on Murree Road). Show your old CNIC at the reception desk and select Normal, Urgent, or Executive service to receive a queue token.', time_minutes: 10 },
-  { id: 'e1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, step_number: 2, title: 'Wait in Hall & Watch Token Screen', description: 'Wait in the air-conditioned hall until your token number is called. Senior citizens, pregnant women, and persons with disabilities have priority counters.', time_minutes: 25 },
-  { id: 'e1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, step_number: 3, title: 'Photo, Fingerprints & Signature Capture', description: 'At the Data Entry Operator (DEO) counter, your fresh photograph, four-finger + thumbprints, and digital signature are captured. No paper form filling is needed.', time_minutes: 10 },
-  { id: 'e1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, step_number: 4, title: 'Verify Printed Form & Pay Fee at Counter', description: 'Carefully check your English and Urdu name spellings, address, and date of birth on the printed summary sheet. Pay the exact fee (Rs. 750 / 1,500 / 2,500) directly at the NADRA fee counter by cash or card and keep the tracking receipt.', time_minutes: 10 },
-  { id: 'e1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, step_number: 5, title: 'Receive SMS Alert & Collect Smart CNIC', description: 'NADRA sends an SMS from 8400 once your Smart Card arrives at the center (or dispatches by courier if opted). Visit the Delivery Counter with your original token slip and old CNIC to collect.', time_minutes: 15 },
+  // 2. CNIC Renewal Rawalpindi (4 steps)
+  { id: 'e1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, step_number: 1, title: 'Take Token & Wait for Your Number', description: 'Visit NADRA Mega Center, Saddar, Rawalpindi (weekday 9:00 AM – 11:00 AM is best; or use the Pak-ID app online), take a renewal token, and wait for your number.', time_minutes: 35 },
+  { id: 'e1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, step_number: 2, title: 'Biometrics, Photo & Signature at Counter', description: 'Complete biometrics, live photograph, and signature at the counter. Double-check the spelling of your name and father’s name on screen before final submit, and provide a mobile SIM registered on your own CNIC.', time_minutes: 15 },
+  { id: 'e1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, step_number: 3, title: 'Pay Fee at Cash Counter', description: 'Pay the renewal fee at the cash counter — Smart CNIC: Rs. 750 Normal / Rs. 1,500 Urgent / Rs. 2,500 Executive; Ordinary CNIC: Rs. 400 Normal / Rs. 1,150 Urgent / Rs. 2,150 Executive.', time_minutes: 10 },
+  { id: 'e1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, step_number: 4, title: 'Get Tracking Slip & Collect or Choose Home Delivery', description: 'Take your tracking slip and snap a photo of it immediately so you do not lose it. Collect your renewed card from the center or opt for home delivery.', time_minutes: 5 },
 
-  // 3. Driving Licence Renewal Rawalpindi
-  { id: 'e1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, step_number: 1, title: 'Check Licence Record on DLIMS Portal First', description: 'Before visiting, check your existing licence number on dlims.punjab.gov.pk/track to confirm your record is digitized. If you want to skip lines completely, you can also start renewal online on DLIMS 2.0.', time_minutes: 5 },
-  { id: 'e1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, step_number: 2, title: 'Arrive at Traffic HQ Race Course & Get Token', description: 'Enter the Licensing Branch at Race Course Ground, Peshawar Road. Show your original CNIC and expired licence at the inquiry booth to collect a Renewal Token.', time_minutes: 15 },
-  { id: 'e1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, step_number: 3, title: 'Pay Fee Ticket / e-Pay PSID Challan', description: 'Purchase the renewal fee ticket or pay the generated PSID code via JazzCash / Bank App right at the licensing center. Choose 1-year, 3-year, or 5-year validity.', time_minutes: 15 },
-  { id: 'e1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, step_number: 4, title: 'Medical Check (Only if 50+ or Commercial LTV/HTV)', description: 'Applicants under 50 renewing a private car/motorcycle licence do NOT need a driving test or medical exam. If aged 50+, visit the on-site medical room for a quick eyesight check.', time_minutes: 10 },
-  { id: 'e1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, step_number: 5, title: 'Biometric Capture & Live Photo at DLIMS Counter', description: 'Hand over your old licence and CNIC at the DLIMS booth. Your photo and thumbprints are updated and a digital renewal receipt is printed immediately.', time_minutes: 10 },
-  { id: 'e1030000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.drivingLicence, step_number: 6, title: 'Download E-Licence Instantly & Receive PVC Card', description: 'Within hours, download your legal QR-verified e-Licence PDF from dlims.punjab.gov.pk. The physical PVC card is dispatched to your Rawalpindi address via Pakistan Post within 7–15 days.', time_minutes: 5 },
+  // 3. Driving Licence Renewal Rawalpindi (4 steps)
+  { id: 'e1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, step_number: 1, title: 'Open Dastak App or Go to Police Khidmat Markaz', description: 'Open the Dastak Punjab app / DLIMS online (takes ~10 mins) or visit Police Khidmat Markaz, Rawalpindi between 9:00 AM and 11:00 AM on a weekday (20–30 mins if documents are ready).', time_minutes: 5 },
+  { id: 'e1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, step_number: 2, title: 'Select Renewal & Upload Photo + Old Licence Copy', description: 'Choose Driving Licence Renewal, verify your current home delivery address carefully, and upload/submit your fresh white-background photo and old licence copy.', time_minutes: 10 },
+  { id: 'e1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, step_number: 3, title: 'Generate PSID Challan & Pay Within 24 Hours', description: 'Generate the PSID challan (Car: Rs. 1,830 with courier; Motorcycle: Rs. 930 with courier; LTV/HTV: Rs. 2,330 with courier) and pay within 24 hours via JazzCash, Easypaisa, bank app, or ATM.', time_minutes: 5 },
+  { id: 'e1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, step_number: 4, title: 'Receive New Licence at Home by Courier', description: 'Your renewed driving licence is printed and delivered directly to your home address by courier within 7 to 10 days.', time_minutes: 5 },
 
-  // 4. FBR NTN for Freelancers
-  { id: 'e1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, step_number: 1, title: 'Open Official FBR IRIS 2.0 Portal', description: 'Visit iris.fbr.gov.pk on your phone or laptop and click "New Registration" at the bottom of the login card. Ignore third-party agent websites charging Rs. 3,000+.', time_minutes: 2 },
-  { id: 'e1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, step_number: 2, title: 'Enter CNIC, Own-Name Mobile Number & Email', description: 'Type your 13-digit CNIC without dashes, full name as on CNIC, select your mobile network operator (Jazz, Zong, Telenor, Ufone), enter your mobile number in 00923xxxxxxxxx format, and your personal email.', time_minutes: 5 },
-  { id: 'e1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, step_number: 3, title: 'Verify Both SMS & Email OTP Codes', description: 'FBR sends two separate 6-digit codes — one to your SMS and one to your email inbox. Enter both codes carefully and submit to receive your IRIS Password and 4-digit PIN via SMS/Email.', time_minutes: 5 },
-  { id: 'e1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, step_number: 4, title: 'Log In to IRIS & Add Freelance Business Profile (Form 181)', description: 'Sign in with your CNIC and new password. Go to Registration → 181 (Form of Registration filed voluntarily), add your residential address, bank IBAN, and freelance IT/Software Export activity (Code 6201 / 6209 for PSEB 0.25% rate eligibility).', time_minutes: 8 },
-  { id: 'e1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, step_number: 5, title: 'Download Official Taxpayer Registration Certificate (NTN)', description: 'From the left menu, open "Completed Tasks" → click your 181 Registration Order → click Print/Download PDF. You can also verify your NTN instantly on FBR’s Online Taxpayer Verification page.', time_minutes: 3 },
+  // 4. FBR NTN Registration for Freelancers (5 steps)
+  { id: 'e1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, step_number: 1, title: 'Open iris.fbr.gov.pk & Click e-Enrollment', description: 'Go to iris.fbr.gov.pk (weekday morning is best as the site is slower at night) and click "e-Enrollment" for a new taxpayer.', time_minutes: 3 },
+  { id: 'e1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, step_number: 2, title: 'Enter CNIC, Mobile & Email to Get OTP', description: 'Enter your 13-digit CNIC, a mobile SIM registered on your own CNIC, and your personal email address to receive and verify the OTP codes.', time_minutes: 5 },
+  { id: 'e1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, step_number: 3, title: 'Fill Form 181 (Freelancer / IT Export)', description: 'Complete Form 181 with your personal details, select Freelancer / IT Export as your income source, and add your bank details.', time_minutes: 10 },
+  { id: 'e1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, step_number: 4, title: 'Upload Documents & Submit', description: 'Upload your CNIC front & back scan (PDF/JPG under 2MB), bank account maintenance certificate PDF, and business address proof + paid utility bill (if running a business), then submit.', time_minutes: 5 },
+  { id: 'e1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, step_number: 5, title: 'Download NTN Confirmation from IRIS Dashboard', description: 'Save your IRIS password and PIN securely. Approval takes same day to 3 working days — your NTN is your CNIC number, and you can download the confirmation directly from the IRIS dashboard.', time_minutes: 2 },
 
-  // 5. Domicile Certificate Rawalpindi
-  { id: 'e1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, step_number: 1, title: 'Prepare Stamp Paper Affidavit & Pay Rs. 200 Challan', description: 'Get a Rs. 100 stamp paper affidavit (Bayan-e-Halfi) stating you have no domicile from another district, attested by an Oath Commissioner (easily available outside District Courts / Kachehri or near Liaquat Bagh). Pay the Rs. 200 Domicile Fee via e-Pay Punjab or NBP Form 32-A.', time_minutes: 25 },
-  { id: 'e1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, step_number: 2, title: 'Visit e-Khidmat Markaz Liaquat Bagh & Collect Token', description: 'Go to e-Khidmat Markaz inside Liaquat Bagh Sports Complex on Murree Road. Show your complete document folder at the reception desk to get a Domicile Token.', time_minutes: 15 },
-  { id: 'e1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, step_number: 3, title: 'Document Scrutiny & Data Entry Counter', description: 'At the Domicile counter, the officer scans your CNIC, utility bill, affidavit, and Matric certificate, captures your live photo, and enters your Form P/P-1 details into the Punjab Domicile Management System.', time_minutes: 15 },
-  { id: 'e1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, step_number: 4, title: 'Receive Tracking Receipt & Wait for Patwari/DC Verification', description: 'Collect your computerized tracking receipt with SMS tracking number. The Deputy Commissioner office verifies your Rawalpindi residence record digitally (takes 10–15 working days).', time_minutes: 10 },
-  { id: 'e1050000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.domicile, step_number: 5, title: 'Collect Signed QR-Verified Domicile Certificate', description: 'Once you receive the readiness SMS, return to the e-Khidmat delivery window with your original CNIC and tracking slip to collect your official Domicile Certificate.', time_minutes: 15 },
+  // 5. Domicile Certificate Rawalpindi (4 steps)
+  { id: 'e1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, step_number: 1, title: 'Get Form P & AC Verification Form from Center', description: 'Visit e-Khidmat Markaz, District Complex, Rawalpindi (Tuesday to Thursday, 9:00 AM – 11:00 AM) and collect both Form P and the AC Verification Form.', time_minutes: 10 },
+  { id: 'e1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, step_number: 2, title: 'Fill Forms & Get Rs. 300 Affidavit Made at Center', description: 'Fill in Form P and the AC Verification Form accurately (ensuring residence address matches your CNIC/proof) and get your Rs. 300 e-affidavit prepared at the center.', time_minutes: 20 },
+  { id: 'e1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, step_number: 3, title: 'Submit File & Pay Rs. 550 via e-Pay or Challan', description: 'Submit your complete document file (including parent/spouse CNIC copy, 2 photos, and residence proof) and pay the Rs. 550 total 2026 fee (Rs. 200 fee + Rs. 300 e-affidavit + Rs. 50 PITB charge) via e-Pay or challan.', time_minutes: 15 },
+  { id: 'e1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, step_number: 4, title: 'Collect Tracking Slip & Certificate (16 Working Days)', description: 'Take your tracking slip. Your computerized Domicile Certificate is ready in 16 working days standard (or 2 to 3 days if Maryam Ki Dastak fast track is available in your area).', time_minutes: 5 },
 
-  // 6. Birth Certificate Rawalpindi
-  { id: 'e1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, step_number: 1, title: 'Identify Your Exact Union Council or Cantonment Ward', description: 'Check your home address or father’s CNIC to see whether you fall under Rawalpindi Municipal Corporation (Union Council / e-Khidmat Markaz Liaquat Bagh) or Rawalpindi Cantonment Board (RCB Saddar) or Chaklala Cantonment Board (CCB).', time_minutes: 10 },
-  { id: 'e1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, step_number: 2, title: 'Collect & Fill Birth Registration Form (CRMS)', description: 'Obtain the official Birth Registration Form at the Union Council Secretary desk or e-Khidmat counter. Fill in the child’s exact English & Urdu name, date/place of birth, and parents’ CNIC numbers clearly.', time_minutes: 15 },
-  { id: 'e1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, step_number: 3, title: 'Submit Documents & Pay Official Fee', description: 'Attach the hospital birth slip, copies of parents’ CNICs, and Nikahnama/MRC copy. Pay the Rs. 300–500 registration fee at the fee counter and keep the official stamped receipt.', time_minutes: 20 },
-  { id: 'e1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, step_number: 4, title: 'Union Council Verification & CRMS Entry', description: 'The UC Secretary verifies the hospital slip and enters the child’s record into the NADRA Civil Registration Management System (CRMS). This takes 5–10 working days.', time_minutes: 10 },
-  { id: 'e1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, step_number: 5, title: 'Collect Computerized Birth Certificate & Apply for B-Form', description: 'Collect the printed NADRA-format computerized Birth Certificate bearing the UC Secretary’s stamp and QR code. Double-check every spelling before leaving — you will use this certificate at NADRA to get the child’s B-Form (CRC).', time_minutes: 15 },
+  // 6. Birth Certificate from Union Council Rawalpindi (4 steps)
+  { id: 'e1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, step_number: 1, title: 'Go to Union Council Secretary With Parents’ CNICs', description: 'Visit your local Union Council, Municipal Committee, or Cantonment Board Secretary between 9:00 AM and 12:00 PM with both parents’ original CNICs and copies (do NOT go to NADRA first).', time_minutes: 15 },
+  { id: 'e1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, step_number: 2, title: 'Fill Birth Registration Form & Triple-Check Spelling', description: 'Fill out the birth registration form and verify the spelling of the child’s name, date of birth, and parents’ names 3 times — mistakes cause major problems for B-Form and passport later.', time_minutes: 15 },
+  { id: 'e1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, step_number: 3, title: 'System Entry & Collect Computerized Birth Certificate', description: 'The Secretary enters the record into the system. Timely registration within 7 years is FREE, and you receive the computerized birth certificate the same day or in 2 to 3 days.', time_minutes: 15 },
+  { id: 'e1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, step_number: 4, title: 'Use Certificate to Apply for B-Form at NADRA', description: 'Take your computerized Union Council birth certificate to NADRA to apply for your child’s B-Form (CRC). NADRA B-Form fee is Rs. 50 normal or Rs. 500 executive.', time_minutes: 15 },
 
-  // 7. Police Character Certificate Rawalpindi
-  { id: 'e1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, step_number: 1, title: 'Book Optional Online Appointment (PKM App) or Walk In', description: 'Download the "Punjab Police Khidmat" app (or visit pkm.punjab.gov.pk) to pre-book a time slot at Police Khidmat Markaz Liaquat Bagh or Commercial Market Satellite Town. Walk-ins are also welcome.', time_minutes: 5 },
-  { id: 'e1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, step_number: 2, title: 'Collect Token & Confirm Stay Dates', description: 'At the Khidmat Markaz reception, show your original CNIC and passport copy. Confirm the exact start and end dates of your stay in Rawalpindi that need to appear on the certificate.', time_minutes: 10 },
-  { id: 'e1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, step_number: 3, title: 'Live Photo, Biometrics & Data Entry', description: 'At the counter, the staff takes your live photograph and thumbprints, checks PSRMS (Police Station Record Management System), and scans your CNIC & passport.', time_minutes: 15 },
-  { id: 'e1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, step_number: 4, title: 'Pay Rs. 500 Fee & Get Computerized Receipt', description: 'Pay the official Rs. 500 fee at the counter and receive your printed slip with tracking number and collection date (typically 3 working days).', time_minutes: 10 },
-  { id: 'e1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, step_number: 5, title: 'Collect Certificate or Download Digital Copy', description: 'After local police station digital clearance (3 working days), collect your signed QR-verified certificate from the counter with your receipt — or verify/download it from the PKM portal for MOFA attestation.', time_minutes: 10 },
+  // 7. Police Character Certificate Rawalpindi (4 steps)
+  { id: 'e1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, step_number: 1, title: 'Go to Any Khidmat Markaz & Take Character Certificate Token', description: 'Visit Rescue 15 Office (Liaqat Bagh Metro Station, Murree Road) or any Punjab Police Khidmat Markaz (Taxila, Murree, Gujar Khan, Kahuta) between 9:00 AM and 11:00 AM and take a token specifically for "Character Certificate".', time_minutes: 10 },
+  { id: 'e1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, step_number: 2, title: 'Fill Form, Give Biometrics & Photo', description: 'Complete the application form with your CNIC, passport details (for visa), and matching current address, then complete biometrics and live photo.', time_minutes: 15 },
+  { id: 'e1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, step_number: 3, title: 'Pay Rs. 500 at Counter & Get Tracking Slip', description: 'Pay the official Rs. 500 Character Certificate fee at the counter (not Rs. 300 general verification) and collect your tracking slip.', time_minutes: 10 },
+  { id: 'e1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, step_number: 4, title: 'Receive QR-Verified Certificate by Courier in 3 Working Days', description: 'Your original Police Character Certificate with a scannable QR code for verification is delivered to your address by courier in 3 working days.', time_minutes: 5 },
 
-  // 8. Child Passport Under 18
-  { id: 'e1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, step_number: 1, title: 'Pay Fee Against Child’s 13-Digit B-Form Number', description: 'Open the "Passport Fee Asaan" app, choose New Passport (36 pages, 5-year validity for under 15), and carefully enter the CHILD’S 13-digit NADRA CRC/B-Form number — never the parent’s CNIC. Pay via mobile banking and print the receipt.', time_minutes: 10 },
-  { id: 'e1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, step_number: 2, title: 'Arrive With Child & Both Parents’ Original CNICs', description: 'Bring the child physically (even newborns must appear for live photo!) along with original B-Form/CRC, both parents’ original CNICs, and the printed fee receipt to Regional Passport Office Rawalpindi.', time_minutes: 20 },
-  { id: 'e1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, step_number: 3, title: 'Get Family Counter Token', description: 'Show the documents at the reception to receive a Family/Child priority token.', time_minutes: 15 },
-  { id: 'e1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, step_number: 4, title: 'Child’s Live Photo & Parent Biometric Consent', description: 'At the Photo/Biometrics booth, the child’s photograph is captured (tip: bring a light-colored toy or feed infants beforehand so they look straight at the camera). The accompanying parent gives biometric thumbprint verification.', time_minutes: 15 },
-  { id: 'e1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, step_number: 5, title: 'Data Entry & Assistant Director Sign-Off', description: 'Check the draft print carefully — make sure the child’s name spelling matches the B-Form and parents’ passports. Proceed to the AD desk for final approval and collect your delivery token.', time_minutes: 20 },
-  { id: 'e1080000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.childPassport, step_number: 6, title: 'Collect Child’s Passport on SMS Confirmation', description: 'Either parent can collect the passport using their original CNIC, child’s original B-Form, and the original collection token once the 9988 readiness SMS arrives.', time_minutes: 15 },
+  // 8. Child Passport Under 18 Rawalpindi (5 steps)
+  { id: 'e1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, step_number: 1, title: 'Both Parents & Child Go to Passport Office', description: 'Visit Regional Passport Office, Rawalpindi at 9:00 AM on a weekday with both parents and the child (or one parent carrying an attested consent affidavit from the absent parent).', time_minutes: 15 },
+  { id: 'e1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, step_number: 2, title: 'Take Token for Minor & Complete Biometrics', description: 'Collect a minor passport token. Biometrics are taken for both parents, and also for the child if age 10 or older.', time_minutes: 20 },
+  { id: 'e1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, step_number: 3, title: 'Child Photo Taken at Office', description: 'The child’s photograph is captured live at the Passport Office counter — you do not need to bring studio photos.', time_minutes: 10 },
+  { id: 'e1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, step_number: 4, title: 'Pay Fee & Collect Tracking Slip', description: 'Pay the e-passport fee (Rs. 9,000 Normal or Rs. 15,000 Urgent for 36 pages, 5 years) and keep your printed tracking slip safely.', time_minutes: 15 },
+  { id: 'e1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, step_number: 5, title: 'Passport Delivered by Courier', description: 'Your child’s e-passport is delivered by courier — Normal takes 21 working days and Urgent takes 5 working days.', time_minutes: 5 },
 
-  // 9. Name Change on CNIC After Marriage
-  { id: 'e1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 1, title: 'Get Computerized NADRA MRC From Union Council First', description: 'Before going to NADRA, register your handwritten Nikahnama at the Union Council where the Nikah took place and collect the Computerized Marriage Registration Certificate (MRC). NADRA requires the MRC QR record.', time_minutes: 15 },
-  { id: 'e1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 2, title: 'Visit NADRA Mega Center Together (Wife & Husband)', description: 'Both husband and wife visit NADRA Mega Center Rehmanabad with both original CNICs and the original Computerized MRC. Request a "CNIC Modification" token at the desk.', time_minutes: 15 },
-  { id: 'e1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 3, title: 'Photo Capture, Husband’s Biometric Attestation & Data Entry', description: 'At the counter, tell the operator clearly whether you only want to change Father’s Name to Husband’s Name (keeping your maiden surname) OR also adopt your husband’s surname. Husband provides live biometric verification right at the counter.', time_minutes: 15 },
-  { id: 'e1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 4, title: 'Double-Check Draft Print & Pay Modification Fee', description: 'Carefully verify English & Urdu spellings of your updated name, husband’s name, and new address (if changing). Pay Rs. 750 (Normal), Rs. 1,500 (Urgent), or Rs. 2,500 (Executive) and keep the receipt.', time_minutes: 10 },
-  { id: 'e1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 5, title: 'Collect Updated Smart CNIC', description: 'Wait for the SMS from 8400 and collect your updated Smart CNIC from the delivery counter (or home delivery). Remember to also update your passport & bank records if you changed your surname.', time_minutes: 15 },
+  // 9. Name Change on CNIC After Marriage (5 steps)
+  { id: 'e1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 1, title: 'Get Computerized Marriage Certificate (MRC) from Union Council', description: 'First obtain your computerized Marriage Registration Certificate (MRC) from your local Union Council. This is strictly mandatory before visiting NADRA — a manual Nikahnama alone is not accepted.', time_minutes: 30 },
+  { id: 'e1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 2, title: 'Go to NADRA & Take Token for Modification', description: 'Visit NADRA Mega Center, Saddar, Rawalpindi on a weekday morning (or apply via Pak-ID app) and take a token for CNIC modification.', time_minutes: 15 },
+  { id: 'e1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 3, title: 'Show MRC & Instruct Operator Clearly', description: 'Present your computerized MRC and tell the operator clearly: update marital status to Married, add spouse name, and update surname if needed. Update both husband and wife records so FRC matches later.', time_minutes: 10 },
+  { id: 'e1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 4, title: 'Biometrics, Photo & Signature', description: 'Complete biometrics, live photo, and signature at the counter and check all spellings carefully on screen.', time_minutes: 10 },
+  { id: 'e1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 5, title: 'Pay Modification Fee & Get Tracking Slip', description: 'Pay the fee (Ordinary CNIC: Rs. 400 Normal / Rs. 1,150 Urgent / Rs. 2,150 Executive; Smart CNIC: Rs. 750 / Rs. 1,500 / Rs. 2,500; or Rs. 100 database-only update) and collect your tracking slip.', time_minutes: 10 },
 
-  // 10. E-Challan Check and Payment
-  { id: 'e1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, step_number: 1, title: 'Open Official PSCA E-Challan Portal', description: 'Go to echallan.psca.gop.pk on your mobile browser (or open the "e-Pay Punjab" app). For Islamabad Safe City e-Challans, use the ITP portal.', time_minutes: 1 },
-  { id: 'e1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, step_number: 2, title: 'Enter Vehicle Registration Number & Owner CNIC', description: 'Type your vehicle plate number (e.g., LEA-1234) and the vehicle owner’s 13-digit CNIC number, complete the captcha, and click Search.', time_minutes: 2 },
-  { id: 'e1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, step_number: 3, title: 'Verify Camera Evidence Photo & Copy 17-Digit PSID', description: 'Review the violation date, location, and traffic camera photos to make sure it is actually your vehicle (not a fake/cloned number plate). Download the challan PDF and copy the 17-digit PSID payment number.', time_minutes: 2 },
-  { id: 'e1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, step_number: 4, title: 'Pay Instantly via JazzCash, Easypaisa, or Bank App', description: 'Open your banking app (HBL, Meezan, UBL, SadaPay, JazzCash, Easypaisa) → Government Payments / 1Bill → GoPb / e-Pay Punjab → paste the 17-digit PSID. Verify the fine amount and owner name, then confirm payment.', time_minutes: 2 },
-  { id: 'e1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, step_number: 5, title: 'Confirm "Paid" Status & Save Receipt', description: 'Refresh echallan.psca.gop.pk after 2 minutes to confirm the challan status shows "Paid". Save a screenshot of the paid receipt on your phone.', time_minutes: 1 },
+  // 10. E-Challan Check and Payment in Punjab (5 steps)
+  { id: 'e1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, step_number: 1, title: 'Open Official Portal: echallan.psca.gop.pk', description: 'Type echallan.psca.gop.pk directly into your browser yourself — NEVER click links sent via SMS, as many are scams.', time_minutes: 1 },
+  { id: 'e1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, step_number: 2, title: 'Enter Vehicle Number + Owner CNIC or Chassis Number', description: 'Enter your vehicle registration number (e.g., LEA-1234) and the owner’s 13-digit CNIC (without dashes) or chassis number, then tap Search.', time_minutes: 1 },
+  { id: 'e1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, step_number: 3, title: 'Select Challan & Generate 17-Digit PSID in e-Pay Punjab', description: 'If an unpaid challan exists, select it and generate a 17-digit PSID code in the e-Pay Punjab app.', time_minutes: 2 },
+  { id: 'e1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, step_number: 4, title: 'Pay PSID Within 24 Hours via App, ATM, or Counter', description: 'Pay your 17-digit PSID through JazzCash, Easypaisa, your bank app, a 1Link ATM, or over the counter within 24 hours before the PSID expires.', time_minutes: 2 },
+  { id: 'e1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, step_number: 5, title: 'Save Screenshot of Payment Receipt', description: 'Save a screenshot of your payment receipt. Payment confirmation takes 10 minutes to 2 hours to reflect on the PSCA portal.', time_minutes: 1 },
 ];
 
 export const SEED_MISTAKES: ProcessMistake[] = [
-  // 1. Passport Renewal
-  { id: '11010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, title: 'Going to NBP Bank Without Checking Passport Fee Asaan App', description: 'Standing in the National Bank queue outside the Passport Office wastes 45–90 minutes. Paying online via the official Passport Fee Asaan app takes 5 minutes from home and is accepted at every counter.', sort_order: 1 },
-  { id: '11010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, title: 'Arriving With an Expired CNIC or Wearing White Clothes', description: 'If your CNIC is even 1 day expired, the Passport system blocks your application immediately. Also avoid wearing a pure white shirt/dupatta as it blends with the white photo screen and causes rejection.', sort_order: 2 },
-  { id: '11010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, title: 'Not Proofreading the Data Entry Draft Sheet', description: 'Once you sign the draft slip, even a single wrong letter in your name or birthplace requires paying a brand-new modification fee. Read every single letter slowly before signing.', sort_order: 3 },
+  // 1. Passport Renewal Rawalpindi
+  { id: '11010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, title: 'Bringing an Expired CNIC', description: 'Your CNIC must be valid on the day of your application. If your CNIC is expired, renew it at NADRA first before visiting the Passport Office.', sort_order: 1 },
+  { id: '11010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, title: 'Bringing Your Own Photo (Wrong Photo)', description: 'Do not bring your own studio photo — your live passport photograph is captured directly at the Passport Office counter.', sort_order: 2 },
+  { id: '11010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, title: 'Going After 11:00 AM on Monday', description: 'Monday is the most crowded day — going after 11:00 AM on Monday means waiting 2 hours extra. Visit Tuesday to Thursday between 8:30 AM and 10:00 AM instead.', sort_order: 3 },
 
-  // 2. CNIC Renewal
-  { id: '11020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, title: 'Going on Monday Morning Instead of Mid-Week Afternoon', description: 'Monday 8 AM – 12 PM has the longest queues of the entire week at Rehmanabad Mega Center (often 2+ hours). Wednesday or Thursday afternoon cuts waiting time in half.', sort_order: 1 },
-  { id: '11020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, title: 'Trying to Change Address Without Bringing a Utility Bill', description: 'Simple renewal needs only your old CNIC, but if you also ask the operator to update your address, they will turn you back without a utility bill or blood relative’s CNIC bearing that address.', sort_order: 2 },
-  { id: '11020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, title: 'Paying Touts Outside the Gate for "Fast Token"', description: 'Agents standing outside NADRA charge Rs. 1,000–2,000 extra for nothing — all tokens are issued strictly on CNIC inside the hall, and Executive tier is officially Rs. 2,500 at the counter.', sort_order: 3 },
+  // 2. CNIC Renewal Rawalpindi
+  { id: '11020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, title: 'Using Someone Else’s Mobile Number', description: 'Always use a mobile SIM registered on your own CNIC so verification and delivery tracking SMS messages arrive properly.', sort_order: 1 },
+  { id: '11020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, title: 'Not Checking Spelling of Name & Father’s Name on Screen', description: 'Carefully check the spelling of your name and father’s name on the operator’s screen before final submit — errors after printing require a new modification fee.', sort_order: 2 },
+  { id: '11020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, title: 'Losing Your Tracking Slip', description: 'Take a photo of your tracking slip immediately at the counter so you never lose your tracking ID before card collection.', sort_order: 3 },
 
-  // 3. Driving Licence Renewal
-  { id: '11030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, title: 'Waiting Over 3 Years After Expiry (Triggers Fresh Driving Test)', description: 'Renewing on time or within the grace window requires zero driving test. Letting your licence stay expired for years triggers late penalties and can require repeating the learner & road test.', sort_order: 1 },
-  { id: '11030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, title: 'Forgetting Medical Certificate When Age is 50+', description: 'Applicants aged 50 or above (or holding LTV/HTV) cannot pass the counter without Form B medical fitness clearance. Check your age requirement before queuing.', sort_order: 2 },
-  { id: '11030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, title: 'Not Carrying Your Original Expired Card', description: 'A photocopy or mobile photo of your old driving licence is not accepted at the renewal counter unless you bring an official Police Lost Report (e-Gadget/Roznamcha) for a duplicate.', sort_order: 3 },
+  // 3. Driving Licence Renewal Rawalpindi
+  { id: '11030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, title: 'Letting Licence Expire More Than 3 Months', description: 'Late renewal adds extra fines: for a car licence, the late fine is Rs. 675 for 1 to 3 months late, and Rs. 1,350 for 3 to 6 months late.', sort_order: 1 },
+  { id: '11030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, title: 'Using an Old Address', description: 'Your new driving licence is delivered by courier — if your address is wrong or outdated, courier delivery will fail.', sort_order: 2 },
+  { id: '11030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, title: 'Not Paying PSID Within 24 Hours', description: 'Your generated PSID challan expires after 24 hours, forcing you to generate a new PSID and start payment again.', sort_order: 3 },
 
   // 4. FBR NTN for Freelancers
-  { id: '11040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, title: 'Using a SIM Registered in Father’s or Brother’s Name', description: 'IRIS cross-checks PTA records automatically. If the mobile SIM is not registered against your own CNIC, registration fails immediately with an error.', sort_order: 1 },
-  { id: '11040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, title: 'Thinking NTN Alone Makes You a "Filer" (ATL)', description: 'Getting an NTN only registers you in FBR. To enjoy lower Filer withholding tax rates on bank transfers and vehicles, you must also file your annual Income Tax Return on IRIS.', sort_order: 2 },
-  { id: '11040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, title: 'Leaving Business Activity Blank (Missing 0.25% IT Export Rate)', description: 'Freelancers earning foreign IT remittances via bank PRC qualify for 0.25% final tax (with PSEB registration) — make sure you add IT/Software Consultancy activity in Form 181.', sort_order: 3 },
+  { id: '11040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, title: 'Using a SIM Not on Your Own CNIC', description: 'FBR verifies SIM ownership against NADRA records — OTP verification will fail if the SIM is not registered on your own CNIC.', sort_order: 1 },
+  { id: '11040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, title: 'Using a Fake Business Address', description: 'Never submit a fake business address — FBR can verify premises details and reject your registration later.', sort_order: 2 },
+  { id: '11040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, title: 'Not Saving Your IRIS Password and PIN', description: 'Save both your IRIS login password and PIN safely — you will need them every single year to file your tax return.', sort_order: 3 },
 
   // 5. Domicile Certificate Rawalpindi
-  { id: '11050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, title: 'Arriving Without an Oath Commissioner Attested Affidavit', description: 'e-Khidmat counters will not accept your file without the Rs. 100 stamp paper Bayan-e-Halfi signed by an Oath Commissioner. Get it ready before going inside Liaquat Bagh.', sort_order: 1 },
-  { id: '11050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, title: 'CNIC Has Neither Permanent Nor Present Address in Rawalpindi', description: 'If both addresses on your CNIC belong to another district, your Rawalpindi domicile will be rejected unless you first update your CNIC address or show strong tenancy/residence proof plus NOC.', sort_order: 2 },
-  { id: '11050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, title: 'Applying 2 Days Before University Admission Deadline', description: 'Domicile verification takes 10–15 working days and cannot be issued on the same day. Apply at least 3 weeks before MDCAT, ECAT, or university deadlines.', sort_order: 3 },
+  { id: '11050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, title: 'Bringing Only Your Own CNIC', description: 'You also need a copy of your father’s, mother’s, or spouse’s CNIC — bringing only your own CNIC is not sufficient.', sort_order: 1 },
+  { id: '11050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, title: 'Wrong Address on Proof of Residence', description: 'The address on your property papers, utility bill, rent agreement, or voter list entry must match your CNIC or declared address.', sort_order: 2 },
+  { id: '11050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, title: 'Forgetting the AC Verification Form', description: 'The AC Verification Form (available at the center) is mandatory — your domicile file will be returned without it.', sort_order: 3 },
 
-  // 6. Birth Certificate Rawalpindi
-  { id: '11060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, title: 'Going to Municipal Union Council When You Live in Cantt Area', description: 'Rawalpindi Cantonment (Saddar, Westridge, Peshawar Road) and Chaklala Cantt (Scheme III, Gulraiz) residents must apply at RCB/CCB offices, NOT city Union Councils.', sort_order: 1 },
-  { id: '11060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, title: 'Misspelled Child Name on Birth Certificate vs Future Passport', description: 'Whatever English spelling is printed on the UC Birth Certificate gets copied onto the NADRA B-Form and later the child’s Passport. Double-check spellings carefully before final printing.', sort_order: 2 },
-  { id: '11060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, title: 'Delaying Registration Beyond 60 Days Without Realizing Late Rules', description: 'Registering within 60 days is simple and cheap. Waiting over 1 year adds affidavits, witnesses, and Assistant Director Local Government (ADLG) approval steps that waste weeks.', sort_order: 3 },
+  // 6. Birth Certificate from Union Council Rawalpindi
+  { id: '11060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, title: 'Spelling Mistake in Child’s Name', description: 'A spelling error in the child’s name will cause problems for B-Form, school records, and passport later. Check the spelling 3 times before submission.', sort_order: 1 },
+  { id: '11060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, title: 'Not Registering Within 7 Years', description: 'Birth registration is completely FREE within 7 years — waiting past 7 years means paying a Rs. 200 to Rs. 1,000 late fee and providing extra affidavit and proof of birth documents.', sort_order: 2 },
+  { id: '11060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, title: 'Going to NADRA First', description: 'NADRA does NOT issue birth certificates — your local Union Council, Municipal Committee, or Cantonment Board issues the birth certificate first.', sort_order: 3 },
 
   // 7. Police Character Certificate Rawalpindi
-  { id: '11070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, title: 'Applying Without Passport Copy When Needed for Visa/Study', description: 'Embassies require your exact Passport Number printed on the Police Character Certificate. If you apply with only your CNIC, the certificate will omit the passport number and embassies may reject it.', sort_order: 1 },
-  { id: '11070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, title: 'Entering Wrong Stay Period Dates', description: 'Check your embassy checklist (usually requires last 5 or 10 years of stay). If your stay dates leave a gap or overlap incorrectly, you will have to pay and re-apply.', sort_order: 2 },
-  { id: '11070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, title: 'Not Leaving Time for MOFA Attestation', description: 'Police Character Certificate takes 3 working days — if your visa requires Ministry of Foreign Affairs (MOFA) attestation in Islamabad, budget an extra 1–2 days after collection.', sort_order: 3 },
+  { id: '11070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, title: 'Confusing Character Certificate With General Police Verification', description: 'For visas and embassies you need a Police Character Certificate (Rs. 500), NOT General Police Verification (Rs. 300).', sort_order: 1 },
+  { id: '11070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, title: 'CNIC Address Not Matching Your Current Address', description: 'Your CNIC address must match your current address — update your address with NADRA first if you moved.', sort_order: 2 },
+  { id: '11070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, title: 'Applying at the Last Minute', description: 'Embassies require the original QR-coded certificate (photocopies are not accepted), so apply early and allow 3 working days for courier delivery.', sort_order: 3 },
 
-  // 8. Child Passport Under 18
-  { id: '11080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, title: 'Paying the Fee Challan Against Father’s CNIC Instead of Child’s B-Form', description: 'This is the #1 day-wasting mistake! Always enter the CHILD’S 13-digit NADRA B-Form/CRC number in Passport Fee Asaan. A challan paid on a parent’s CNIC cannot be linked to the child’s application.', sort_order: 1 },
-  { id: '11080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, title: 'Leaving the Baby at Home Thinking Only Documents Are Needed', description: 'Even a 1-month-old infant MUST be physically present at the Passport Office for live photograph capture — external studio photographs are not accepted.', sort_order: 2 },
-  { id: '11080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, title: 'Bringing Only One Parent’s CNIC Without the Other Parent’s Original CNIC', description: 'Even if only one parent accompanies the child, the counter checks BOTH father’s and mother’s original valid CNICs (plus guardianship/custody documents if divorced or widowed).', sort_order: 3 },
+  // 8. Child Passport Under 18 Rawalpindi
+  { id: '11080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, title: 'Coming With Only One Parent and No Affidavit', description: 'Both parents must be present — if one parent is absent, you must bring an attested consent affidavit from the absent parent or the file will be rejected.', sort_order: 1 },
+  { id: '11080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, title: 'B-Form Without Photo for Child Over 10', description: 'Children aged 10 to 17 must have a B-Form with photo and fingerprints — otherwise you will be sent back to NADRA to update the B-Form first.', sort_order: 2 },
+  { id: '11080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, title: 'Expired Parent CNIC', description: 'Both father’s and mother’s CNICs must be valid — an expired parent CNIC blocks the child’s passport application.', sort_order: 3 },
 
   // 9. Name Change on CNIC After Marriage
-  { id: '11090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Bringing Only the Handwritten Green Nikahnama', description: 'NADRA centers require the Computerized NADRA Marriage Registration Certificate (MRC) issued by your Union Council. Going with only the handwritten Nikahnama results in instant turnaround.', sort_order: 1 },
-  { id: '11090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Going Without Husband for Biometric Verification', description: 'Your husband must physically attend to verify his thumbprint on the NADRA scanner. If he is overseas, you need a Pakistan Embassy-attested affidavit/undertaking first.', sort_order: 2 },
-  { id: '11090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Changing Surname Without Checking Degrees & Existing Visas', description: 'You do NOT have to change your surname in Pakistan — you can keep your maiden name while updating your Father’s Name field to Husband’s Name. Changing your surname means updating your passport, degrees, and bank accounts too.', sort_order: 3 },
+  { id: '11090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Going to NADRA Without a Computerized Marriage Certificate', description: 'A manual Nikahnama is not enough — you must first get a computerized Marriage Registration Certificate (MRC) from your Union Council.', sort_order: 1 },
+  { id: '11090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Not Updating Both Husband and Wife Records', description: 'Update marital status for both husband and wife — otherwise your Family Registration Certificate (FRC) will not match later for visas.', sort_order: 2 },
+  { id: '11090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, title: 'Trying to Change Name Back Later', description: 'NADRA allows a name change only once in a lifetime (except after marriage), so be certain before changing your surname.', sort_order: 3 },
 
-  // 10. E-Challan Check and Payment
-  { id: '11100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, title: 'Paying Before Checking the Camera Evidence Photos', description: 'Sometimes look-alike or fake number plates trigger wrongful e-Challans. Always inspect the 3 camera snapshots on echallan.psca.gop.pk before paying — you can dispute a wrong vehicle photo free of cost.', sort_order: 1 },
-  { id: '11100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, title: 'Ignoring Unpaid E-Challans on a Car You Sold Without Transfer', description: 'Until the buyer completes biometric vehicle transfer at Excise & Taxation, all camera e-Challans remain tied to the previous owner’s CNIC and can block future vehicle or licence services.', sort_order: 2 },
-  { id: '11100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, title: 'Entering Wrong Prefix/Dashes in Vehicle Plate Number', description: 'If a search shows "No Record Found", try both formats (with dash like LEA-1234 and with space/year format like LEA-18-1234) and double-check that you used the registered owner’s CNIC.', sort_order: 3 },
+  // 10. E-Challan Check and Payment in Punjab
+  { id: '11100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, title: 'Paying via a Link Sent in SMS', description: 'Many SMS links claiming you have an unpaid e-challan are scams. Always type echallan.psca.gop.pk directly into your browser yourself.', sort_order: 1 },
+  { id: '11100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, title: 'Not Paying PSID Within 24 Hours', description: 'Your 17-digit PSID expires after 24 hours — if you miss the window, you will have to generate a fresh PSID again.', sort_order: 2 },
+  { id: '11100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, title: 'Ignoring an Unpaid E-Challan', description: 'Unpaid challans attract extra penalties after 10 days and will block your vehicle transfer and driving licence renewal later.', sort_order: 3 },
 ];
 
 export const SEED_FAQS: ProcessFaq[] = [
-  // 1. Passport Renewal
-  { id: 'f1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, question: 'Can I renew my Pakistani passport completely online without visiting the office?', answer: 'Yes! If your passport has less than 7 months remaining (or is expired) and you want no data changes, you can apply via DGIP’s e-Services portal (onlinemrp.dgip.gov.pk) with fingerprint form upload and home courier delivery. However, many Rawalpindi residents still prefer walking into Rehmanabad RPO for faster Fast Track (2 working days) processing.', sort_order: 1 },
-  { id: 'f1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, question: 'What happens to valid US, UK, or Schengen visas in my old passport?', answer: 'When the Assistant Director cancels your old passport, they punch only the cover and bio-data pages — NEVER the valid visa pages. Keep your old cancelled passport clipped together with your new passport when travelling.', sort_order: 2 },
-  { id: 'f1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, question: 'Should I choose the 5-year or 10-year passport validity?', answer: 'For adults (15+ years), the 10-year 36-page passport (Rs. 6,700 Normal / Rs. 11,200 Urgent) saves you a whole extra office visit and costs significantly less per year than renewing every 5 years.', sort_order: 3 },
-  { id: 'f1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, question: 'Can someone else collect my renewed passport for me?', answer: 'A blood relative (father, mother, sibling, spouse, or adult child) can usually collect it with their original CNIC, your original token slip, and an authority letter — though policies can tighten, so carrying your own CNIC is safest.', sort_order: 4 },
-  { id: 'f1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, question: 'How do I check if my passport is ready before going to the office?', answer: 'SMS your 11-digit tracking token number (printed on your receipt) to 9988, or wait for the automated readiness SMS from 9988 before visiting the Delivery Window.', sort_order: 5 },
+  // 1. Passport Renewal Rawalpindi
+  { id: 'f1010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, question: 'Can I still apply for an old Machine Readable Passport (MRP)?', answer: 'No. Since Oct 2026, Pakistan issues only e-passports and MRP is discontinued. All new renewals are issued as e-passports.', sort_order: 1 },
+  { id: 'f1010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, question: 'What is the fee for a 5-year vs 10-year 36-page e-Passport?', answer: 'For a 36-page e-passport: 5 years costs Rs. 9,000 (Normal) or Rs. 15,000 (Urgent); 10 years costs Rs. 13,500 (Normal) or Rs. 22,500 (Urgent).', sort_order: 2 },
+  { id: 'f1010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, question: 'Can I renew my passport online instead of visiting GT Road Rawalpindi?', answer: 'Yes, passport renewal is also available online via the official DGIP portal (dgip.gov.pk). If visiting in person, go to Regional Passport Office, GT Road, Rawalpindi between Tuesday and Thursday, 8:30 AM to 10:00 AM.', sort_order: 3 },
+  { id: 'f1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, question: 'Do I need to bring passport-size photographs?', answer: 'No! Do not bring your own photo — your photograph is taken live at the Passport Office counter during biometric verification.', sort_order: 4 },
+  { id: 'f1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, question: 'How long does delivery take and how do I track my passport?', answer: 'Normal takes 21 working days, Urgent takes 5 working days, and Executive takes 2 working days at Executive Offices. Keep your receipt with tracking ID and check status on dgip.gov.pk.', sort_order: 5 },
 
-  // 2. CNIC Renewal
-  { id: 'f1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, question: 'Can I renew my CNIC from home using the Pak-ID mobile app?', answer: 'Yes! Download the official NADRA Pak-ID app on iOS/Android to renew your CNIC from home with phone-camera biometrics and home delivery. If your fingerprints fail to scan on phone, visit NADRA Mega Center Rehmanabad in person.', sort_order: 1 },
-  { id: 'f1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, question: 'Is there any late fine if my CNIC expired months ago?', answer: 'No, NADRA does not charge a late expiry penalty for renewing an expired CNIC. You pay the standard Normal (Rs. 750), Urgent (Rs. 1,500), or Executive (Rs. 2,500) Smart Card fee.', sort_order: 2 },
-  { id: 'f1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, question: 'Is NADRA Mega Center Rehmanabad open on Saturday?', answer: 'Yes! Unlike smaller tehsil centers, NADRA Mega Center Rehmanabad operates Monday through Saturday from 8:00 AM to 8:00 PM (closed on Sunday and public holidays).', sort_order: 3 },
-  { id: 'f1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, question: 'Do I get a paper slip I can use while waiting for the new card?', answer: 'Yes, NADRA gives you an official computerized token receipt (with photo and tracking ID) that serves as temporary proof of renewal for most local verifications until your Smart Card arrives.', sort_order: 4 },
-  { id: 'f1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, question: 'How can I track my CNIC delivery status?', answer: 'Send your 12-digit Tracking ID via SMS to 8400 (standard SMS charges apply) to get an instant status update.', sort_order: 5 },
+  // 2. CNIC Renewal Rawalpindi
+  { id: 'f1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, question: 'What is the fee difference between Smart CNIC and Ordinary CNIC renewal?', answer: 'Smart CNIC renewal costs Rs. 750 Normal (~31 days), Rs. 1,500 Urgent (~23 days), and Rs. 2,500 Executive (~9 days). Ordinary non-smart CNIC renewal costs Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days).', sort_order: 1 },
+  { id: 'f1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, question: 'Can I renew my CNIC online without visiting Saddar Mega Center?', answer: 'Yes! You can apply online through NADRA’s official Pak-ID mobile app with biometric capture and get home delivery, or visit NADRA Mega Center, Saddar, Rawalpindi in person.', sort_order: 2 },
+  { id: 'f1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, question: 'How long is the wait at NADRA Mega Center Saddar Rawalpindi?', answer: 'Expect 45 minutes to 1.5 hours on a normal weekday (best window: 9:00 AM to 11:00 AM), and 2 hours or more on Saturday.', sort_order: 3 },
+  { id: 'f1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, question: 'What extra documents are needed if my address or marital status changed?', answer: 'If your address changed, bring a utility bill or rent agreement. If your marital status changed, bring your computerized marriage certificate (MRC).', sort_order: 4 },
+  { id: 'f1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, question: 'Why should I give a SIM registered on my own CNIC?', answer: 'Using someone else’s mobile number causes verification and tracking delays. Always provide a SIM registered on your own CNIC and take a photo of your tracking slip immediately.', sort_order: 5 },
 
-  // 3. Driving Licence Renewal
-  { id: 'f1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, question: 'Do I have to give the driving test again when renewing my licence?', answer: 'No! Standard renewal of a valid or recently expired driving licence in Punjab does NOT require a sign test or practical driving test. Only biometric verification and fee payment are needed.', sort_order: 1 },
-  { id: 'f1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, question: 'Can I renew my Punjab driving licence online without visiting Race Course Ground?', answer: 'Yes! If your previous licence is already in the Punjab DLIMS digital database, you can log in at dlims.punjab.gov.pk, upload your photo/documents, pay the PSID via JazzCash/bank app, and download your e-Licence online.', sort_order: 2 },
-  { id: 'f1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, question: 'Is the digital e-Licence PDF legally accepted by Traffic Wardens?', answer: 'Yes! Punjab Traffic Police officially recognize the QR-coded e-Licence PDF downloaded from DLIMS while you wait for your physical PVC card to arrive by post.', sort_order: 3 },
-  { id: 'f1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, question: 'Can I renew my licence for 5 years at once instead of 1 year?', answer: 'Yes, Punjab DLIMS offers 1-year, 2-year, 3-year, and 5-year renewal options. Selecting 3 or 5 years saves you annual visits and protects against future fee revisions.', sort_order: 4 },
-  { id: 'f1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, question: 'Can I renew a Rawalpindi driving licence at e-Khidmat Markaz Liaquat Bagh?', answer: 'Yes, Police Khidmat Markaz counters at Liaquat Bagh and Commercial Market Satellite Town also process driving licence renewals with evening timings till 8:00 PM.', sort_order: 5 },
+  // 3. Driving Licence Renewal Rawalpindi
+  { id: 'f1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, question: 'What is the total driving licence renewal fee in Punjab including courier?', answer: 'With the Rs. 480 courier fee included, 1-year renewal costs Rs. 930 for Motorcycle (Rs. 450 fee), Rs. 1,830 for Car / Jeep (Rs. 1,350 fee), and Rs. 2,330 for LTV / HTV (Rs. 1,850 fee).', sort_order: 1 },
+  { id: 'f1030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, question: 'Can I renew my Punjab driving licence completely online?', answer: 'Yes! You can apply online in about 10 minutes via the Dastak Punjab app or DLIMS portal, pay the PSID challan through JazzCash, Easypaisa, bank app, or ATM, and receive your licence by courier in 7 to 10 days.', sort_order: 2 },
+  { id: 'f1030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, question: 'What is the late fine if my car driving licence has expired?', answer: 'For a car licence in Punjab, late renewal adds a fine of Rs. 675 if 1 to 3 months late, and Rs. 1,350 if 3 to 6 months late.', sort_order: 3 },
+  { id: 'f1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, question: 'When do I need a medical certificate for renewal?', answer: 'A medical certificate is required if you are over 60 years old or if you are renewing after a long expiry.', sort_order: 4 },
+  { id: 'f1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, question: 'What happens if I do not pay the PSID within 24 hours?', answer: 'A Punjab PSID challan expires after 24 hours, so you will have to generate a fresh PSID and pay again. Also double-check your delivery address so courier delivery does not fail.', sort_order: 5 },
 
-  // 4. FBR NTN for Freelancers
-  { id: 'f1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, question: 'Does registering for an FBR NTN cost any money?', answer: 'No, NTN registration on iris.fbr.gov.pk is 100% free (Rs. 0). You do not need to pay any lawyer or consultant just to generate your NTN.', sort_order: 1 },
-  { id: 'f1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, question: 'What is the income tax rate for IT freelancers in Pakistan?', answer: 'Export of IT and IT-enabled services (software development, design, freelancing paid in foreign currency through banking channels with PRC code 9186) is taxed at just 0.25% if registered with PSEB, or 1% without PSEB registration.', sort_order: 2 },
-  { id: 'f1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, question: 'Once I have an NTN, do I have to file a tax return every year?', answer: 'Yes. Once registered on FBR IRIS, you should file your annual Income Tax Return (even if your income is below the taxable threshold) before the September 30 deadline each year to remain on the Active Taxpayer List (ATL).', sort_order: 3 },
-  { id: 'f1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, question: 'Why am I not receiving the FBR SMS verification code?', answer: 'Check three things: (1) the SIM is registered on your own CNIC, (2) you selected your current network operator accurately (ported/MNP numbers sometimes fail — try your original operator or visit RTO desk), and (3) your inbox isn’t blocking promotional SMS.', sort_order: 4 },
-  { id: 'f1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, question: 'Can I register my freelance business name on the same NTN?', answer: 'Yes! Inside IRIS → Registration → Form 181, you can add your freelance studio or sole-proprietorship business name, business address, and bank account completely free.', sort_order: 5 },
+  // 4. FBR NTN Registration for Freelancers
+  { id: 'f1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, question: 'Does FBR NTN registration cost anything for freelancers?', answer: 'No! FBR NTN registration on iris.fbr.gov.pk is completely free (Rs. 0). You do not need to pay any agent or visit an FBR office for basic registration.', sort_order: 1 },
+  { id: 'f1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, question: 'What will my NTN number be after registration?', answer: 'Your National Tax Number (NTN) is linked directly to your 13-digit CNIC number. Once approved (same day to 3 working days), download your confirmation directly from the IRIS dashboard.', sort_order: 2 },
+  { id: 'f1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, question: 'What documents do individual freelancers need to upload on IRIS?', answer: 'Prepare your CNIC front and back scan (PDF or JPG under 2MB), a SIM registered on your own CNIC, personal email, bank account maintenance certificate (PDF), and proof of premises + paid utility bill (not older than 3 months) if you run a business.', sort_order: 3 },
+  { id: 'f1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, question: 'What should freelancers select as income source in Form 181?', answer: 'Select "Freelancer / IT Export" as your income source in Form 181, along with accurate personal and bank account details.', sort_order: 4 },
+  { id: 'f1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, question: 'When is the best time to register on iris.fbr.gov.pk?', answer: 'Weekday mornings are best because the FBR IRIS portal is faster and SMS/Email OTPs arrive reliably — the site is slower at night.', sort_order: 5 },
 
   // 5. Domicile Certificate Rawalpindi
-  { id: 'f1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, question: 'Who is eligible to apply for a Rawalpindi Domicile Certificate?', answer: 'Any Pakistani citizen residing in District Rawalpindi (with Rawalpindi address on CNIC/B-Form, utility bill, or verified continuous residence) who does not already hold a domicile from another district.', sort_order: 1 },
-  { id: 'f1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, question: 'Does a Domicile Certificate ever expire?', answer: 'No, a Pakistan Domicile Certificate is valid for life unless you voluntarily cancel it to obtain a domicile in another district.', sort_order: 2 },
-  { id: 'f1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, question: 'Can a student under 18 apply for a Domicile without a CNIC?', answer: 'Yes! Applicants under 18 can apply using their computerized NADRA B-Form (CRC) along with their father’s valid CNIC and Rawalpindi residence proof.', sort_order: 3 },
-  { id: 'f1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, question: 'Where do I get the Rs. 100 stamp paper affidavit near e-Khidmat Markaz?', answer: 'Licensed stamp vendors and Oath Commissioners sit outside District Courts (Kachehri Chowk) and near Liaquat Bagh. Keep Rs. 200–300 cash for the stamp paper, typing, and Oath Commissioner stamp.', sort_order: 4 },
-  { id: 'f1050000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.domicile, question: 'How can I check if my Rawalpindi Domicile is genuine and ready?', answer: 'Visit ekhidmat.punjab.gov.pk and enter your tracking ID to check live progress. Every new computerized domicile also carries a QR code for instant online verification.', sort_order: 5 },
+  { id: 'f1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, question: 'What is the exact 2026 Domicile Certificate fee in Punjab?', answer: 'The total official 2026 fee in Punjab is Rs. 550: Rs. 200 government fee + Rs. 300 e-affidavit + Rs. 50 PITB charge, paid via e-Pay or challan.', sort_order: 1 },
+  { id: 'f1050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, question: 'Can I get my Rawalpindi Domicile delivered at home via Maryam Ki Dastak?', answer: 'Yes! Maryam Ki Dastak home delivery is available for an additional Rs. 900 to Rs. 1,200 service charge, and takes 2 to 3 days if Dastak fast track is available in your area.', sort_order: 2 },
+  { id: 'f1050000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.domicile, question: 'Where do I get Form P, AC Verification Form, and the Rs. 300 affidavit?', answer: 'All three — Form P, the AC Verification Form, and the Rs. 300 stamp paper e-affidavit — are available directly at e-Khidmat Markaz, District Complex, Rawalpindi.', sort_order: 3 },
+  { id: 'f1050000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.domicile, question: 'How many days does a standard Rawalpindi Domicile take?', answer: 'Standard processing through e-Khidmat Markaz takes 16 working days from the date of submission.', sort_order: 4 },
+  { id: 'f1050000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.domicile, question: 'What documents count as valid proof of residence?', answer: 'Property papers, a utility bill, rent agreement, or voter list entry — make sure the address matches your CNIC or residence proof, and bring a parent or spouse CNIC copy.', sort_order: 5 },
 
-  // 6. Birth Certificate Rawalpindi
-  { id: 'f1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, question: 'What is the difference between a Birth Certificate and a NADRA B-Form (CRC)?', answer: 'First, you get the computerized Birth Certificate from your local Union Council or Cantonment Board. Second, you take that Birth Certificate to NADRA to register the child in your family tree and get the 13-digit B-Form (CRC).', sort_order: 1 },
-  { id: 'f1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, question: 'Can I apply for a Birth Certificate if the baby was born at home?', answer: 'Yes, bring the child’s vaccination card from a government health center or a certificate from the Lady Health Worker (LHW) / Dai along with an affidavit on Rs. 100 stamp paper.', sort_order: 2 },
-  { id: 'f1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, question: 'What if the child was born in an Islamabad hospital but we live in Rawalpindi?', answer: 'You can register the birth either in the Union Council where the hospital is located OR in your residential Rawalpindi Union Council using the original hospital birth slip and parents’ Rawalpindi CNICs.', sort_order: 3 },
-  { id: 'f1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, question: 'How do I get a Birth Certificate for an adult who never had one?', answer: 'Adults apply under Late Birth Registration by submitting their CNIC, Matric certificate, parents’ CNICs, a Rs. 100 stamp paper affidavit, and obtaining ADLG / Magistrate approval before UC issuance.', sort_order: 4 },
-  { id: 'f1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, question: 'Does the Rawalpindi Birth Certificate work for foreign visas and MOFA attestation?', answer: 'Yes! Computerized NADRA-format CRMS Birth Certificates issued by Punjab Union Councils and Cantonment Boards are accepted by MOFA Islamabad and foreign embassies.', sort_order: 5 },
+  // 6. Birth Certificate from Union Council Rawalpindi
+  { id: 'f1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, question: 'Does NADRA issue birth certificates in Rawalpindi?', answer: 'No! Do not go to NADRA first. Birth certificates are issued by your local Union Council, Municipal Committee, or Cantonment Board. Afterward, use that certificate to apply for a B-Form at NADRA.', sort_order: 1 },
+  { id: 'f1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, question: 'Is birth registration really free within 7 years?', answer: 'Yes! Timely birth registration within 7 years is completely free (Rs. 0). Late registration after 7 years costs Rs. 200 to Rs. 1,000 for Pakistani citizens, foreign national child registration is Rs. 2,000, and a correction costs Rs. 500.', sort_order: 2 },
+  { id: 'f1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, question: 'How long does it take to get the computerized birth certificate?', answer: 'If your documents are complete, the Union Council Secretary enters the record in the system and issues the computerized birth certificate the same day or in 2 to 3 days.', sort_order: 3 },
+  { id: 'f1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, question: 'What is the fee for applying for a B-Form at NADRA afterward?', answer: 'Once you receive your Union Council computerized birth certificate, take it to NADRA to apply for your child’s B-Form — the fee is Rs. 50 normal or Rs. 500 executive.', sort_order: 4 },
+  { id: 'f1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, question: 'What time should I visit the Union Council office?', answer: 'Visit between 9:00 AM and 12:00 PM on weekdays, as the Union Council Secretary is usually available in the morning.', sort_order: 5 },
 
   // 7. Police Character Certificate Rawalpindi
-  { id: 'f1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, question: 'How long is a Punjab Police Character Certificate valid?', answer: 'Most embassies and employers accept a Police Character Certificate for 3 to 6 months from the date of issuance, though the certificate itself states the verified stay dates.', sort_order: 1 },
-  { id: 'f1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, question: 'Do I have to visit my local Thana (Police Station) personally?', answer: 'No! Police Khidmat Markaz sends the verification digitally to your local police station (PSRMS) and handles clearance behind the scenes in 3 working days.', sort_order: 2 },
-  { id: 'f1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, question: 'Can I apply for a Rawalpindi Police Character Certificate if I currently live abroad?', answer: 'Yes! A blood relative (father, mother, sibling, or spouse) can apply at Police Khidmat Markaz Rawalpindi with your signed Authority Letter, passport & visa page copies, CNIC copy, and their own original CNIC.', sort_order: 3 },
-  { id: 'f1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, question: 'What if I lived in both Rawalpindi and Lahore in the last 5 years?', answer: 'Since both cities are in Punjab, Police Khidmat Markaz can coordinate verification across Punjab districts — just mention all Punjab addresses and stay dates accurately at the counter.', sort_order: 4 },
-  { id: 'f1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, question: 'Does MOFA Islamabad attest this certificate?', answer: 'Yes! Bring the original QR-verified Police Character Certificate (ensure your passport number is printed on it) to MOFA Islamabad or courier drop-off for apostille/attestation.', sort_order: 5 },
+  { id: 'f1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, question: 'What is the difference between a Police Character Certificate (Rs. 500) and General Police Verification (Rs. 300)?', answer: 'For foreign visas, immigration, and embassies, you specifically need a Police Character Certificate (Rs. 500) with QR code — NOT General Police Verification (Rs. 300).', sort_order: 1 },
+  { id: 'f1070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, question: 'Where are Police Khidmat Markaz centers located in Rawalpindi?', answer: 'You can apply at any Police Khidmat Markaz in Punjab. In Rawalpindi district: Rescue 15 Office at Liaqat Bagh Metro Station (Murree Road), plus Taxila, Murree, Gujar Khan, and Kahuta centers.', sort_order: 2 },
+  { id: 'f1070000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.policeCharacter, question: 'How long does it take to receive the certificate?', answer: 'Your counter visit takes 30 to 45 minutes (best window: 9:00 AM to 11:00 AM), and the original QR-coded certificate is delivered by courier in 3 working days.', sort_order: 3 },
+  { id: 'f1070000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.policeCharacter, question: 'What if my CNIC address does not match my current address?', answer: 'Update your address with NADRA first before applying — a mismatch between your CNIC address and current residence causes verification issues.', sort_order: 4 },
+  { id: 'f1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, question: 'Do embassies accept a photocopy of the Police Character Certificate?', answer: 'No — embassies require the original certificate with its scannable QR verification code. Apply well ahead of your deadline so courier delivery arrives in time.', sort_order: 5 },
 
-  // 8. Child Passport Under 18
-  { id: 'f1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, question: 'Can a newborn baby get a Pakistani passport?', answer: 'Yes! As soon as you have the baby’s Union Council Birth Certificate and NADRA B-Form (CRC), you can apply for a child passport at any age.', sort_order: 1 },
-  { id: 'f1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, question: 'Do BOTH parents have to go to the Passport Office?', answer: 'At least one parent must accompany the child with BOTH parents’ original CNICs. However, if both parents can attend together, it avoids any chance of being asked for a notarized consent affidavit.', sort_order: 2 },
-  { id: 'f1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, question: 'Can I get a 10-year passport for my 8-year-old child?', answer: 'No. Under DGIP rules, children under 15 years are only issued 5-year validity passports because facial features change rapidly. Teenagers aged 15 to 17 can apply for 10-year validity.', sort_order: 3 },
-  { id: 'f1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, question: 'What if the parents are divorced or one parent is deceased?', answer: 'If parents are divorced, bring the original Guardianship Certificate / Court Custody Order. If one parent is deceased, bring the original NADRA Death Certificate.', sort_order: 4 },
-  { id: 'f1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, question: 'Is the fee for a child passport lower than an adult passport?', answer: 'No, DGIP charges the exact same fee schedule for minors and adults: Rs. 4,500 Normal, Rs. 7,500 Urgent, and Rs. 12,500 Fast Track (36 pages, 5 years).', sort_order: 5 },
+  // 8. Child Passport Under 18 Rawalpindi
+  { id: 'f1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, question: 'What is the fee for a child e-Passport under 18?', answer: 'A child’s e-passport uses the same fee table as adults: Rs. 9,000 Normal (21 working days) and Rs. 15,000 Urgent (5 working days) for 36 pages and 5-year validity.', sort_order: 1 },
+  { id: 'f1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, question: 'Can a child under 15 get a 10-year passport?', answer: 'No. Children under 15 years of age are issued 5-year validity passports only.', sort_order: 2 },
+  { id: 'f1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, question: 'Do both parents have to visit Regional Passport Office Rawalpindi?', answer: 'Yes, both parents must be present with valid unexpired CNICs. If one parent cannot attend, you must bring an attested consent affidavit from the absent parent or the file will be rejected.', sort_order: 3 },
+  { id: 'f1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, question: 'What B-Form requirement applies to children aged 10 to 17?', answer: 'For children aged 10 to 17, the child’s B-Form / CRC MUST include the child’s photograph and fingerprints — otherwise you will be sent back to NADRA to update the B-Form first.', sort_order: 4 },
+  { id: 'f1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, question: 'How is the child’s passport delivered?', answer: 'After biometrics, live photo capture at the office, and fee payment, the passport is delivered by courier (21 working days Normal, 5 working days Urgent).', sort_order: 5 },
 
   // 9. Name Change on CNIC After Marriage
-  { id: 'f1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Is it mandatory to take my husband’s surname after marriage in Pakistan?', answer: 'No! Under Pakistani law and NADRA policy, women can freely keep their maiden name (father’s surname) while only updating the "Father’s Name" field to "Husband’s Name" and marital status to Married.', sort_order: 1 },
-  { id: 'f1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Will my 13-digit CNIC number change after marriage?', answer: 'No, your 13-digit CNIC number remains the same for your entire life. Only the card data (marital status, husband’s name, optional surname, and address) is updated.', sort_order: 2 },
-  { id: 'f1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, question: 'What if my husband is living abroad and cannot come to NADRA?', answer: 'Your husband can get a marriage verification / NOC undertaking attested from the nearest Pakistani Embassy or Consulate abroad (or verify via NADRA Pak-ID app), which you submit alongside the original Computerized MRC.', sort_order: 3 },
-  { id: 'f1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can we also update the husband’s CNIC marital status in the same visit?', answer: 'Yes! Your husband can update his marital status to Married in NADRA’s system at the same counter (no new card is even mandatory for the husband unless he wants a fresh card, though updating status helps when applying for a Family Registration Certificate / FRC).', sort_order: 4 },
-  { id: 'f1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Will I need to change my passport after changing my surname on CNIC?', answer: 'Yes, if you change your own surname on your CNIC, you should renew/modify your Pakistani passport so your CNIC and passport names match 100% for travel and visa applications.', sort_order: 5 },
+  { id: 'f1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I go straight to NADRA with my manual handwritten Nikahnama?', answer: 'No! A manual Nikahnama is not enough. You must first get a Computerized Marriage Registration Certificate (MRC) from your local Union Council before visiting NADRA.', sort_order: 1 },
+  { id: 'f1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, question: 'How much does CNIC modification after marriage cost?', answer: 'Ordinary CNIC modification is Rs. 400 Normal (15 days), Rs. 1,150 Urgent, or Rs. 2,150 Executive (6 days). Smart CNIC modification is Rs. 750 Normal, Rs. 1,500 Urgent, or Rs. 2,500 Executive. Updating marital status in the NADRA database only (without printing a new card) costs Rs. 100.', sort_order: 2 },
+  { id: 'f1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Why should both husband and wife update their NADRA records?', answer: 'If only one spouse updates their marital status, your Family Registration Certificate (FRC) will not match later for visa or immigration applications.', sort_order: 3 },
+  { id: 'f1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I change my surname back later if I change my mind?', answer: 'Be very careful before changing your surname — NADRA allows a name change only once in a lifetime (except after marriage).', sort_order: 4 },
+  { id: 'f1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I do this online via Pak-ID app instead of visiting Saddar Mega Center?', answer: 'Yes! Once you have your Union Council Computerized MRC, you can apply either at NADRA Mega Center, Saddar, Rawalpindi (about 45 minutes wait on a weekday morning) or online via the Pak-ID app.', sort_order: 5 },
 
-  // 10. E-Challan Check and Payment
-  { id: 'f1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, question: 'How quickly does an online e-Challan payment clear in the PSCA system?', answer: 'Payments made via PSID (1Bill / e-Pay Punjab / JazzCash / Easypaisa / Bank Apps) update automatically in real time — usually within 1 to 5 minutes.', sort_order: 1 },
-  { id: 'f1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, question: 'How do I challenge a wrong e-Challan if the camera photo is not my car?', answer: 'Call the PSCA helpline (15) or visit the PSCA E-Challan Review Center (Qurban Lines Lahore or your city’s Traffic Police HQ) with your vehicle Smart Card and CNIC to file a free dispute.', sort_order: 2 },
-  { id: 'f1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, question: 'Does PSCA e-Challan work in Rawalpindi and Islamabad too?', answer: 'Punjab Safe Cities Authority (PSCA) covers Lahore, Rawalpindi, Multan, Faisalabad, Gujranwala, and other Smart Safe Cities in Punjab via echallan.psca.gop.pk. Islamabad Traffic Police uses its separate ITP e-Challan system.', sort_order: 3 },
-  { id: 'f1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, question: 'What happens if I do not pay an e-Challan on time?', answer: 'Unpaid e-Challans remain linked to your vehicle registration and CNIC. Multiple unpaid challans can lead to vehicle impoundment at Safe City e-Challan checkpoints and block Excise token tax or vehicle transfer.', sort_order: 4 },
-  { id: 'f1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, question: 'Can I pay an e-Challan at an ATM or bank branch if I do not use banking apps?', answer: 'Yes! Print or write down your 17-digit PSID code and pay it at any Bank of Punjab (BOP) branch, NBP branch, 1Link ATM (under Bill Payment → e-Pay Punjab), or local JazzCash/Easypaisa shop.', sort_order: 5 },
+  // 10. E-Challan Check and Payment in Punjab
+  { id: 'f1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, question: 'How do I safely check my Punjab E-Challan without falling for scams?', answer: 'Never click links sent in SMS messages — many are scams. Always open your browser and type echallan.psca.gop.pk yourself, then search with your vehicle registration number and owner 13-digit CNIC (without dashes) or chassis number.', sort_order: 1 },
+  { id: 'f1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, question: 'What are the common Punjab E-Challan fine amounts?', answer: 'Common fines include: No helmet Rs. 2,000; Red light violation Rs. 2,000 to Rs. 5,000; No driving licence Rs. 5,000; and Overspeeding Rs. 2,000 to Rs. 10,000. Always check your exact fine on the portal.', sort_order: 2 },
+  { id: 'f1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, question: 'How many days do I have to pay an e-Challan?', answer: 'Pay within 10 days to avoid extra penalty. Remember that once you generate a 17-digit PSID in e-Pay Punjab, you must pay that PSID within 24 hours before it expires.', sort_order: 3 },
+  { id: 'f1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, question: 'Which payment methods work for the 17-digit PSID?', answer: 'You can pay the 17-digit PSID through JazzCash, Easypaisa, your Pakistani bank app, a 1Link ATM, or over the counter at a bank branch. Always save a screenshot of your payment receipt.', sort_order: 4 },
+  { id: 'f1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, question: 'How long does payment confirmation take to appear on the portal?', answer: 'Checking your challan takes 2 minutes, and payment confirmation takes 10 minutes to 2 hours to reflect on echallan.psca.gop.pk. Ignoring unpaid challans blocks vehicle transfer and driving licence renewal.', sort_order: 5 },
 ];
 
-// Realistic crowdsourced wait times across the last 7 days (2026-11-10 to 2026-11-16)
+// Crowdsourced wait times (visit_date <= 2026-11-16 to satisfy DB CHECK constraint)
 export const SEED_WAIT_TIMES: WaitTime[] = [
-  // Passport Renewal Rawalpindi (7-day series!)
-  { id: '21010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 65, rating: 4, tip: 'Paid via Passport Fee Asaan app before coming — skipped the entire NBP bank queue!', status: 'approved', created_at: '2026-11-16T10:15:00Z' },
-  { id: '21010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 80, rating: 3, tip: 'Reached at 9:30 AM and token line was busy. Come before 8:15 AM if possible.', status: 'approved', created_at: '2026-11-15T11:30:00Z' },
-  { id: '21010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 55, rating: 4, tip: 'Fast Track counter moved very quickly, done in under an hour from gate to AD signature.', status: 'approved', created_at: '2026-11-14T10:45:00Z' },
-  { id: '21010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-13', wait_minutes: 70, rating: 4, tip: 'Bring a dark shirt for the photo booth and double-check your draft slip carefully.', status: 'approved', created_at: '2026-11-13T09:50:00Z' },
-  { id: '21010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 50, rating: 5, tip: 'Wednesday morning at 8:05 AM was super smooth. Staff at data entry were cooperative.', status: 'approved', created_at: '2026-11-12T09:20:00Z' },
-  { id: '21010000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 95, rating: 3, tip: 'Server slowed down for 20 mins around 11 AM, otherwise well organized.', status: 'approved', created_at: '2026-11-11T12:10:00Z' },
-  { id: '21010000-0000-4000-8000-000000000007', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-10', wait_minutes: 110, rating: 3, tip: 'Monday rush is real — arrive at 7:50 AM or go Tuesday instead.', status: 'approved', created_at: '2026-11-10T11:40:00Z' },
+  // 1. Passport Renewal Rawalpindi (7-day trend)
+  { id: '21010000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 60, rating: 4, tip: 'Reached GT Road RPO at 8:45 AM — paid Rs. 9,000 via PSID beforehand and finished smoothly!', status: 'approved', created_at: '2026-11-16T10:15:00Z' },
+  { id: '21010000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 75, rating: 4, tip: 'Only e-passports are issued now — photo is taken live at the counter so no studio photo needed.', status: 'approved', created_at: '2026-11-15T11:30:00Z' },
+  { id: '21010000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 50, rating: 5, tip: 'Thursday 9:00 AM was super smooth for 5-year e-passport renewal, got tracking slip in 50 mins.', status: 'approved', created_at: '2026-11-14T10:45:00Z' },
+  { id: '21010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-13', wait_minutes: 55, rating: 4, tip: 'Wednesday morning between 8:30 and 10:00 AM moves fast. Check your CNIC expiry before coming!', status: 'approved', created_at: '2026-11-13T09:50:00Z' },
+  { id: '21010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 45, rating: 5, tip: 'Tuesday 8:35 AM — short token queue, biometric & bank counter inside office took 45 mins total.', status: 'approved', created_at: '2026-11-12T09:20:00Z' },
+  { id: '21010000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 85, rating: 3, tip: 'Arrived after 11 AM and queues had built up; definitely go before 10 AM.', status: 'approved', created_at: '2026-11-11T12:10:00Z' },
+  { id: '21010000-0000-4000-8000-000000000007', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-10', wait_minutes: 135, rating: 3, tip: 'Monday after 11 AM really is the most crowded — waited over 2 hours. Go Tue–Thu instead!', status: 'approved', created_at: '2026-11-10T11:40:00Z' },
 
-  // CNIC Renewal Rawalpindi
-  { id: '21020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 35, rating: 5, tip: 'Visited at 3:15 PM after lunch rush — got token and finished in 35 minutes flat!', status: 'approved', created_at: '2026-11-16T11:00:00Z' },
-  { id: '21020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 45, rating: 4, tip: 'Clean AC hall, Executive fee paid easily by debit card at the counter.', status: 'approved', created_at: '2026-11-14T13:20:00Z' },
-  { id: '21020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 30, rating: 5, tip: 'Evening shift after 5 PM is super fast and parking near Rehmanabad is easier.', status: 'approved', created_at: '2026-11-12T14:05:00Z' },
-  { id: '21020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-10', wait_minutes: 75, rating: 3, tip: 'Monday morning is crowded; mid-week afternoon is much better.', status: 'approved', created_at: '2026-11-10T10:30:00Z' },
+  // 2. CNIC Renewal Rawalpindi
+  { id: '21020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 50, rating: 4, tip: 'Visited Saddar Mega Center at 9:30 AM — finished Smart CNIC renewal (Rs. 750) in 50 mins.', status: 'approved', created_at: '2026-11-16T11:00:00Z' },
+  { id: '21020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 125, rating: 3, tip: 'Saturday wait at Saddar Mega Center is over 2 hours — go on a weekday 9–11 AM if you can.', status: 'approved', created_at: '2026-11-14T13:20:00Z' },
+  { id: '21020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 65, rating: 4, tip: 'Double-checked name spelling on screen and took a photo of the tracking slip right at the counter.', status: 'approved', created_at: '2026-11-12T14:05:00Z' },
+  { id: '21020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-10', wait_minutes: 80, rating: 4, tip: 'Ordinary CNIC renewal was Rs. 400 normal (15 days). Make sure your SIM is on your own CNIC.', status: 'approved', created_at: '2026-11-10T10:30:00Z' },
 
-  // Driving Licence Renewal Rawalpindi
-  { id: '21030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, office_name: 'City Traffic Police Licensing Branch Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 40, rating: 4, tip: 'No test needed for renewal. Got my e-Licence PDF the same afternoon!', status: 'approved', created_at: '2026-11-16T09:10:00Z' },
-  { id: '21030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, office_name: 'City Traffic Police Licensing Branch Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 50, rating: 4, tip: 'Keep JazzCash balance ready to pay the PSID challan right at the desk.', status: 'approved', created_at: '2026-11-14T11:15:00Z' },
-  { id: '21030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, office_name: 'City Traffic Police Licensing Branch Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 35, rating: 5, tip: 'Opted for 5-year renewal at Race Course Ground, super smooth experience.', status: 'approved', created_at: '2026-11-11T09:40:00Z' },
+  // 3. Driving Licence Renewal Rawalpindi
+  { id: '21030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, office_name: 'Police Khidmat Markaz, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 25, rating: 5, tip: 'Reached at 9:30 AM with documents ready — paid Rs. 1,830 car renewal PSID via JazzCash in 25 mins!', status: 'approved', created_at: '2026-11-16T09:10:00Z' },
+  { id: '21030000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.drivingLicence, office_name: 'Police Khidmat Markaz, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-14', wait_minutes: 30, rating: 4, tip: 'Used Dastak Punjab app — took 10 mins to upload photo and pay PSID, courier arrived in 8 days.', status: 'approved', created_at: '2026-11-14T11:15:00Z' },
+  { id: '21030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, office_name: 'Police Khidmat Markaz, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 20, rating: 5, tip: 'Motorcycle renewal was Rs. 930 including courier. Double-check home address before submitting!', status: 'approved', created_at: '2026-11-11T09:40:00Z' },
 
-  // FBR NTN for Freelancers
-  { id: '21040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, office_name: 'FBR IRIS Online Portal & RTO Islamabad Facilitation Desk', city: 'Islamabad', visit_date: '2026-11-16', wait_minutes: 15, rating: 5, tip: 'Did the entire NTN registration online at 10 AM — both SMS & Email OTPs arrived in 30 seconds!', status: 'approved', created_at: '2026-11-16T08:40:00Z' },
-  { id: '21040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, office_name: 'FBR IRIS Online Portal & RTO Islamabad Facilitation Desk', city: 'Islamabad', visit_date: '2026-11-13', wait_minutes: 25, rating: 4, tip: 'Make sure your SIM is on your own CNIC — mine worked instantly after switching to my own Jazz SIM.', status: 'approved', created_at: '2026-11-13T10:10:00Z' },
+  // 4. FBR NTN for Freelancers
+  { id: '21040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, office_name: 'Online Only — FBR IRIS Portal (iris.fbr.gov.pk)', city: 'Islamabad', visit_date: '2026-11-16', wait_minutes: 15, rating: 5, tip: 'Completed Form 181 on a weekday morning — both OTPs arrived fast, approved same day for Rs. 0!', status: 'approved', created_at: '2026-11-16T08:40:00Z' },
+  { id: '21040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, office_name: 'Online Only — FBR IRIS Portal (iris.fbr.gov.pk)', city: 'Islamabad', visit_date: '2026-11-13', wait_minutes: 25, rating: 4, tip: 'Keep your CNIC scan under 2MB and bank maintenance certificate PDF ready before starting.', status: 'approved', created_at: '2026-11-13T10:10:00Z' },
 
-  // Domicile Certificate Rawalpindi
-  { id: '21050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 55, rating: 4, tip: 'Bring the Rs. 100 stamp paper affidavit already attested from Kachehri so you do not have to leave the line.', status: 'approved', created_at: '2026-11-15T10:05:00Z' },
-  { id: '21050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 45, rating: 4, tip: 'Paid the Rs. 200 fee via e-Pay Punjab app — reception checked documents in 5 mins.', status: 'approved', created_at: '2026-11-12T11:15:00Z' },
+  // 5. Domicile Certificate Rawalpindi
+  { id: '21050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz, District Complex, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 45, rating: 4, tip: 'Got Form P, AC Verification Form, and Rs. 300 affidavit right at District Complex — total Rs. 550.', status: 'approved', created_at: '2026-11-15T10:05:00Z' },
+  { id: '21050000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz, District Complex, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 40, rating: 5, tip: 'Wednesday 9:30 AM was quick — remember to bring father/mother/spouse CNIC copy along with yours.', status: 'approved', created_at: '2026-11-12T11:15:00Z' },
 
-  // Birth Certificate Rawalpindi
-  { id: '21060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, office_name: 'Union Council / e-Khidmat Markaz & RCB Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 40, rating: 4, tip: 'RCB Saddar counter was neat and quick — bring original hospital birth slip and computerized MRC.', status: 'approved', created_at: '2026-11-15T09:30:00Z' },
-  { id: '21060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, office_name: 'Union Council / e-Khidmat Markaz & RCB Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 50, rating: 4, tip: 'Double-check baby’s English name spelling on screen before UC Secretary prints final copy.', status: 'approved', created_at: '2026-11-11T10:25:00Z' },
+  // 6. Birth Certificate from Union Council Rawalpindi
+  { id: '21060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, office_name: 'Local Union Council, Municipal Committee, or Cantonment Board', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 35, rating: 4, tip: 'Visited Union Council Secretary at 10 AM — completely FREE within 7 years, got printout in 2 days!', status: 'approved', created_at: '2026-11-15T09:30:00Z' },
+  { id: '21060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, office_name: 'Local Union Council, Municipal Committee, or Cantonment Board', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 45, rating: 4, tip: 'Checked child name spelling 3 times before Secretary saved it — used it next week for NADRA B-Form.', status: 'approved', created_at: '2026-11-11T10:25:00Z' },
 
-  // Police Character Certificate Rawalpindi
-  { id: '21070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, office_name: 'Police Khidmat Markaz Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 25, rating: 5, tip: 'Police Khidmat Markaz Commercial Market is super well-managed. In and out in 25 mins, ready in 3 days!', status: 'approved', created_at: '2026-11-16T09:45:00Z' },
-  { id: '21070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, office_name: 'Police Khidmat Markaz Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-13', wait_minutes: 30, rating: 5, tip: 'Remember to bring your passport copy so they print the passport number for embassy use.', status: 'approved', created_at: '2026-11-13T11:50:00Z' },
+  // 7. Police Character Certificate Rawalpindi
+  { id: '21070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, office_name: 'Police Khidmat Markaz, Rawalpindi (Rescue 15 Liaqat Bagh)', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 35, rating: 5, tip: 'Rescue 15 Liaqat Bagh center took 35 mins at 9:30 AM. Paid Rs. 500, QR certificate delivered in 3 days!', status: 'approved', created_at: '2026-11-16T09:45:00Z' },
+  { id: '21070000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.policeCharacter, office_name: 'Police Khidmat Markaz, Rawalpindi (Rescue 15 Liaqat Bagh)', city: 'Rawalpindi', visit_date: '2026-11-13', wait_minutes: 40, rating: 5, tip: 'Make sure you ask for Character Certificate (Rs. 500) for visa, not General Verification (Rs. 300).', status: 'approved', created_at: '2026-11-13T11:50:00Z' },
 
-  // Child Passport Under 18
-  { id: '21080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, office_name: 'Regional Passport Office Rawalpindi (Family Counter)', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 60, rating: 4, tip: 'Family lane was much faster than regular queue. Make sure PSID is generated on child’s B-Form number!', status: 'approved', created_at: '2026-11-15T10:50:00Z' },
-  { id: '21080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, office_name: 'Regional Passport Office Rawalpindi (Family Counter)', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 55, rating: 4, tip: 'Both parents went together with original CNICs — zero hassle at the AD desk.', status: 'approved', created_at: '2026-11-12T10:00:00Z' },
+  // 8. Child Passport Under 18 Rawalpindi
+  { id: '21080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, office_name: 'Regional Passport Office, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 55, rating: 4, tip: 'Both parents went at 9 AM with updated B-Form (with photo for our 12-year-old) — smooth Rs. 9,000 normal process.', status: 'approved', created_at: '2026-11-15T10:50:00Z' },
+  { id: '21080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, office_name: 'Regional Passport Office, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-12', wait_minutes: 50, rating: 4, tip: 'Both parents CNICs must be valid! Live photo was taken at office and passport came by courier.', status: 'approved', created_at: '2026-11-12T10:00:00Z' },
 
-  // Name Change on CNIC After Marriage
-  { id: '21090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 40, rating: 5, tip: 'Ladies & family seating area is comfortable. Bring original computerized MRC and husband for thumbprint.', status: 'approved', created_at: '2026-11-15T12:15:00Z' },
-  { id: '21090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, office_name: 'NADRA Mega Center Rawalpindi (Rehmanabad)', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 50, rating: 4, tip: 'You can keep your maiden surname and just add husband’s name — tell the operator clearly before printing.', status: 'approved', created_at: '2026-11-11T13:05:00Z' },
+  // 9. Name Change on CNIC After Marriage
+  { id: '21090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-15', wait_minutes: 45, rating: 5, tip: 'Got Union Council computerized MRC first — Saddar Mega Center took 45 mins, updated both spouses!', status: 'approved', created_at: '2026-11-15T12:15:00Z' },
+  { id: '21090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, office_name: 'NADRA Mega Center, Saddar, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-11', wait_minutes: 50, rating: 4, tip: 'Husband only updated marital status in database for Rs. 100 without printing a new card — super helpful!', status: 'approved', created_at: '2026-11-11T13:05:00Z' },
 
-  // E-Challan Check and Payment
-  { id: '21100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, office_name: 'Punjab Safe Cities Authority (PSCA) E-Challan Portal', city: 'Lahore', visit_date: '2026-11-16', wait_minutes: 5, rating: 5, tip: 'Checked my bike plate online, verified photo, paid Rs. 200 via Meezan app PSID — cleared in 2 mins!', status: 'approved', created_at: '2026-11-16T07:30:00Z' },
-  { id: '21100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, office_name: 'Punjab Safe Cities Authority (PSCA) E-Challan Portal', city: 'Lahore', visit_date: '2026-11-14', wait_minutes: 10, rating: 4, tip: 'JazzCash GoPb PSID payment worked cleanly. Always save a screenshot of the receipt.', status: 'approved', created_at: '2026-11-14T15:20:00Z' },
+  // 10. E-Challan Check and Payment in Punjab
+  { id: '21100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, office_name: 'Online Only — PSCA E-Challan Portal (echallan.psca.gop.pk)', city: 'Lahore', visit_date: '2026-11-16', wait_minutes: 10, rating: 5, tip: 'Typed echallan.psca.gop.pk directly, generated 17-digit PSID in e-Pay Punjab, paid via JazzCash — cleared in 20 mins!', status: 'approved', created_at: '2026-11-16T07:30:00Z' },
+  { id: '21100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, office_name: 'Online Only — PSCA E-Challan Portal (echallan.psca.gop.pk)', city: 'Lahore', visit_date: '2026-11-14', wait_minutes: 15, rating: 4, tip: 'Paid Rs. 2,000 helmet challan within 10 days via bank app PSID and saved the receipt screenshot.', status: 'approved', created_at: '2026-11-14T15:20:00Z' },
 
-  // 2 Pending submissions so Admin Moderation Queue has live items ready for approval/rejection!
-  { id: '29000000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 58, rating: 5, tip: 'Tuesday morning 8:10 AM — photocopy shop across Murree Road opens at 7:45 AM.', status: 'pending', created_at: '2026-11-16T11:45:00Z' },
-  { id: '29000000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 48, rating: 4, tip: 'Counter 4 for domicile was moving fast today, bring 2 extra passport photos just in case.', status: 'pending', created_at: '2026-11-16T11:55:00Z' },
+  // 2 Pending submissions for Admin Moderation Queue
+  { id: '29000000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.passportRenewal, office_name: 'Regional Passport Office, Rawalpindi (GT Road)', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 55, rating: 5, tip: 'Tuesday 8:40 AM at GT Road office was well organized — bring 1 photocopy of first 2 passport pages.', status: 'pending', created_at: '2026-11-16T11:45:00Z' },
+  { id: '29000000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.domicile, office_name: 'e-Khidmat Markaz, District Complex, Rawalpindi', city: 'Rawalpindi', visit_date: '2026-11-16', wait_minutes: 45, rating: 4, tip: 'District Complex staff helped fill Form P and AC Verification Form on the spot — total Rs. 550.', status: 'pending', created_at: '2026-11-16T11:55:00Z' },
 ];

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Calculator } from 'lucide-react';
+import { getRichFeeSchedule } from '@/data/fee-schedules';
 import { CITY_EXTRA_COST_ESTIMATES } from '@/lib/constants';
 import { formatPKR } from '@/lib/format';
 import type { ProcessDocument, ProcessRecord } from '@/types/database';
@@ -11,37 +12,60 @@ interface FeeCalculatorBlockProps {
   documents: ProcessDocument[];
 }
 
-type SpeedTier = 'normal' | 'urgent' | 'executive';
-
 const CITY_OPTIONS = Object.keys(CITY_EXTRA_COST_ESTIMATES);
 
 export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockProps) {
   const defaultCity = CITY_OPTIONS.includes(process.city) ? process.city : 'Rawalpindi';
-  const [serviceType, setServiceType] = useState<SpeedTier>('normal');
+
+  const feeOptions = useMemo(() => {
+    const rich = getRichFeeSchedule(process.slug, process.fee_normal);
+    if (rich && rich.calculatorOptions.length > 0) {
+      return rich.calculatorOptions;
+    }
+    return [
+      {
+        id: 'normal',
+        label: `Normal — ${formatPKR(process.fee_normal)}`,
+        amount: process.fee_normal,
+      },
+      {
+        id: 'urgent',
+        label: `Urgent — ${formatPKR(process.fee_urgent)}`,
+        amount: process.fee_urgent,
+      },
+      {
+        id: 'executive',
+        label: `Executive / Fast Track — ${formatPKR(process.fee_executive)}`,
+        amount: process.fee_executive,
+      },
+    ];
+  }, [process.slug, process.fee_normal, process.fee_urgent, process.fee_executive]);
+
+  const [selectedOptionId, setSelectedOptionId] = useState<string>(
+    () => feeOptions[0]?.id ?? 'normal'
+  );
   const [selectedCity, setSelectedCity] = useState<string>(defaultCity);
   const [includePhotos, setIncludePhotos] = useState<boolean>(() =>
     documents.some((d) => d.name.toLowerCase().includes('photo'))
   );
 
+  const activeOption = useMemo(
+    () => feeOptions.find((o) => o.id === selectedOptionId) ?? feeOptions[0],
+    [feeOptions, selectedOptionId]
+  );
+
   const photocopySheetCount = useMemo(() => {
-    const count = documents
+    return documents
       .filter((d) => d.type === 'photocopy')
       .reduce((acc, d) => acc + d.copies_needed, 0);
-    return count;
   }, [documents]);
 
   const calculation = useMemo(() => {
-    const officialFee =
-      serviceType === 'normal'
-        ? process.fee_normal
-        : serviceType === 'urgent'
-        ? process.fee_urgent
-        : process.fee_executive;
+    const officialFee = activeOption?.amount ?? process.fee_normal;
 
     const cityRates =
       CITY_EXTRA_COST_ESTIMATES[selectedCity] ?? CITY_EXTRA_COST_ESTIMATES.Rawalpindi;
 
-    // Account for both front & back prints / spare copy
     const photocopyCost = photocopySheetCount * cityRates.photocopyPerSheet;
     const photoCost = includePhotos ? cityRates.photoSetCost : 0;
     const total = officialFee + photocopyCost + photoCost;
@@ -53,7 +77,7 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
       total,
       cityNote: cityRates.transportNote,
     };
-  }, [serviceType, selectedCity, includePhotos, process, photocopySheetCount]);
+  }, [activeOption, selectedCity, includePhotos, process.fee_normal, photocopySheetCount]);
 
   return (
     <section
@@ -86,23 +110,19 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
             htmlFor="calc-tier"
             className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-600"
           >
-            Processing Speed / Type
+            Service Option / Tier
           </label>
           <select
             id="calc-tier"
-            value={serviceType}
-            onChange={(e) => setServiceType(e.target.value as SpeedTier)}
+            value={activeOption?.id ?? ''}
+            onChange={(e) => setSelectedOptionId(e.target.value)}
             className="w-full rounded-xl border border-gray-300 bg-surface px-3.5 py-2.5 text-sm font-medium text-ink focus:border-brand focus:bg-white focus:outline-none"
           >
-            <option value="normal">
-              Normal — {formatPKR(process.fee_normal)}
-            </option>
-            <option value="urgent">
-              Urgent — {formatPKR(process.fee_urgent)}
-            </option>
-            <option value="executive">
-              Executive / Fast Track — {formatPKR(process.fee_executive)}
-            </option>
+            {feeOptions.map((opt) => (
+              <option key={opt.id} value={opt.id}>
+                {opt.label}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -136,17 +156,16 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
           onChange={(e) => setIncludePhotos(e.target.checked)}
           className="h-4 w-4 rounded border-gray-300 text-brand focus:ring-brand"
         />
-        Include passport-size studio photographs estimate ({formatPKR(CITY_EXTRA_COST_ESTIMATES[selectedCity]?.photoSetCost ?? 250, false)})
+        Include passport-size studio photographs estimate (
+        {formatPKR(CITY_EXTRA_COST_ESTIMATES[selectedCity]?.photoSetCost ?? 250, false)})
       </label>
 
       {/* Output Breakdown */}
       <div className="mt-5 rounded-2xl border border-emerald-900/15 bg-surface p-4 sm:p-5">
         <dl className="space-y-2.5 text-sm">
-          <div className="flex items-center justify-between text-gray-700">
-            <dt>
-              Official Government Fee ({serviceType.charAt(0).toUpperCase() + serviceType.slice(1)})
-            </dt>
-            <dd className="font-semibold text-ink">
+          <div className="flex items-center justify-between gap-4 text-gray-700">
+            <dt className="truncate">Official Fee ({activeOption?.label.split('—')[0].trim()})</dt>
+            <dd className="shrink-0 font-semibold text-ink">
               {formatPKR(calculation.officialFee)}
             </dd>
           </div>
@@ -162,7 +181,9 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
           <div className="flex items-center justify-between text-gray-700">
             <dt>Passport Photo Estimate</dt>
             <dd className="font-semibold text-ink">
-              {includePhotos ? formatPKR(calculation.photoCost, false) : 'Rs. 0 (Live photo at counter)'}
+              {includePhotos
+                ? formatPKR(calculation.photoCost, false)
+                : 'Rs. 0 (Taken at counter / not needed)'}
             </dd>
           </div>
           <div className="flex items-center justify-between border-t border-emerald-900/15 pt-3 text-base font-extrabold text-brand-dark">

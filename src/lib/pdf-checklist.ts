@@ -1,6 +1,11 @@
 'use client';
 
-import { DISCLAIMER_SHORT, SITE_NAME, SITE_TAGLINE } from '@/lib/constants';
+import {
+  DISCLAIMER_SHORT,
+  FEE_CHECK_DISCLAIMER,
+  SITE_NAME,
+  SITE_TAGLINE,
+} from '@/lib/constants';
 import { formatDate, formatPKR } from '@/lib/format';
 import type { ProcessDocument, ProcessRecord } from '@/types/database';
 
@@ -231,7 +236,10 @@ export async function downloadChecklistPdf({
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(107, 114, 128);
-  const discLines = doc.splitTextToSize(DISCLAIMER_SHORT, contentWidth);
+  const discLines = doc.splitTextToSize(
+    `${FEE_CHECK_DISCLAIMER} ${DISCLAIMER_SHORT}`,
+    contentWidth
+  );
   doc.text(discLines, margin, actualFooterY + 6.5);
 
   const filename = `${process.slug}-${selectedCity.toLowerCase()}-checklist.pdf`;

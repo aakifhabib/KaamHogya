@@ -15,7 +15,7 @@ export default function TermsPage() {
     <>
       <PageMetaBar
         breadcrumbs={[{ label: 'Terms of Use', href: '/terms' }]}
-        lastUpdated="2026-11-16T08:00:00Z"
+        lastUpdated="2026-11-17T00:00:00Z"
         sourceUrl={OFFICIAL_DIRECTORY_URL}
         sourceLabel="pakistan.gov.pk"
       />
