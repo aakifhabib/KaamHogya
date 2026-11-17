@@ -26,7 +26,7 @@ export const SEED_CATEGORIES: Category[] = [
     name: 'Identity',
     slug: 'identity',
     urdu_label: 'شناختی کارڈ',
-    description: 'Smart CNIC and Ordinary CNIC renewal, Pak-ID online options, and NADRA guides.',
+    description: 'Smart CNIC and Ordinary CNIC renewal, PakID online options, and NADRA guides.',
   },
   {
     id: 'b1000000-0000-4000-8000-000000000002',
@@ -113,20 +113,21 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     title: 'CNIC Renewal in Rawalpindi',
     urdu_title: 'شناختی کارڈ کی تجدید — راولپنڈی',
     summary:
-      'Complete guide to renewing your Smart CNIC or Ordinary CNIC at NADRA Mega Center, Saddar, Rawalpindi (or online via the Pak-ID app), with exact 2026 fees and delivery times.',
+      'Complete official guide to renewing your Smart CNIC (SNIC) or Ordinary CNIC at NADRA Mega Center, Saddar, Rawalpindi or via the official PakID app — with verified NADRA fees, delivery days, and Rule 12 requirements.',
     category: 'Identity',
     city: 'Rawalpindi',
     fee_normal: 750,
     fee_urgent: 1500,
     fee_executive: 2500,
     fee_notes:
-      'Smart CNIC renewal: Rs. 750 Normal (~31 days), Rs. 1,500 Urgent (~23 days), Rs. 2,500 Executive (~9 days). Ordinary non-smart CNIC renewal: Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), Rs. 2,150 Executive (6 days).',
-    time_required: '45 mins–1.5 hrs at Mega Center (2+ hrs Sat) | Smart: ~31/23/9 days | Ordinary: 15/12/6 days',
+      'Official NADRA renewal fees (nadra.gov.pk/feeStructure): Smart CNIC (SNIC) is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), and Rs. 2,500 Executive (9 days). Ordinary CNIC (Teslin) is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days). No attestation is required for renewal. 24/7 NADRA Helpline: 1777 (mobile) or +92 51 111 786 100.',
+    time_required: '45 mins–1.5 hrs at Mega Center (2+ hrs Sat) | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
     office_name: 'NADRA Mega Center, Saddar, Rawalpindi',
-    office_address: 'NADRA Mega Center, Saddar, Rawalpindi. Also available online via Pak-ID app.',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Pak-ID app available 24/7)',
+    office_address:
+      'NADRA Mega Center, Saddar, Rawalpindi (or any NADRA Registration Centre / official PakID mobile app). 24/7 NADRA Helpline: 1777 / +92 51 111 786 100.',
+    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (PakID app available 24/7)',
     best_day_to_go: 'Weekday 9:00 AM to 11:00 AM (avoid Saturday — 2+ hours wait)',
-    official_source_url: 'https://www.nadra.gov.pk/',
+    official_source_url: 'https://www.nadra.gov.pk/feeStructure',
     last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: false,
@@ -167,19 +168,20 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     title: 'FBR NTN Registration for Freelancers',
     urdu_title: 'فری لانسرز کے لیے ایف بی آر این ٹی این',
     summary:
-      '100% free online guide to getting your National Tax Number (NTN) on FBR IRIS (iris.fbr.gov.pk) in 1 to 3 working days — no office visit required for basic registration.',
+      '100% free official guide to registering as an individual taxpayer on FBR IRIS (iris.fbr.gov.pk) via Form 181 — your 13-digit CNIC becomes your NTN with no office visit required.',
     category: 'Tax',
     city: 'Islamabad',
     fee_normal: 0,
     fee_urgent: 0,
     fee_executive: 0,
     fee_notes:
-      'Fee is Rs. 0 (Free). Getting a National Tax Number takes 1 to 3 working days through FBR IRIS portal and costs nothing. It is linked directly to your CNIC number.',
-    time_required: 'Same day to 3 working days for approval (100% online)',
-    office_name: 'Online Only — FBR IRIS Portal (iris.fbr.gov.pk)',
-    office_address: 'Online only via iris.fbr.gov.pk. No need to visit an FBR office for basic registration.',
-    office_timings: 'Online 24/7 (Weekday mornings are faster — site is slower at night)',
-    best_day_to_go: 'Weekday morning (portal is faster and OTPs arrive quickly)',
+      'Official FBR Fee: Rs. 0 (Free) online via iris.fbr.gov.pk (for Individuals) or in person at any Tax House / RTO Facilitation Counter. For Pakistani individuals, your 13-digit CNIC (without dashes) IS your NTN. Under FBR Section 154A, IT & IT-enabled services export proceeds are subject to 1% final tax (0.25% if PSEB-registered; confirm current Finance Act rules on fbr.gov.pk). FBR Helpline: 051-111-772-772 | helpline@fbr.gov.pk.',
+    time_required: 'Order issued in minutes to 3 working days after Form 181 submission (100% online)',
+    office_name: 'Online — FBR IRIS Portal (iris.fbr.gov.pk) or Any Tax House / RTO Facilitation Counter',
+    office_address:
+      'Online via iris.fbr.gov.pk for Individuals (AOPs and Companies must visit a Tax House / RTO Facilitation Counter). FBR Helpline: 051-111-772-772 (Females: 051-9107025) | helpline@fbr.gov.pk.',
+    office_timings: 'IRIS Online 24/7 (Weekday mornings are fastest) | FBR Helpline Mon–Fri: 8:00 AM – 11:30 PM',
+    best_day_to_go: 'Weekday morning (IRIS responds faster and SMS/Email PINs arrive quickly)',
     official_source_url: 'https://iris.fbr.gov.pk/',
     last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
@@ -228,7 +230,7 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     fee_urgent: 500,
     fee_executive: 2000,
     fee_notes:
-      'Within 7 years: Free (Rs. 0). Late registration after 7 years: Rs. 200 to Rs. 1,000 for Pakistani citizens. Foreign national child: Rs. 2,000. Correction or change in details: Rs. 500. Use the birth certificate afterward to apply for B-Form at NADRA (Rs. 50 normal, Rs. 500 executive).',
+      'Within 7 years: Free (Rs. 0). Late registration after 7 years: Rs. 200 to Rs. 1,000 for Pakistani citizens. Foreign national child: Rs. 2,000. Correction or change in details: Rs. 500. Use the birth certificate afterward to apply for a NADRA Child Registration Certificate (CRC / B-Form): Normal Rs. 50 (7 days) or Executive Rs. 500 (1 day).',
     time_required: 'Same day to 3 days if documents are complete',
     office_name: 'Local Union Council, Municipal Committee, or Cantonment Board',
     office_address: 'Your local Union Council, Municipal Committee, or Cantonment Board in Rawalpindi (NOT NADRA office).',
@@ -304,20 +306,21 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     title: 'Name Change on CNIC After Marriage',
     urdu_title: 'شادی کے بعد شناختی کارڈ میں نام کی تبدیلی',
     summary:
-      'How to update marital status, add spouse name, and optionally change surname at NADRA Mega Center, Saddar, Rawalpindi (or Pak-ID app) after obtaining your Union Council Computerized MRC.',
+      'Official NADRA guide to updating marital status, adding spouse name, and optionally changing surname after marriage — with verified NADRA fees, delivery days, Regulation 41 rules, and PakID app options.',
     category: 'Family',
     city: 'Rawalpindi',
     fee_normal: 400,
     fee_urgent: 1150,
     fee_executive: 2150,
     fee_notes:
-      'Ordinary CNIC modification: Rs. 400 Normal (15 days), Rs. 1,150 Urgent, Rs. 2,150 Executive (6 days). Smart CNIC modification: Rs. 750 Normal, Rs. 1,500 Urgent, Rs. 2,500 Executive. Updating marital status in NADRA database only (without a new printed card) costs Rs. 100.',
-    time_required: '45 mins at center | Delivery: 15 days Normal / 6 days Executive (Ordinary CNIC)',
+      'Official NADRA modification fees (nadra.gov.pk/feeStructure): Ordinary CNIC is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), Rs. 2,150 Executive (6 days). Smart CNIC (SNIC) is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), Rs. 2,500 Executive (9 days). Updating non-printable fields only (marital status in NADRA database without a new printed card) is Rs. 100 at NRC (2 days) or USD 5 via PakID app (2 days). Optional FRC afterward: Rs. 1,000 (1 day). 24/7 NADRA Helpline: 1777.',
+    time_required: '45 mins at center | Ordinary: 15/12/6 days | Smart: 31/23/9 days | DB-Only: 2 days',
     office_name: 'NADRA Mega Center, Saddar, Rawalpindi',
-    office_address: 'NADRA Mega Center, Saddar, Rawalpindi. Also available online via Pak-ID app.',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (Pak-ID app available 24/7)',
-    best_day_to_go: 'Weekday morning',
-    official_source_url: 'https://www.nadra.gov.pk/',
+    office_address:
+      'NADRA Mega Center, Saddar, Rawalpindi (or any NADRA Registration Centre / official PakID mobile app). 24/7 NADRA Helpline: 1777 / +92 51 111 786 100.',
+    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (PakID app available 24/7)',
+    best_day_to_go: 'Weekday morning (9:00 AM – 11:00 AM)',
+    official_source_url: 'https://www.nadra.gov.pk/feeStructure',
     last_updated: '2026-11-17T00:00:00Z',
     is_verified: true,
     is_nationwide: true,
@@ -361,10 +364,10 @@ export const SEED_DOCUMENTS: ProcessDocument[] = [
   { id: 'd1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, name: 'Address Proof (Utility Bill — Only for Address Change)', type: 'photocopy', copies_needed: 1, note: 'Only needed if you are changing your address on the passport.', sort_order: 5 },
 
   // 2. CNIC Renewal in Rawalpindi
-  { id: 'd1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, name: 'Original Old CNIC', type: 'original', copies_needed: 1, note: 'Bring your original old CNIC card.', sort_order: 1 },
-  { id: 'd1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, name: 'Old CNIC Photocopy', type: 'photocopy', copies_needed: 1, note: '1 clear front-and-back photocopy of your old CNIC.', sort_order: 2 },
+  { id: 'd1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, name: 'Original Old CNIC (No Attestation Required)', type: 'original', copies_needed: 1, note: 'Under Rule 12 (NADRA NIC Rules, 2002), no gazetted attestation is needed for CNIC renewal. Your previous card is surrendered/punched.', sort_order: 1 },
+  { id: 'd1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, name: 'Old CNIC Photocopy', type: 'photocopy', copies_needed: 1, note: '1 clear front-and-back photocopy of your old CNIC for your records.', sort_order: 2 },
   { id: 'd1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, name: 'Utility Bill or Rent Agreement (If Address Changed)', type: 'photocopy', copies_needed: 1, note: 'Required only if you are updating your current or permanent address.', sort_order: 3 },
-  { id: 'd1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, name: 'Computerized Marriage Certificate (If Marital Status Changed)', type: 'original', copies_needed: 1, note: 'Required only if your marital status changed since your previous CNIC.', sort_order: 4 },
+  { id: 'd1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, name: 'Computerized Marriage Certificate (MRC) & Spouse CNIC Copy (If Marital Status Changed)', type: 'original', copies_needed: 1, note: 'Required under NADRA Regulation 41 only if your marital status changed since your previous CNIC.', sort_order: 4 },
 
   // 3. Driving Licence Renewal in Rawalpindi
   { id: 'd1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, name: 'Original Old Driving Licence', type: 'original', copies_needed: 1, note: 'Your original expiring or expired Punjab driving licence.', sort_order: 1 },
@@ -375,11 +378,11 @@ export const SEED_DOCUMENTS: ProcessDocument[] = [
   { id: 'd1030000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.drivingLicence, name: 'Medical Certificate (If Over 60 or Renewing After Long Expiry)', type: 'original', copies_needed: 1, note: 'Only required if you are over 60 years old or renewing after a long expiry.', sort_order: 6 },
 
   // 4. FBR NTN Registration for Freelancers
-  { id: 'd1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, name: 'CNIC Front & Back Scan (PDF or JPG Under 2MB)', type: 'photocopy', copies_needed: 1, note: 'Clear digital scan of both sides of your CNIC in PDF or JPG format under 2MB.', sort_order: 1 },
-  { id: 'd1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, name: 'Mobile SIM Registered on Your Own CNIC', type: 'original', copies_needed: 1, note: 'Mandatory — FBR SMS OTP will fail if the SIM is registered on someone else’s CNIC.', sort_order: 2 },
-  { id: 'd1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, name: 'Personal Email Address You Check Regularly', type: 'original', copies_needed: 1, note: 'Used to receive your FBR email OTP and IRIS account credentials.', sort_order: 3 },
-  { id: 'd1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, name: 'Bank Account Maintenance Certificate (Scanned PDF)', type: 'photocopy', copies_needed: 1, note: 'Account maintenance certificate in your own name, scanned as a PDF.', sort_order: 4 },
-  { id: 'd1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, name: 'Proof of Business Address & Paid Utility Bill (If Running a Business)', type: 'photocopy', copies_needed: 1, note: 'Proof of premises and a paid utility bill not older than 3 months — required if you run a business.', sort_order: 5 },
+  { id: 'd1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, name: 'Valid Original CNIC + Front & Back Scan (PDF or JPG Under 2MB)', type: 'photocopy', copies_needed: 1, note: 'Your 13-digit CNIC (without dashes) serves as your individual NTN / IRIS Registration Number.', sort_order: 1 },
+  { id: 'd1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, name: 'Active Mobile SIM Registered Against Your Own CNIC', type: 'original', copies_needed: 1, note: 'Mandatory per FBR rules — IRIS SMS verification fails if the SIM is not registered on your own CNIC.', sort_order: 2 },
+  { id: 'd1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, name: 'Personal Email Address Belonging to You', type: 'original', copies_needed: 1, note: 'Receives the separate Email verification code along with your IRIS password and PIN.', sort_order: 3 },
+  { id: 'd1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, name: 'Certificate of Maintenance of Personal Bank Account (Scanned PDF)', type: 'photocopy', copies_needed: 1, note: 'Official FBR requirement: scanned PDF of bank account maintenance certificate in your own name (attached in Form 181).', sort_order: 4 },
+  { id: 'd1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, name: 'Business Premises Tenancy/Ownership Proof & Paid Utility Bill <= 3 Months (If Running a Business)', type: 'photocopy', copies_needed: 1, note: 'Required by FBR if registering a business: scanned tenancy/ownership evidence plus paid utility bill not older than 3 months (and business letterhead if applicable).', sort_order: 5 },
 
   // 5. Domicile Certificate in Rawalpindi
   { id: 'd1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, name: 'Your CNIC Original + 1 Copy (or B-Form / Birth Certificate if Under 18)', type: 'original', copies_needed: 1, note: 'Bring your original CNIC + 1 photocopy, or B-Form / birth certificate if under 18.', sort_order: 1 },
@@ -405,7 +408,7 @@ export const SEED_DOCUMENTS: ProcessDocument[] = [
   { id: 'd1070000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.policeCharacter, name: 'Visa or Job Letter (For Abroad, If Available)', type: 'photocopy', copies_needed: 1, note: 'Optional, helps clearly mention the purpose on the certificate.', sort_order: 5 },
 
   // 8. Child Passport Under 18 in Rawalpindi
-  { id: 'd1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, name: 'Child B-Form / CRC Original + Copy (With Photo & Fingerprints if Age 10–17)', type: 'original', copies_needed: 1, note: 'For children aged 10 to 17, the B-Form MUST include photo and fingerprints — otherwise update it at NADRA first.', sort_order: 1 },
+  { id: 'd1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, name: 'Child B-Form / CRC Original + Copy (NADRA Biometric CRC Rules Apply by Age)', type: 'original', copies_needed: 1, note: 'Official NADRA CRC rules: under age 3 needs photo on CRC for passport; ages 3–10 need Photo + IRIS; ages 10–17 MUST include Photo + Fingerprints + IRIS (update at NADRA first: Rs. 50 Normal / 7 days, Rs. 500 Executive / 1 day).', sort_order: 1 },
   { id: 'd1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, name: 'Father CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Father’s CNIC must be valid (not expired) + 1 photocopy.', sort_order: 2 },
   { id: 'd1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, name: 'Mother CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Mother’s CNIC must be valid (not expired) + 1 photocopy.', sort_order: 3 },
   { id: 'd1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, name: 'Computerized Birth Certificate from Union Council', type: 'original', copies_needed: 1, note: 'Bring the child’s computerized birth certificate issued by the Union Council.', sort_order: 4 },
@@ -413,11 +416,11 @@ export const SEED_DOCUMENTS: ProcessDocument[] = [
   { id: 'd1080000-0000-4000-8000-000000000006', process_id: PROCESS_IDS.childPassport, name: 'Old Child Passport (If Renewal)', type: 'original', copies_needed: 1, note: 'Bring the child’s previous passport if renewing.', sort_order: 6 },
 
   // 9. Name Change on CNIC After Marriage
-  { id: 'd1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Your Old CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Bring your original current CNIC plus 1 photocopy.', sort_order: 1 },
-  { id: 'd1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Computerized Marriage Certificate (MRC) from Union Council — Original + Copy', type: 'original', copies_needed: 1, note: 'Mandatory before visiting NADRA — manual Nikahnama alone is not accepted.', sort_order: 2 },
-  { id: 'd1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Husband CNIC Copy (For Wife Updating Record)', type: 'photocopy', copies_needed: 1, note: 'Required when the wife updates marital status / spouse name.', sort_order: 3 },
-  { id: 'd1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Wife CNIC Copy (For Husband Updating Record)', type: 'photocopy', copies_needed: 1, note: 'Required when the husband updates his NADRA marital record (update both so FRC matches later).', sort_order: 4 },
-  { id: 'd1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Nikahnama Showing New Name (If Changing Surname)', type: 'photocopy', copies_needed: 1, note: 'Bring if you are also updating your surname on CNIC.', sort_order: 5 },
+  { id: 'd1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Your Old CNIC Original + Copy', type: 'original', copies_needed: 1, note: 'Bring your original current CNIC plus 1 photocopy (your old card is surrendered/punched when issuing a modified card).', sort_order: 1 },
+  { id: 'd1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Computerized Marriage Certificate (MRC) from Union Council — Original + Copy', type: 'original', copies_needed: 1, note: 'Mandatory under NADRA Regulation 41 before visiting NADRA — a manual handwritten Nikahnama alone is not accepted.', sort_order: 2 },
+  { id: 'd1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Spouse CNIC / POC / Passport Copy (Husband’s Copy for Wife)', type: 'photocopy', copies_needed: 1, note: 'Official NADRA Regulation 41 requirement when updating marital status or adding husband’s name.', sort_order: 3 },
+  { id: 'd1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Wife CNIC / POC / Passport Copy (For Husband Updating Record)', type: 'photocopy', copies_needed: 1, note: 'Required when the husband updates his NADRA marital status (update both spouses so FRC matches later).', sort_order: 4 },
+  { id: 'd1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, name: 'Undertaking / Affidavit for Name Change (Only If Changing Given Name Beyond Spouse Name)', type: 'original', copies_needed: 1, note: 'A woman may keep her father’s name or adopt her husband’s name using the MRC; altering a given name requires NADRA’s prescribed Schedule VI undertaking/declaration.', sort_order: 5 },
 
   // 10. E-Challan Check and Payment in Punjab
   { id: 'd1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, name: 'Vehicle Registration Number', type: 'original', copies_needed: 1, note: 'Your vehicle number plate, for example LEA-1234 or GAA-123.', sort_order: 1 },
@@ -432,10 +435,10 @@ export const SEED_STEPS: ProcessStep[] = [
   { id: 'e1010000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.passportRenewal, step_number: 4, title: 'Collect Receipt with Tracking ID & Track on dgip.gov.pk', description: 'Collect your receipt with the tracking ID and track your application status on dgip.gov.pk. Delivery takes 21 working days (Normal), 5 working days (Urgent), or 2 working days (Executive at Executive Offices).', time_minutes: 10 },
 
   // 2. CNIC Renewal Rawalpindi (4 steps)
-  { id: 'e1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, step_number: 1, title: 'Take Token & Wait for Your Number', description: 'Visit NADRA Mega Center, Saddar, Rawalpindi (weekday 9:00 AM – 11:00 AM is best; or use the Pak-ID app online), take a renewal token, and wait for your number.', time_minutes: 35 },
-  { id: 'e1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, step_number: 2, title: 'Biometrics, Photo & Signature at Counter', description: 'Complete biometrics, live photograph, and signature at the counter. Double-check the spelling of your name and father’s name on screen before final submit, and provide a mobile SIM registered on your own CNIC.', time_minutes: 15 },
-  { id: 'e1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, step_number: 3, title: 'Pay Fee at Cash Counter', description: 'Pay the renewal fee at the cash counter — Smart CNIC: Rs. 750 Normal / Rs. 1,500 Urgent / Rs. 2,500 Executive; Ordinary CNIC: Rs. 400 Normal / Rs. 1,150 Urgent / Rs. 2,150 Executive.', time_minutes: 10 },
-  { id: 'e1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, step_number: 4, title: 'Get Tracking Slip & Collect or Choose Home Delivery', description: 'Take your tracking slip and snap a photo of it immediately so you do not lose it. Collect your renewed card from the center or opt for home delivery.', time_minutes: 5 },
+  { id: 'e1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, step_number: 1, title: 'Visit NADRA Center or Use Official PakID App', description: 'Under Rule 12 (NADRA NIC Rules, 2002), apply anytime up to 1 month after expiry with no attestation required. Visit NADRA Mega Center, Saddar, Rawalpindi (weekday 9:00 AM – 11:00 AM is best) and take a renewal token, or apply online via the official PakID app.', time_minutes: 35 },
+  { id: 'e1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, step_number: 2, title: 'Biometrics, Photo & Signature at Counter', description: 'NADRA updates your biometrics, live photograph, and signature at renewal (your previous card is surrendered/punched). Double-check the spelling of your name and father’s name on screen before final submit, and provide a mobile SIM registered on your own CNIC.', time_minutes: 15 },
+  { id: 'e1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, step_number: 3, title: 'Pay Official Renewal Fee at Cash Counter', description: 'Pay at the fee counter — Smart CNIC (SNIC): Rs. 750 Normal (31 days) / Rs. 1,500 Urgent (23 days) / Rs. 2,500 Executive (9 days); Ordinary CNIC: Rs. 400 Normal (15 days) / Rs. 1,150 Urgent (12 days) / Rs. 2,150 Executive (6 days).', time_minutes: 10 },
+  { id: 'e1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, step_number: 4, title: 'Get Tracking Slip & Track via PakID or Helpline 1777', description: 'Take your tracking slip and snap a photo of it immediately so you do not lose it. Track status via the PakID app or 24/7 NADRA Helpline 1777, then collect your renewed card or opt for home delivery.', time_minutes: 5 },
 
   // 3. Driving Licence Renewal Rawalpindi (4 steps)
   { id: 'e1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, step_number: 1, title: 'Open Dastak App or Go to Police Khidmat Markaz', description: 'Open the Dastak Punjab app / DLIMS online (takes ~10 mins) or visit Police Khidmat Markaz, Rawalpindi between 9:00 AM and 11:00 AM on a weekday (20–30 mins if documents are ready).', time_minutes: 5 },
@@ -444,11 +447,11 @@ export const SEED_STEPS: ProcessStep[] = [
   { id: 'e1030000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.drivingLicence, step_number: 4, title: 'Receive New Licence at Home by Courier', description: 'Your renewed driving licence is printed and delivered directly to your home address by courier within 7 to 10 days.', time_minutes: 5 },
 
   // 4. FBR NTN Registration for Freelancers (5 steps)
-  { id: 'e1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, step_number: 1, title: 'Open iris.fbr.gov.pk & Click e-Enrollment', description: 'Go to iris.fbr.gov.pk (weekday morning is best as the site is slower at night) and click "e-Enrollment" for a new taxpayer.', time_minutes: 3 },
-  { id: 'e1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, step_number: 2, title: 'Enter CNIC, Mobile & Email to Get OTP', description: 'Enter your 13-digit CNIC, a mobile SIM registered on your own CNIC, and your personal email address to receive and verify the OTP codes.', time_minutes: 5 },
-  { id: 'e1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, step_number: 3, title: 'Fill Form 181 (Freelancer / IT Export)', description: 'Complete Form 181 with your personal details, select Freelancer / IT Export as your income source, and add your bank details.', time_minutes: 10 },
-  { id: 'e1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, step_number: 4, title: 'Upload Documents & Submit', description: 'Upload your CNIC front & back scan (PDF/JPG under 2MB), bank account maintenance certificate PDF, and business address proof + paid utility bill (if running a business), then submit.', time_minutes: 5 },
-  { id: 'e1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, step_number: 5, title: 'Download NTN Confirmation from IRIS Dashboard', description: 'Save your IRIS password and PIN securely. Approval takes same day to 3 working days — your NTN is your CNIC number, and you can download the confirmation directly from the IRIS dashboard.', time_minutes: 2 },
+  { id: 'e1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, step_number: 1, title: 'Open iris.fbr.gov.pk & Click "Registration for Unregistered Person"', description: 'Go to iris.fbr.gov.pk (weekday mornings are fastest) and click "Registration for Unregistered Person" for a new individual registration. (Only use "E-Enrollment for Registered Person" if you already held an older NTN.)', time_minutes: 3 },
+  { id: 'e1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, step_number: 2, title: 'Verify Separate SMS & Email Codes to Get IRIS Password & PIN', description: 'Enter your 13-digit CNIC (without dashes), mobile SIM registered against your own CNIC, and active personal email. Enter the separate SMS and Email verification codes to receive your IRIS Password and PIN.', time_minutes: 5 },
+  { id: 'e1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, step_number: 3, title: 'Log In & Open Draft → Registration → Form 181', description: 'Log in to IRIS using your 13-digit CNIC and password, open Draft → Registration → "181 (Form of Registration filed voluntarily)" and click Edit. Fill your residential address, accounting period, principal activity (Freelancer / IT & IT-Enabled Services), and bank account details.', time_minutes: 10 },
+  { id: 'e1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, step_number: 4, title: 'Upload Official PDF Attachments & Submit Form 181', description: 'Under Attachments, upload your scanned bank account maintenance certificate PDF in your own name (plus business premises tenancy/ownership proof and a paid utility bill not older than 3 months if running a business) and click Submit.', time_minutes: 5 },
+  { id: 'e1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, step_number: 5, title: 'Download Form 181 Registration Order from Completed Tasks', description: 'Save your IRIS password and PIN securely. Within minutes to 3 working days, open Completed Tasks for "181 (Order to grant / refuse registration on application)" — your 13-digit CNIC is now your active NTN and you can file Income Tax Return (Form 114).', time_minutes: 2 },
 
   // 5. Domicile Certificate Rawalpindi (4 steps)
   { id: 'e1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, step_number: 1, title: 'Get Form P & AC Verification Form from Center', description: 'Visit e-Khidmat Markaz, District Complex, Rawalpindi (Tuesday to Thursday, 9:00 AM – 11:00 AM) and collect both Form P and the AC Verification Form.', time_minutes: 10 },
@@ -460,7 +463,7 @@ export const SEED_STEPS: ProcessStep[] = [
   { id: 'e1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, step_number: 1, title: 'Go to Union Council Secretary With Parents’ CNICs', description: 'Visit your local Union Council, Municipal Committee, or Cantonment Board Secretary between 9:00 AM and 12:00 PM with both parents’ original CNICs and copies (do NOT go to NADRA first).', time_minutes: 15 },
   { id: 'e1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, step_number: 2, title: 'Fill Birth Registration Form & Triple-Check Spelling', description: 'Fill out the birth registration form and verify the spelling of the child’s name, date of birth, and parents’ names 3 times — mistakes cause major problems for B-Form and passport later.', time_minutes: 15 },
   { id: 'e1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, step_number: 3, title: 'System Entry & Collect Computerized Birth Certificate', description: 'The Secretary enters the record into the system. Timely registration within 7 years is FREE, and you receive the computerized birth certificate the same day or in 2 to 3 days.', time_minutes: 15 },
-  { id: 'e1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, step_number: 4, title: 'Use Certificate to Apply for B-Form at NADRA', description: 'Take your computerized Union Council birth certificate to NADRA to apply for your child’s B-Form (CRC). NADRA B-Form fee is Rs. 50 normal or Rs. 500 executive.', time_minutes: 15 },
+  { id: 'e1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, step_number: 4, title: 'Use Certificate to Apply for B-Form (CRC) at NADRA', description: 'Take your computerized Union Council birth certificate to NADRA to apply for your child’s CRC / B-Form. Official NADRA CRC fees: Normal Rs. 50 (7 days) or Executive Rs. 500 (1 day). Remember CRC expires at ages 3, 10, and 18.', time_minutes: 15 },
 
   // 7. Police Character Certificate Rawalpindi (4 steps)
   { id: 'e1070000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.policeCharacter, step_number: 1, title: 'Go to Any Khidmat Markaz & Take Character Certificate Token', description: 'Visit Rescue 15 Office (Liaqat Bagh Metro Station, Murree Road) or any Punjab Police Khidmat Markaz (Taxila, Murree, Gujar Khan, Kahuta) between 9:00 AM and 11:00 AM and take a token specifically for "Character Certificate".', time_minutes: 10 },
@@ -476,11 +479,11 @@ export const SEED_STEPS: ProcessStep[] = [
   { id: 'e1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, step_number: 5, title: 'Passport Delivered by Courier', description: 'Your child’s e-passport is delivered by courier — Normal takes 21 working days and Urgent takes 5 working days.', time_minutes: 5 },
 
   // 9. Name Change on CNIC After Marriage (5 steps)
-  { id: 'e1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 1, title: 'Get Computerized Marriage Certificate (MRC) from Union Council', description: 'First obtain your computerized Marriage Registration Certificate (MRC) from your local Union Council. This is strictly mandatory before visiting NADRA — a manual Nikahnama alone is not accepted.', time_minutes: 30 },
-  { id: 'e1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 2, title: 'Go to NADRA & Take Token for Modification', description: 'Visit NADRA Mega Center, Saddar, Rawalpindi on a weekday morning (or apply via Pak-ID app) and take a token for CNIC modification.', time_minutes: 15 },
-  { id: 'e1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 3, title: 'Show MRC & Instruct Operator Clearly', description: 'Present your computerized MRC and tell the operator clearly: update marital status to Married, add spouse name, and update surname if needed. Update both husband and wife records so FRC matches later.', time_minutes: 10 },
-  { id: 'e1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 4, title: 'Biometrics, Photo & Signature', description: 'Complete biometrics, live photo, and signature at the counter and check all spellings carefully on screen.', time_minutes: 10 },
-  { id: 'e1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 5, title: 'Pay Modification Fee & Get Tracking Slip', description: 'Pay the fee (Ordinary CNIC: Rs. 400 Normal / Rs. 1,150 Urgent / Rs. 2,150 Executive; Smart CNIC: Rs. 750 / Rs. 1,500 / Rs. 2,500; or Rs. 100 database-only update) and collect your tracking slip.', time_minutes: 10 },
+  { id: 'e1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 1, title: 'Get Computerized Marriage Certificate (MRC) from Union Council', description: 'First obtain your computerized Marriage Registration Certificate (MRC) from your local Union Council. Under NADRA Regulation 41, this plus your spouse’s CNIC/POC/Passport is strictly mandatory — a manual Nikahnama alone is not accepted.', time_minutes: 30 },
+  { id: 'e1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 2, title: 'Visit NADRA Center or Use Official PakID App', description: 'Visit NADRA Mega Center, Saddar, Rawalpindi on a weekday morning (or apply via the official PakID app) and take a token for CNIC Modification (or Non-Printable Field Update if only updating marital status in the database).', time_minutes: 15 },
+  { id: 'e1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 3, title: 'Present MRC & Confirm Name Preference Clearly', description: 'Present your computerized MRC and spouse CNIC copy. Tell the operator clearly whether you want to keep your father’s name (your legal right) or add your husband’s name/surname, and update marital status to Married for both spouses so FRC matches later.', time_minutes: 10 },
+  { id: 'e1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 4, title: 'Biometrics, Live Photo & On-Screen Verification', description: 'Complete biometrics, live photo, and signature at the counter, surrender/punch your previous card if getting a new printed CNIC, and verify all English & Urdu spellings carefully on screen.', time_minutes: 10 },
+  { id: 'e1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, step_number: 5, title: 'Pay Official NADRA Fee & Save Tracking Slip', description: 'Pay at the counter — Ordinary CNIC: Rs. 400 Normal (15 days) / Rs. 1,150 Urgent (12 days) / Rs. 2,150 Executive (6 days); Smart CNIC: Rs. 750 (31 days) / Rs. 1,500 (23 days) / Rs. 2,500 (9 days); or DB-only marital status update: Rs. 100 at NRC (2 days) / USD 5 on PakID (2 days).', time_minutes: 10 },
 
   // 10. E-Challan Check and Payment in Punjab (5 steps)
   { id: 'e1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, step_number: 1, title: 'Open Official Portal: echallan.psca.gop.pk', description: 'Type echallan.psca.gop.pk directly into your browser yourself — NEVER click links sent via SMS, as many are scams.', time_minutes: 1 },
@@ -507,9 +510,9 @@ export const SEED_MISTAKES: ProcessMistake[] = [
   { id: '11030000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.drivingLicence, title: 'Not Paying PSID Within 24 Hours', description: 'Your generated PSID challan expires after 24 hours, forcing you to generate a new PSID and start payment again.', sort_order: 3 },
 
   // 4. FBR NTN for Freelancers
-  { id: '11040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, title: 'Using a SIM Not on Your Own CNIC', description: 'FBR verifies SIM ownership against NADRA records — OTP verification will fail if the SIM is not registered on your own CNIC.', sort_order: 1 },
-  { id: '11040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, title: 'Using a Fake Business Address', description: 'Never submit a fake business address — FBR can verify premises details and reject your registration later.', sort_order: 2 },
-  { id: '11040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, title: 'Not Saving Your IRIS Password and PIN', description: 'Save both your IRIS login password and PIN safely — you will need them every single year to file your tax return.', sort_order: 3 },
+  { id: '11040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, title: 'Using a SIM Not Registered on Your Own CNIC', description: 'FBR verifies SIM ownership against NADRA records — IRIS SMS code verification will fail if the SIM is not registered against your own CNIC.', sort_order: 1 },
+  { id: '11040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, title: 'Stopping After Account Creation Without Submitting Form 181', description: 'Getting your IRIS password is only Step 1 — you MUST log in, open Draft → Registration → Form 181, upload attachments, and Submit to receive your 181 Registration Order in Completed Tasks (otherwise you cannot file Form 114 returns).', sort_order: 2 },
+  { id: '11040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, title: 'Using a Fake Address or Losing Your IRIS Password & PIN', description: 'Never enter a fake business address (FBR can verify premises), and save both your IRIS password and PIN securely — you need them every year to file tax returns.', sort_order: 3 },
 
   // 5. Domicile Certificate Rawalpindi
   { id: '11050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, title: 'Bringing Only Your Own CNIC', description: 'You also need a copy of your father’s, mother’s, or spouse’s CNIC — bringing only your own CNIC is not sufficient.', sort_order: 1 },
@@ -528,7 +531,7 @@ export const SEED_MISTAKES: ProcessMistake[] = [
 
   // 8. Child Passport Under 18 Rawalpindi
   { id: '11080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, title: 'Coming With Only One Parent and No Affidavit', description: 'Both parents must be present — if one parent is absent, you must bring an attested consent affidavit from the absent parent or the file will be rejected.', sort_order: 1 },
-  { id: '11080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, title: 'B-Form Without Photo for Child Over 10', description: 'Children aged 10 to 17 must have a B-Form with photo and fingerprints — otherwise you will be sent back to NADRA to update the B-Form first.', sort_order: 2 },
+  { id: '11080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, title: 'Outdated B-Form / CRC Missing Photo, IRIS, or Fingerprints', description: 'Under official NADRA CRC rules, children aged 3–10 need Photo + IRIS on their CRC, and children aged 10–17 MUST have Photo + Fingerprints + IRIS (under 3 needs Photo for passport) — otherwise you will be sent back to NADRA first.', sort_order: 2 },
   { id: '11080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, title: 'Expired Parent CNIC', description: 'Both father’s and mother’s CNICs must be valid — an expired parent CNIC blocks the child’s passport application.', sort_order: 3 },
 
   // 9. Name Change on CNIC After Marriage
@@ -551,11 +554,11 @@ export const SEED_FAQS: ProcessFaq[] = [
   { id: 'f1010000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.passportRenewal, question: 'How long does delivery take and how do I track my passport?', answer: 'Normal takes 21 working days, Urgent takes 5 working days, and Executive takes 2 working days at Executive Offices. Keep your receipt with tracking ID and check status on dgip.gov.pk.', sort_order: 5 },
 
   // 2. CNIC Renewal Rawalpindi
-  { id: 'f1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, question: 'What is the fee difference between Smart CNIC and Ordinary CNIC renewal?', answer: 'Smart CNIC renewal costs Rs. 750 Normal (~31 days), Rs. 1,500 Urgent (~23 days), and Rs. 2,500 Executive (~9 days). Ordinary non-smart CNIC renewal costs Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days).', sort_order: 1 },
-  { id: 'f1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, question: 'Can I renew my CNIC online without visiting Saddar Mega Center?', answer: 'Yes! You can apply online through NADRA’s official Pak-ID mobile app with biometric capture and get home delivery, or visit NADRA Mega Center, Saddar, Rawalpindi in person.', sort_order: 2 },
-  { id: 'f1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, question: 'How long is the wait at NADRA Mega Center Saddar Rawalpindi?', answer: 'Expect 45 minutes to 1.5 hours on a normal weekday (best window: 9:00 AM to 11:00 AM), and 2 hours or more on Saturday.', sort_order: 3 },
-  { id: 'f1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, question: 'What extra documents are needed if my address or marital status changed?', answer: 'If your address changed, bring a utility bill or rent agreement. If your marital status changed, bring your computerized marriage certificate (MRC).', sort_order: 4 },
-  { id: 'f1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, question: 'Why should I give a SIM registered on my own CNIC?', answer: 'Using someone else’s mobile number causes verification and tracking delays. Always provide a SIM registered on your own CNIC and take a photo of your tracking slip immediately.', sort_order: 5 },
+  { id: 'f1020000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.cnicRenewal, question: 'What is the official fee & delivery difference between Smart CNIC and Ordinary CNIC renewal?', answer: 'Per nadra.gov.pk/feeStructure: Smart CNIC (SNIC) renewal is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), and Rs. 2,500 Executive (9 days). Ordinary CNIC (Teslin) renewal is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days).', sort_order: 1 },
+  { id: 'f1020000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.cnicRenewal, question: 'Can I renew my CNIC online without visiting Saddar Mega Center?', answer: 'Yes! You can apply online through NADRA’s official PakID mobile app (Google Play & App Store) and track status in-app, though NADRA notes that biometric verification or live photograph capture may require visiting a NADRA Registration Centre (NRC) if needed.', sort_order: 2 },
+  { id: 'f1020000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.cnicRenewal, question: 'Do I need gazetted officer attestation or when must I renew my CNIC?', answer: 'No attestation is required for CNIC renewal. Under Rule 12 of NADRA (NIC) Rules, 2002, citizens can apply for renewal anytime up to 1 month after expiry. Expect 45 mins–1.5 hrs wait at Saddar Mega Center on weekdays (9–11 AM), or 2+ hrs on Saturday.', sort_order: 3 },
+  { id: 'f1020000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.cnicRenewal, question: 'What extra documents are needed if my address or marital status changed?', answer: 'If your address changed, bring a utility bill or rent agreement. If your marital status changed, under NADRA Regulation 41 bring your Union Council computerized Marriage Certificate (MRC) and spouse’s CNIC copy.', sort_order: 4 },
+  { id: 'f1020000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.cnicRenewal, question: 'How do I contact NADRA or track my renewal application?', answer: 'Use a mobile SIM registered on your own CNIC, snap a photo of your tracking slip at the counter, and track via the PakID app or NADRA’s 24/7 Helpline: 1777 (mobile) / +92 51 111 786 100 (landline) / csd@nadra.gov.pk.', sort_order: 5 },
 
   // 3. Driving Licence Renewal Rawalpindi
   { id: 'f1030000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.drivingLicence, question: 'What is the total driving licence renewal fee in Punjab including courier?', answer: 'With the Rs. 480 courier fee included, 1-year renewal costs Rs. 930 for Motorcycle (Rs. 450 fee), Rs. 1,830 for Car / Jeep (Rs. 1,350 fee), and Rs. 2,330 for LTV / HTV (Rs. 1,850 fee).', sort_order: 1 },
@@ -565,11 +568,11 @@ export const SEED_FAQS: ProcessFaq[] = [
   { id: 'f1030000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.drivingLicence, question: 'What happens if I do not pay the PSID within 24 hours?', answer: 'A Punjab PSID challan expires after 24 hours, so you will have to generate a fresh PSID and pay again. Also double-check your delivery address so courier delivery does not fail.', sort_order: 5 },
 
   // 4. FBR NTN Registration for Freelancers
-  { id: 'f1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, question: 'Does FBR NTN registration cost anything for freelancers?', answer: 'No! FBR NTN registration on iris.fbr.gov.pk is completely free (Rs. 0). You do not need to pay any agent or visit an FBR office for basic registration.', sort_order: 1 },
-  { id: 'f1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, question: 'What will my NTN number be after registration?', answer: 'Your National Tax Number (NTN) is linked directly to your 13-digit CNIC number. Once approved (same day to 3 working days), download your confirmation directly from the IRIS dashboard.', sort_order: 2 },
-  { id: 'f1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, question: 'What documents do individual freelancers need to upload on IRIS?', answer: 'Prepare your CNIC front and back scan (PDF or JPG under 2MB), a SIM registered on your own CNIC, personal email, bank account maintenance certificate (PDF), and proof of premises + paid utility bill (not older than 3 months) if you run a business.', sort_order: 3 },
-  { id: 'f1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, question: 'What should freelancers select as income source in Form 181?', answer: 'Select "Freelancer / IT Export" as your income source in Form 181, along with accurate personal and bank account details.', sort_order: 4 },
-  { id: 'f1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, question: 'When is the best time to register on iris.fbr.gov.pk?', answer: 'Weekday mornings are best because the FBR IRIS portal is faster and SMS/Email OTPs arrive reliably — the site is slower at night.', sort_order: 5 },
+  { id: 'f1040000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.fbrNtn, question: 'Does FBR NTN registration cost anything, and who can register online?', answer: 'No! FBR individual registration on iris.fbr.gov.pk (and in person at any Tax House / RTO Facilitation Counter) is 100% free (Rs. 0). Online IRIS registration is available for Individuals only — AOPs and Companies must visit a Tax House / RTO Facilitation Counter.', sort_order: 1 },
+  { id: 'f1040000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.fbrNtn, question: 'What will my NTN number be after submitting Form 181?', answer: 'For Pakistani individuals, your 13-digit CNIC (without dashes) IS your NTN / IRIS Registration Number (7-digit NTNs are only for AOPs, Companies, and non-Pakistanis). After submitting Form 181, check Completed Tasks for "181 (Order to grant / refuse registration on application)".', sort_order: 2 },
+  { id: 'f1040000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.fbrNtn, question: 'What official documents does FBR require for individual registration?', answer: 'Per fbr.gov.pk: valid original CNIC, a mobile SIM registered against your own CNIC, personal email address, scanned PDF of personal bank account maintenance certificate in your own name, and (if running a business) tenancy/ownership proof + paid business utility bill not older than 3 months.', sort_order: 3 },
+  { id: 'f1040000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.fbrNtn, question: 'What tax rate applies to Pakistani freelancers / IT exporters under FBR Section 154A?', answer: 'Under Section 154A of the Income Tax Ordinance, IT and IT-enabled services export proceeds brought through banking channels are subject to 1% final tax, reduced to 0.25% final tax if registered with PSEB (Pakistan Software Export Board) and meeting filing conditions. Always confirm current Finance Act rates on fbr.gov.pk.', sort_order: 4 },
+  { id: 'f1040000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.fbrNtn, question: 'What if I face an error on IRIS or need official FBR help?', answer: 'Try weekday mornings when IRIS is faster and OTPs arrive reliably. For official support, call the FBR National Helpline at 051-111-772-772 (Exclusive Line for Females: 051-9107025, Mon–Fri) or email helpline@fbr.gov.pk.', sort_order: 5 },
 
   // 5. Domicile Certificate Rawalpindi
   { id: 'f1050000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.domicile, question: 'What is the exact 2026 Domicile Certificate fee in Punjab?', answer: 'The total official 2026 fee in Punjab is Rs. 550: Rs. 200 government fee + Rs. 300 e-affidavit + Rs. 50 PITB charge, paid via e-Pay or challan.', sort_order: 1 },
@@ -582,7 +585,7 @@ export const SEED_FAQS: ProcessFaq[] = [
   { id: 'f1060000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.birthCertificate, question: 'Does NADRA issue birth certificates in Rawalpindi?', answer: 'No! Do not go to NADRA first. Birth certificates are issued by your local Union Council, Municipal Committee, or Cantonment Board. Afterward, use that certificate to apply for a B-Form at NADRA.', sort_order: 1 },
   { id: 'f1060000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.birthCertificate, question: 'Is birth registration really free within 7 years?', answer: 'Yes! Timely birth registration within 7 years is completely free (Rs. 0). Late registration after 7 years costs Rs. 200 to Rs. 1,000 for Pakistani citizens, foreign national child registration is Rs. 2,000, and a correction costs Rs. 500.', sort_order: 2 },
   { id: 'f1060000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.birthCertificate, question: 'How long does it take to get the computerized birth certificate?', answer: 'If your documents are complete, the Union Council Secretary enters the record in the system and issues the computerized birth certificate the same day or in 2 to 3 days.', sort_order: 3 },
-  { id: 'f1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, question: 'What is the fee for applying for a B-Form at NADRA afterward?', answer: 'Once you receive your Union Council computerized birth certificate, take it to NADRA to apply for your child’s B-Form — the fee is Rs. 50 normal or Rs. 500 executive.', sort_order: 4 },
+  { id: 'f1060000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.birthCertificate, question: 'What is the official NADRA fee & validity for a Child Registration Certificate (B-Form / CRC) afterward?', answer: 'Per nadra.gov.pk/feeStructure, a NADRA CRC / B-Form costs Rs. 50 Normal (7 days) or Rs. 500 Executive (1 day) — Urgent is not offered. CRCs expire at ages 3, 10, and 18 (under 3: no biometrics, photo if applying for passport; 3–10: Photo + IRIS; 10–18: Photo + Fingerprints + IRIS).', sort_order: 4 },
   { id: 'f1060000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.birthCertificate, question: 'What time should I visit the Union Council office?', answer: 'Visit between 9:00 AM and 12:00 PM on weekdays, as the Union Council Secretary is usually available in the morning.', sort_order: 5 },
 
   // 7. Police Character Certificate Rawalpindi
@@ -596,15 +599,15 @@ export const SEED_FAQS: ProcessFaq[] = [
   { id: 'f1080000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.childPassport, question: 'What is the fee for a child e-Passport under 18?', answer: 'A child’s e-passport uses the same fee table as adults: Rs. 9,000 Normal (21 working days) and Rs. 15,000 Urgent (5 working days) for 36 pages and 5-year validity.', sort_order: 1 },
   { id: 'f1080000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.childPassport, question: 'Can a child under 15 get a 10-year passport?', answer: 'No. Children under 15 years of age are issued 5-year validity passports only.', sort_order: 2 },
   { id: 'f1080000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.childPassport, question: 'Do both parents have to visit Regional Passport Office Rawalpindi?', answer: 'Yes, both parents must be present with valid unexpired CNICs. If one parent cannot attend, you must bring an attested consent affidavit from the absent parent or the file will be rejected.', sort_order: 3 },
-  { id: 'f1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, question: 'What B-Form requirement applies to children aged 10 to 17?', answer: 'For children aged 10 to 17, the child’s B-Form / CRC MUST include the child’s photograph and fingerprints — otherwise you will be sent back to NADRA to update the B-Form first.', sort_order: 4 },
+  { id: 'f1080000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.childPassport, question: 'What official NADRA B-Form / CRC biometric requirements apply by child age?', answer: 'Under NADRA’s official CRC policy (nadra.gov.pk): under age 3 requires a photograph on the CRC if processing a passport; ages 3 to 10 require Photograph + IRIS (child present at NADRA); ages 10 to 17 MUST include Photograph, Fingerprints & IRIS. CRC fees at NADRA are Rs. 50 Normal (7 days) or Rs. 500 Executive (1 day).', sort_order: 4 },
   { id: 'f1080000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.childPassport, question: 'How is the child’s passport delivered?', answer: 'After biometrics, live photo capture at the office, and fee payment, the passport is delivered by courier (21 working days Normal, 5 working days Urgent).', sort_order: 5 },
 
   // 9. Name Change on CNIC After Marriage
-  { id: 'f1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I go straight to NADRA with my manual handwritten Nikahnama?', answer: 'No! A manual Nikahnama is not enough. You must first get a Computerized Marriage Registration Certificate (MRC) from your local Union Council before visiting NADRA.', sort_order: 1 },
-  { id: 'f1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, question: 'How much does CNIC modification after marriage cost?', answer: 'Ordinary CNIC modification is Rs. 400 Normal (15 days), Rs. 1,150 Urgent, or Rs. 2,150 Executive (6 days). Smart CNIC modification is Rs. 750 Normal, Rs. 1,500 Urgent, or Rs. 2,500 Executive. Updating marital status in the NADRA database only (without printing a new card) costs Rs. 100.', sort_order: 2 },
-  { id: 'f1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Why should both husband and wife update their NADRA records?', answer: 'If only one spouse updates their marital status, your Family Registration Certificate (FRC) will not match later for visa or immigration applications.', sort_order: 3 },
-  { id: 'f1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I change my surname back later if I change my mind?', answer: 'Be very careful before changing your surname — NADRA allows a name change only once in a lifetime (except after marriage).', sort_order: 4 },
-  { id: 'f1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I do this online via Pak-ID app instead of visiting Saddar Mega Center?', answer: 'Yes! Once you have your Union Council Computerized MRC, you can apply either at NADRA Mega Center, Saddar, Rawalpindi (about 45 minutes wait on a weekday morning) or online via the Pak-ID app.', sort_order: 5 },
+  { id: 'f1090000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I go straight to NADRA with my manual handwritten Nikahnama?', answer: 'No! Under NADRA Regulation 41, you must bring a Computerized Marriage Registration Certificate (MRC) from your Union Council (or foreign authority) along with your spouse’s CNIC, POC, or Passport copy.', sort_order: 1 },
+  { id: 'f1090000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.nameChangeMarriage, question: 'What are the exact official NADRA fees & delivery days for post-marriage CNIC modification?', answer: 'Per nadra.gov.pk/feeStructure: Ordinary CNIC modification is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), or Rs. 2,150 Executive (6 days). Smart CNIC modification is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), or Rs. 2,500 Executive (9 days). Database-only marital status update (no new printed card) is Rs. 100 at NRC (2 days) or USD 5 via PakID app (2 days).', sort_order: 2 },
+  { id: 'f1090000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can a woman retain her father’s name on her CNIC after marriage instead of adopting her husband’s name?', answer: 'Yes! Under official NADRA rules, a married woman has the legal choice to keep her father’s name on her CNIC while only updating her marital status to Married — or she can switch to her husband’s name/surname using her computerized MRC.', sort_order: 3 },
+  { id: 'f1090000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Why should both husband and wife update their NADRA records (and how much is an FRC)?', answer: 'Update marital status for both husband and wife so your Family Registration Certificate (FRC — Rs. 1,000 Executive, 1 day) matches accurately for visas and banking. Also think carefully before changing your given/surname, as NADRA restricts subsequent name changes.', sort_order: 4 },
+  { id: 'f1090000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.nameChangeMarriage, question: 'Can I apply online via PakID app instead of visiting Saddar Mega Center?', answer: 'Yes! Once you have your Union Council Computerized MRC, you can apply via NADRA’s official PakID app (Google Play / App Store) or visit NADRA Mega Center, Saddar, Rawalpindi on a weekday morning. For questions, call NADRA’s 24/7 Helpline: 1777 or +92 51 111 786 100.', sort_order: 5 },
 
   // 10. E-Challan Check and Payment in Punjab
   { id: 'f1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, question: 'How do I safely check my Punjab E-Challan without falling for scams?', answer: 'Never click links sent in SMS messages — many are scams. Always open your browser and type echallan.psca.gop.pk yourself, then search with your vehicle registration number and owner 13-digit CNIC (without dashes) or chassis number.', sort_order: 1 },

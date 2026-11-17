@@ -49,7 +49,8 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
 
   'cnic-renewal-rawalpindi': {
     expectedSeedNormalFee: 750,
-    subtitle: 'Official NADRA renewal schedule for Smart CNIC and Ordinary (non-smart) CNIC.',
+    subtitle:
+      'Official NADRA renewal fee & delivery schedule (nadra.gov.pk/feeStructure) for Smart CNIC (SNIC) and Ordinary CNIC.',
     columns: [
       { label: 'Card Type', align: 'left' },
       { label: 'Normal', align: 'right' },
@@ -57,13 +58,13 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
       { label: 'Executive', align: 'right' },
     ],
     rows: [
-      ['Smart CNIC', 'Rs. 750 (~31 days)', 'Rs. 1,500 (~23 days)', 'Rs. 2,500 (~9 days)'],
-      ['Ordinary CNIC', 'Rs. 400 (15 days)', 'Rs. 1,150 (12 days)', 'Rs. 2,150 (6 days)'],
+      ['Smart CNIC (SNIC)', 'Rs. 750 (31 days)', 'Rs. 1,500 (23 days)', 'Rs. 2,500 (9 days)'],
+      ['Ordinary CNIC (Teslin)', 'Rs. 400 (15 days)', 'Rs. 1,150 (12 days)', 'Rs. 2,150 (6 days)'],
     ],
     calculatorOptions: [
-      { id: 'smart-normal', label: 'Smart CNIC (Normal, ~31 days) — Rs. 750', amount: 750 },
-      { id: 'smart-urgent', label: 'Smart CNIC (Urgent, ~23 days) — Rs. 1,500', amount: 1500 },
-      { id: 'smart-exec', label: 'Smart CNIC (Executive, ~9 days) — Rs. 2,500', amount: 2500 },
+      { id: 'smart-normal', label: 'Smart CNIC (Normal, 31 days) — Rs. 750', amount: 750 },
+      { id: 'smart-urgent', label: 'Smart CNIC (Urgent, 23 days) — Rs. 1,500', amount: 1500 },
+      { id: 'smart-exec', label: 'Smart CNIC (Executive, 9 days) — Rs. 2,500', amount: 2500 },
       { id: 'ord-normal', label: 'Ordinary CNIC (Normal, 15 days) — Rs. 400', amount: 400 },
       { id: 'ord-urgent', label: 'Ordinary CNIC (Urgent, 12 days) — Rs. 1,150', amount: 1150 },
       { id: 'ord-exec', label: 'Ordinary CNIC (Executive, 6 days) — Rs. 2,150', amount: 2150 },
@@ -96,17 +97,21 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
 
   'fbr-ntn-for-freelancers': {
     expectedSeedNormalFee: 0,
-    subtitle: 'FBR IRIS online e-Enrollment for freelancers and individuals is completely free.',
+    subtitle:
+      'Official FBR individual registration via IRIS (iris.fbr.gov.pk) or Tax House / RTO Facilitation Counters is 100% free.',
     columns: [
-      { label: 'Service', align: 'left' },
-      { label: 'Official Fee (PKR)', align: 'right' },
+      { label: 'FBR Service / Detail', align: 'left' },
+      { label: 'Official Schedule', align: 'right' },
     ],
     rows: [
-      ['FBR NTN Registration (Online via iris.fbr.gov.pk)', 'Rs. 0 (Free)'],
-      ['Approval Time', 'Same day to 3 working days'],
+      ['Online Registration on FBR IRIS (Individuals — Form 181)', 'Rs. 0 (Free)'],
+      ['In-Person at Tax House / RTO Facilitation Counter', 'Rs. 0 (Free)'],
+      ['NTN Format (Pakistani Individuals)', '13-Digit CNIC (no dashes)'],
+      ['Registration Order (Completed Tasks -> Form 181)', 'Minutes to 3 working days'],
+      ['IT / Freelancer Export Final Tax (Sec. 154A)', '1% (0.25% if PSEB-registered)'],
     ],
     calculatorOptions: [
-      { id: 'free-ntn', label: 'Online NTN Registration on FBR IRIS — Rs. 0 (Free)', amount: 0 },
+      { id: 'free-ntn', label: 'Online NTN Registration on FBR IRIS (Form 181) — Rs. 0 (Free)', amount: 0 },
     ],
   },
 
@@ -143,7 +148,7 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
       ['After 7 years (Late Registration)', 'Rs. 200 to Rs. 1,000'],
       ['Foreign National Child', 'Rs. 2,000'],
       ['Correction / Change in Details', 'Rs. 500'],
-      ['Next Step — NADRA B-Form (Normal / Executive)', 'Rs. 50 / Rs. 500'],
+      ['Next Step — NADRA B-Form / CRC (Normal 7 days / Executive 1 day)', 'Rs. 50 / Rs. 500'],
     ],
     calculatorOptions: [
       { id: 'timely', label: 'Within 7 Years (Timely Registration) — Rs. 0 (Free)', amount: 0 },
@@ -190,7 +195,8 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
 
   'name-change-cnic-after-marriage': {
     expectedSeedNormalFee: 400,
-    subtitle: 'NADRA CNIC modification fees for Ordinary CNIC, Smart CNIC, or database-only marital status update.',
+    subtitle:
+      'Official NADRA modification fees & delivery timelines (nadra.gov.pk/feeStructure) for Ordinary CNIC, Smart CNIC, and database-only marital status updates.',
     columns: [
       { label: 'Card / Update Option', align: 'left' },
       { label: 'Normal', align: 'right' },
@@ -198,18 +204,19 @@ export const RICH_FEE_SCHEDULES: Record<string, RichFeeSchedule> = {
       { label: 'Executive', align: 'right' },
     ],
     rows: [
-      ['Ordinary CNIC Modification', 'Rs. 400 (15 days)', 'Rs. 1,150', 'Rs. 2,150 (6 days)'],
-      ['Smart CNIC Modification', 'Rs. 750', 'Rs. 1,500', 'Rs. 2,500'],
-      ['Marital Status Update Only (No New Card)', 'Rs. 100', '—', '—'],
+      ['Ordinary CNIC Modification', 'Rs. 400 (15 days)', 'Rs. 1,150 (12 days)', 'Rs. 2,150 (6 days)'],
+      ['Smart CNIC (SNIC) Modification', 'Rs. 750 (31 days)', 'Rs. 1,500 (23 days)', 'Rs. 2,500 (9 days)'],
+      ['Non-Printable Field Update Only (No New Card)', 'Rs. 100 at NRC (2 days)', 'USD 5 via PakID (2 days)', '—'],
+      ['Optional Next Step — Family Registration Certificate (FRC)', '—', '—', 'Rs. 1,000 (1 day)'],
     ],
     calculatorOptions: [
       { id: 'ord-norm', label: 'Ordinary CNIC Modification (Normal, 15 days) — Rs. 400', amount: 400 },
-      { id: 'ord-urg', label: 'Ordinary CNIC Modification (Urgent) — Rs. 1,150', amount: 1150 },
+      { id: 'ord-urg', label: 'Ordinary CNIC Modification (Urgent, 12 days) — Rs. 1,150', amount: 1150 },
       { id: 'ord-exec', label: 'Ordinary CNIC Modification (Executive, 6 days) — Rs. 2,150', amount: 2150 },
-      { id: 'smart-norm', label: 'Smart CNIC Modification (Normal) — Rs. 750', amount: 750 },
-      { id: 'smart-urg', label: 'Smart CNIC Modification (Urgent) — Rs. 1,500', amount: 1500 },
-      { id: 'smart-exec', label: 'Smart CNIC Modification (Executive) — Rs. 2,500', amount: 2500 },
-      { id: 'db-only', label: 'Marital Status Database Update Only (No Card) — Rs. 100', amount: 100 },
+      { id: 'smart-norm', label: 'Smart CNIC Modification (Normal, 31 days) — Rs. 750', amount: 750 },
+      { id: 'smart-urg', label: 'Smart CNIC Modification (Urgent, 23 days) — Rs. 1,500', amount: 1500 },
+      { id: 'smart-exec', label: 'Smart CNIC Modification (Executive, 9 days) — Rs. 2,500', amount: 2500 },
+      { id: 'db-only', label: 'Marital Status Update Only at NRC (No Card, 2 days) — Rs. 100', amount: 100 },
     ],
   },
 

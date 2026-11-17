@@ -14,7 +14,7 @@ import {
   MapPin,
   Wallet,
 } from 'lucide-react';
-import { AdSenseSlot } from '@/components/AdSenseSlot';
+import { AdSenseSlot, isAdSenseEnabled } from '@/components/AdSenseSlot';
 import { DisclaimerBox } from '@/components/DisclaimerBox';
 import { ProcessCard } from '@/components/ProcessCard';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
@@ -429,8 +429,8 @@ export function ProcessDetailView({
                     </div>
                   </li>
 
-                  {/* Mobile AdSense Slot placed right after Step 3 */}
-                  {index === 2 && (
+                  {/* Mobile AdSense Slot placed right after Step 3 (only rendered when AdSense is active) */}
+                  {index === 2 && isAdSenseEnabled() && (
                     <li className="list-none lg:hidden">
                       <AdSenseSlot placement="mobile-after-step-3" />
                     </li>

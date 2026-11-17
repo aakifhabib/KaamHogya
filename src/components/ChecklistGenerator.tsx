@@ -16,6 +16,7 @@ import {
   WifiOff,
 } from 'lucide-react';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
+import { SITE_URL } from '@/lib/constants';
 import type { ChecklistProcessBundle } from '@/lib/data';
 import { formatDate, formatPKR, sanitizeText } from '@/lib/format';
 import { downloadChecklistPdf } from '@/lib/pdf-checklist';
@@ -290,7 +291,11 @@ export function ChecklistGenerator({
           ]
         : []),
       '',
-      `Full step-by-step guide: https://kaamhogaya.pk/process/${currentProcess.slug}`,
+      `Full step-by-step guide: ${
+        typeof window !== 'undefined' && window.location.origin
+          ? window.location.origin
+          : SITE_URL
+      }/process/${currentProcess.slug}`,
     ];
     const url = `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener,noreferrer');
