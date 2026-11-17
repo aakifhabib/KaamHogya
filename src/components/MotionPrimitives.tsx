@@ -154,31 +154,43 @@ export function AnimatedCounter({
       return;
     }
 
+    // Above-the-fold counters stay immediately accurate without flashing back to 0
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.94) {
+      hasAnimatedRef.current = true;
+      setDisplay(value);
+      return;
+    }
+
     const runAnimation = () => {
       if (hasAnimatedRef.current) return;
       hasAnimatedRef.current = true;
-      const start = performance.now();
+      let start: number | null = null;
+      let rafId = 0;
 
       const step = (now: number) => {
-        const elapsed = now - start;
+        if (start === null) start = now;
+        const elapsed = Math.max(0, now - start);
         const t = Math.min(1, elapsed / duration);
-        // Ease-out cubic
+        // Ease-out cubic clamped strictly to [0, 1]
         const eased = 1 - Math.pow(1 - t, 3);
-        setDisplay(Math.round(eased * value));
+        setDisplay(Math.min(value, Math.max(0, Math.round(eased * value))));
         if (t < 1) {
-          requestAnimationFrame(step);
+          rafId = requestAnimationFrame(step);
         } else {
           setDisplay(value);
         }
       };
 
-      requestAnimationFrame(step);
+      rafId = requestAnimationFrame(step);
+      return () => cancelAnimationFrame(rafId);
     };
 
+    let cleanupAnim: (() => void) | undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          runAnimation();
+          cleanupAnim = runAnimation();
           observer.disconnect();
         }
       },
@@ -186,7 +198,10 @@ export function AnimatedCounter({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cleanupAnim?.();
+    };
   }, [value, duration]);
 
   return (
