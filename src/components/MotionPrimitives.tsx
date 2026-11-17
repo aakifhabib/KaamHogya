@@ -130,12 +130,14 @@ interface AnimatedCounterProps {
 }
 
 /**
- * Smooth ease-out cubic animated numeric counter triggered when visible.
+ * Smooth ease-out cubic animated numeric counter.
+ * Renders the exact true value in SSR, above-the-fold, crawlers, and reduced-motion,
+ * and smoothly rolls up 0 -> value when a user scrolls a below-the-fold counter into view.
  */
 export function AnimatedCounter({
   value,
   suffix = '',
-  duration = 750,
+  duration = 650,
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(value);
@@ -154,27 +156,28 @@ export function AnimatedCounter({
       return;
     }
 
-    // Above-the-fold counters stay immediately accurate without flashing back to 0
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.94) {
-      hasAnimatedRef.current = true;
-      setDisplay(value);
-      return;
-    }
+    let userScrolled = false;
+    let rafId = 0;
+
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        userScrolled = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     const runAnimation = () => {
       if (hasAnimatedRef.current) return;
       hasAnimatedRef.current = true;
       let start: number | null = null;
-      let rafId = 0;
 
       const step = (now: number) => {
         if (start === null) start = now;
         const elapsed = Math.max(0, now - start);
         const t = Math.min(1, elapsed / duration);
-        // Ease-out cubic clamped strictly to [0, 1]
         const eased = 1 - Math.pow(1 - t, 3);
-        setDisplay(Math.min(value, Math.max(0, Math.round(eased * value))));
+        const nextVal = Math.min(value, Math.max(1, Math.round(eased * value)));
+        setDisplay(nextVal);
         if (t < 1) {
           rafId = requestAnimationFrame(step);
         } else {
@@ -183,14 +186,18 @@ export function AnimatedCounter({
       };
 
       rafId = requestAnimationFrame(step);
-      return () => cancelAnimationFrame(rafId);
     };
 
-    let cleanupAnim: (() => void) | undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          cleanupAnim = runAnimation();
+          // Only animate the roll-up if the user actually scrolled down to it
+          if (userScrolled) {
+            runAnimation();
+          } else {
+            hasAnimatedRef.current = true;
+            setDisplay(value);
+          }
           observer.disconnect();
         }
       },
@@ -199,8 +206,9 @@ export function AnimatedCounter({
 
     observer.observe(el);
     return () => {
+      window.removeEventListener('scroll', onScroll);
       observer.disconnect();
-      cleanupAnim?.();
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [value, duration]);
 
