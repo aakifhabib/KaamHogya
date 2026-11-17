@@ -40,7 +40,7 @@ export default async function AllProcessesPage() {
       />
 
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-        <div className="mb-8">
+        <div className="animate-fade-up mb-8">
           <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             All Pakistani Citizen Processes
           </h1>

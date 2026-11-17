@@ -81,9 +81,9 @@ export function SearchBar({
   return (
     <div ref={containerRef} className="relative mx-auto w-full max-w-2xl">
       <form onSubmit={handleSubmit} role="search" aria-label="Search Pakistani government processes">
-        <div className="flex items-center rounded-2xl border-2 border-white/25 bg-white p-1.5 shadow-xl shadow-brand-dark/25 focus-within:border-accent-yellow">
+        <div className="flex items-center rounded-2xl border-2 border-white/30 bg-white p-1.5 shadow-xl shadow-brand-dark/25 transition-all duration-300 ease-spring focus-within:border-accent-yellow focus-within:ring-4 focus-within:ring-accent-yellow/25">
           <Search
-            className="ml-3 h-5 w-5 shrink-0 text-gray-400"
+            className="ml-3 h-5 w-5 shrink-0 text-gray-400 transition-colors"
             aria-hidden="true"
           />
           <input
@@ -106,10 +106,10 @@ export function SearchBar({
           />
           <button
             type="submit"
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark sm:px-5"
+            className="khg-btn-sheen group inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark sm:px-5"
           >
             <span>Search</span>
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-spring group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </div>
       </form>
@@ -119,7 +119,7 @@ export function SearchBar({
         <div
           id="khg-search-suggestions"
           role="listbox"
-          className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-xl"
+          className="animate-dropdown-in absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-2xl border border-emerald-950/15 bg-white/95 text-left shadow-2xl shadow-emerald-950/15 backdrop-blur-xl"
         >
           <div className="border-b border-gray-100 bg-surface px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
             {query.trim() ? 'Matching Processes' : 'Popular Citizen Guides'}

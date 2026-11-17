@@ -24,7 +24,12 @@ export function ProcessCard({ process }: ProcessCardProps) {
   const waitBadge = getWaitTimeBadgeColor(process.avg_wait_minutes);
 
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md">
+    <article className="khg-card-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-card">
+      {/* Subtle top emerald accent bar animating in on hover */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-brand via-emerald-500 to-accent-yellow transition-transform duration-300 ease-spring group-hover:scale-x-100"
+      />
       {/* Top badges */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-1.5">
@@ -112,10 +117,10 @@ export function ProcessCard({ process }: ProcessCardProps) {
         </span>
         <Link
           href={`/process/${process.slug}`}
-          className="inline-flex items-center gap-1 font-bold text-brand hover:text-brand-dark"
+          className="inline-flex items-center gap-1 font-bold text-brand transition-colors hover:text-brand-dark"
         >
           View Guide
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-spring group-hover:translate-x-1" />
         </Link>
       </div>
     </article>

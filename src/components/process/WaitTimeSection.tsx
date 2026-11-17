@@ -215,7 +215,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
         </div>
 
         <div className="grid h-40 grid-cols-7 items-end gap-2 pt-4">
-          {sevenDaySeries.map((day) => {
+          {sevenDaySeries.map((day, idx) => {
             const pct =
               day.avgMinutes !== null
                 ? Math.max(12, Math.round((day.avgMinutes / maxChartMinutes) * 100))
@@ -230,14 +230,20 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
                 : 'bg-danger';
 
             return (
-              <div key={day.date} className="flex h-full flex-col items-center justify-end gap-1.5">
-                <span className="text-[10px] font-bold text-gray-700">
+              <div
+                key={day.date}
+                className="group flex h-full flex-col items-center justify-end gap-1.5"
+              >
+                <span className="text-[10px] font-bold tabular-nums text-gray-700 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:text-brand">
                   {day.avgMinutes !== null ? `${day.avgMinutes}m` : '—'}
                 </span>
                 <div className="flex h-24 w-full max-w-[36px] items-end rounded-lg bg-gray-200/70 p-0.5">
                   <div
-                    className={`w-full rounded-md transition-all ${barColor}`}
-                    style={{ height: day.avgMinutes !== null ? `${pct}%` : '4px' }}
+                    className={`animate-bar-rise w-full origin-bottom rounded-md transition-all duration-300 ease-spring group-hover:brightness-110 ${barColor}`}
+                    style={{
+                      height: day.avgMinutes !== null ? `${pct}%` : '4px',
+                      animationDelay: `${idx * 55}ms`,
+                    }}
                     title={`${day.label}: ${
                       day.avgMinutes !== null
                         ? `${day.avgMinutes} mins (${day.count} report${day.count === 1 ? '' : 's'})`

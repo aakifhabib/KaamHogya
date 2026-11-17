@@ -407,16 +407,21 @@ export function ProcessDetailView({
               </span>
             </div>
 
-            <ol className="mt-6 space-y-4">
+            <ol className="relative mt-6 space-y-4">
+              {/* Subtle vertical timeline track connecting step numbers */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-6 left-[2.1rem] top-6 hidden w-0.5 bg-gradient-to-b from-brand/30 via-emerald-300/40 to-transparent sm:block"
+              />
               {process.steps.map((step, index) => (
                 <Fragment key={step.id}>
-                  <li className="print-break-avoid relative flex gap-4 rounded-xl border border-gray-200 bg-surface/50 p-4">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold text-white shadow-sm">
+                  <li className="print-break-avoid group relative flex gap-4 rounded-xl border border-gray-200 bg-surface/55 p-4 transition-all duration-300 ease-spring hover:border-brand/35 hover:bg-white hover:shadow-card">
+                    <div className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold text-white shadow-sm transition-transform duration-300 ease-pop group-hover:scale-110">
                       {step.step_number}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <h3 className="text-sm font-bold text-ink sm:text-base">
+                        <h3 className="text-sm font-bold text-ink transition-colors group-hover:text-brand-dark sm:text-base">
                           {step.title}
                         </h3>
                         <span className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-0.5 text-xs font-semibold text-brand ring-1 ring-emerald-900/10">

@@ -250,7 +250,7 @@ export function WaitTimeTracker({
             <button
               type="button"
               onClick={() => setShowReportForm((v) => !v)}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-dark"
+              className="khg-btn-sheen inline-flex items-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-brand-dark"
             >
               {showReportForm ? (
                 <>
@@ -289,7 +289,7 @@ export function WaitTimeTracker({
         {showReportForm && (
           <form
             onSubmit={handleSubmitReport}
-            className="mt-5 space-y-4 rounded-2xl border border-emerald-900/15 bg-surface p-4 sm:p-5"
+            className="animate-dropdown-in mt-5 space-y-4 rounded-2xl border border-emerald-900/15 bg-surface p-4 sm:p-5"
             noValidate
           >
             <h2 className="text-base font-bold text-ink">

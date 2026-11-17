@@ -31,11 +31,16 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
         </div>
       </div>
 
-      <div className="mt-4 divide-y divide-gray-200 rounded-xl border border-gray-200">
+      <div className="mt-4 divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-200">
         {faqs.map((faq) => {
           const isOpen = openId === faq.id;
           return (
-            <div key={faq.id}>
+            <div
+              key={faq.id}
+              className={`transition-colors duration-200 ${
+                isOpen ? 'bg-emerald-50/25' : 'bg-white'
+              }`}
+            >
               <h3>
                 <button
                   type="button"
@@ -43,20 +48,26 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-ink transition-colors hover:bg-surface sm:px-5 sm:text-base"
                 >
-                  <span>{faq.question}</span>
+                  <span className={isOpen ? 'text-brand-dark' : ''}>{faq.question}</span>
                   <ChevronDown
-                    className={`h-5 w-5 shrink-0 text-brand transition-transform duration-200 ${
+                    className={`h-5 w-5 shrink-0 text-brand transition-transform duration-300 ease-spring ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                     aria-hidden="true"
                   />
                 </button>
               </h3>
-              {isOpen && (
-                <div className="bg-surface/60 px-4 pb-4 pt-1 text-sm leading-relaxed text-gray-700 sm:px-5">
-                  {faq.answer}
+              <div
+                className="khg-accordion-content"
+                data-open={isOpen ? 'true' : 'false'}
+                aria-hidden={!isOpen}
+              >
+                <div className="khg-accordion-inner">
+                  <div className="border-t border-emerald-950/5 bg-surface/60 px-4 pb-4 pt-3 text-sm leading-relaxed text-gray-700 sm:px-5">
+                    {faq.answer}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

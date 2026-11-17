@@ -91,7 +91,7 @@ export function CityOfficialOfficesSection({
             {directory.nadraCenters.map((center) => (
               <li
                 key={center.name}
-                className="rounded-xl border border-emerald-950/10 bg-white p-3.5"
+                className="khg-card-lift rounded-xl border border-emerald-950/10 bg-white p-3.5"
               >
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-sm font-bold text-ink">{center.name}</span>
@@ -147,10 +147,10 @@ export function CityOfficialOfficesSection({
           <div className="mt-4 pt-1">
             <Link
               href={`/process/${directory.cnicGuideSlug}`}
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-brand-dark sm:text-sm"
+              className="khg-btn-sheen group inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-xs font-bold text-white hover:bg-brand-dark sm:text-sm"
             >
               Open {directory.cityName} CNIC Renewal Guide
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-spring group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -190,7 +190,7 @@ export function CityOfficialOfficesSection({
             {directory.fbrOffices.map((office) => (
               <li
                 key={office.name}
-                className="rounded-xl border border-emerald-950/10 bg-white p-4"
+                className="khg-card-lift rounded-xl border border-emerald-950/10 bg-white p-4"
               >
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-sm font-bold text-ink">{office.name}</span>
@@ -263,10 +263,10 @@ export function CityOfficialOfficesSection({
 
             <Link
               href={`/process/${directory.fbrGuideSlug}`}
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-brand-dark sm:text-sm"
+              className="khg-btn-sheen group inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white hover:bg-brand-dark sm:text-sm"
             >
               Open {directory.cityName} FBR NTN Guide
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-spring group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -349,10 +349,10 @@ export function AllCitiesOfficeSwitcher({
               role="tab"
               aria-selected={isActive}
               onClick={() => setSelectedSlug(dir.citySlug)}
-              className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
+              className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-200 ease-spring active:scale-95 ${
                 isActive
-                  ? 'bg-brand text-white shadow-sm'
-                  : 'border border-gray-200 bg-surface text-gray-700 hover:border-brand/40 hover:text-brand'
+                  ? 'bg-brand text-white shadow-sm ring-2 ring-brand/20'
+                  : 'border border-gray-200 bg-surface text-gray-700 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-white hover:text-brand'
               }`}
             >
               {dir.cityName}
@@ -362,7 +362,10 @@ export function AllCitiesOfficeSwitcher({
       </div>
 
       {/* Selected City Office List */}
-      <div className="mt-4 rounded-xl border border-emerald-950/10 bg-surface/60 p-4">
+      <div
+        key={selected.citySlug}
+        className="animate-tab-in mt-4 rounded-xl border border-emerald-950/10 bg-surface/60 p-4"
+      >
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h3 className="text-sm font-bold text-ink sm:text-base">

@@ -139,9 +139,19 @@ export function DocumentChecklistBlock({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-brand">
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all duration-300 ease-spring ${
+              progressPct === 100 && hydrated
+                ? 'animate-check-pop bg-brand text-white shadow-sm'
+                : 'bg-emerald-50 text-brand'
+            }`}
+          >
             <CheckSquare className="h-3.5 w-3.5" aria-hidden="true" />
-            {hydrated ? `${checkedCount}/${documents.length} Ready` : `${documents.length} Docs`}
+            {hydrated
+              ? progressPct === 100
+                ? `${checkedCount}/${documents.length} Folder Ready!`
+                : `${checkedCount}/${documents.length} Ready`
+              : `${documents.length} Docs`}
           </span>
         </div>
       </div>
@@ -149,7 +159,7 @@ export function DocumentChecklistBlock({
       {/* Progress Bar */}
       <div className="mt-4">
         <div
-          className="h-2 w-full overflow-hidden rounded-full bg-gray-100"
+          className="h-2.5 w-full overflow-hidden rounded-full bg-gray-100"
           role="progressbar"
           aria-valuenow={progressPct}
           aria-valuemin={0}
@@ -157,24 +167,28 @@ export function DocumentChecklistBlock({
           aria-label="Document preparation progress"
         >
           <div
-            className="h-full rounded-full bg-brand transition-all duration-300"
+            className={`h-full rounded-full transition-all duration-500 ease-spring ${
+              progressPct === 100
+                ? 'bg-gradient-to-r from-brand via-emerald-500 to-accent-yellow'
+                : 'bg-gradient-to-r from-brand-dark to-brand'
+            }`}
             style={{ width: `${progressPct}%` }}
           />
         </div>
       </div>
 
       {/* Interactive Document List */}
-      <ul className="mt-4 divide-y divide-gray-100 rounded-xl border border-gray-200">
+      <ul className="mt-4 divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200">
         {documents.map((doc) => {
           const isChecked = Boolean(checkedIds[doc.id]);
           return (
             <li
               key={doc.id}
-              className={`transition-colors ${
-                isChecked ? 'bg-emerald-50/50' : 'bg-white hover:bg-surface/60'
+              className={`transition-colors duration-200 ${
+                isChecked ? 'bg-emerald-50/55' : 'bg-white hover:bg-surface/70'
               }`}
             >
-              <label className="flex cursor-pointer items-start gap-3 p-3.5 sm:p-4">
+              <label className="group flex cursor-pointer items-start gap-3 p-3.5 sm:p-4">
                 <input
                   type="checkbox"
                   checked={isChecked}
@@ -183,10 +197,10 @@ export function DocumentChecklistBlock({
                 />
                 <span
                   aria-hidden="true"
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-colors ${
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-all duration-200 ease-pop ${
                     isChecked
-                      ? 'border-brand bg-brand text-white'
-                      : 'border-gray-300 bg-white'
+                      ? 'animate-check-pop border-brand bg-brand text-white shadow-sm'
+                      : 'border-gray-300 bg-white group-hover:border-brand/60'
                   }`}
                 >
                   {isChecked && <Check className="h-3.5 w-3.5 stroke-[3]" />}
@@ -244,7 +258,7 @@ export function DocumentChecklistBlock({
         <button
           type="button"
           onClick={handleSaveMyChecklist}
-          className="inline-flex items-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-brand-dark sm:text-sm"
+          className="khg-btn-sheen inline-flex items-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-xs font-semibold text-white hover:bg-brand-dark sm:text-sm"
         >
           <BookmarkCheck className="h-4 w-4" aria-hidden="true" />
           Save My Checklist
@@ -275,7 +289,7 @@ export function DocumentChecklistBlock({
         <div
           role="status"
           aria-live="polite"
-          className="no-print mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-xs font-semibold text-brand-dark"
+          className="animate-fade-up no-print mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-xs font-semibold text-brand-dark"
         >
           <span>{savedNotice}</span>
           <Link

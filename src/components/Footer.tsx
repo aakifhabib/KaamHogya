@@ -39,8 +39,8 @@ export function Footer() {
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             {/* Brand column */}
             <div className="space-y-4">
-              <Link href="/" className="inline-flex items-center gap-2.5">
-                <BrandMark className="h-9 w-9" />
+              <Link href="/" className="group inline-flex items-center gap-2.5">
+                <BrandMark className="h-9 w-9 transition-transform duration-300 ease-pop group-hover:-rotate-3 group-hover:scale-105" />
                 <div>
                   <p className="text-lg font-bold text-white">{SITE_NAME}</p>
                   <p className="text-xs text-emerald-200">{SITE_TAGLINE}</p>
@@ -53,7 +53,7 @@ export function Footer() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-accent-yellow px-3.5 py-2 text-xs font-bold text-brand-dark transition-colors hover:bg-amber-400"
+                className="khg-btn-sheen inline-flex items-center gap-2 rounded-lg bg-accent-yellow px-3.5 py-2 text-xs font-bold text-brand-dark hover:bg-amber-400"
               >
                 <MessageCircle className="h-4 w-4" />
                 Rs. 500 Document Check on WhatsApp

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Clock, MapPin, MessageSquareQuote, Star } from 'lucide-react';
+import { Reveal } from '@/components/MotionPrimitives';
 import { formatShortDate, formatWaitMinutes, getWaitTimeBadgeColor } from '@/lib/format';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import type { WaitTime, WaitTimeWithProcess } from '@/types/database';
@@ -84,13 +85,11 @@ export function LiveWaitFeed({ initialReports }: LiveWaitFeedProps) {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {reports.slice(0, 6).map((report) => {
+        {reports.slice(0, 6).map((report, idx) => {
           const badge = getWaitTimeBadgeColor(report.wait_minutes);
           return (
-            <article
-              key={report.id}
-              className="flex flex-col rounded-2xl border border-emerald-950/10 bg-white p-4 shadow-sm"
-            >
+            <Reveal key={report.id} delay={idx * 65}>
+              <article className="khg-card-lift flex h-full flex-col rounded-2xl border border-emerald-950/10 bg-white p-4 shadow-card">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-bold text-ink">
@@ -142,13 +141,14 @@ export function LiveWaitFeed({ initialReports }: LiveWaitFeedProps) {
                 {report.process_slug && (
                   <Link
                     href={`/process/${report.process_slug}#wait-times`}
-                    className="font-semibold text-brand hover:underline"
+                    className="font-semibold text-brand transition-colors hover:text-brand-dark hover:underline"
                   >
                     View guide →
                   </Link>
                 )}
               </div>
-            </article>
+              </article>
+            </Reveal>
           );
         })}
       </div>

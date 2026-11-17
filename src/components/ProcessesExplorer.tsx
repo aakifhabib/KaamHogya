@@ -321,13 +321,16 @@ export function ProcessesExplorer({
 
       {/* Results Grid */}
       {filtered.length > 0 ? (
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          key={`${city}-${category}-${feeRange}-${sortBy}`}
+          className="animate-tab-in grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+        >
           {filtered.map((proc) => (
             <ProcessCard key={proc.id} process={proc} />
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-emerald-950/10 bg-white p-10 text-center shadow-sm">
+        <div className="animate-fade-up rounded-2xl border border-emerald-950/10 bg-white p-10 text-center shadow-sm">
           <p className="text-lg font-bold text-ink">No matching processes found</p>
           <p className="mx-auto mt-2 max-w-md text-sm text-gray-600">
             Try clearing one of your filters or search with simpler keywords like

@@ -188,7 +188,10 @@ export function FeeCalculatorBlock({ process, documents }: FeeCalculatorBlockPro
           </div>
           <div className="flex items-center justify-between border-t border-emerald-900/15 pt-3 text-base font-extrabold text-brand-dark">
             <dt>Estimated Total Budget</dt>
-            <dd className="text-xl text-brand">
+            <dd
+              key={`${selectedOptionId}-${selectedCity}-${includePhotos}`}
+              className="animate-value-flash text-xl tabular-nums text-brand"
+            >
               {formatPKR(calculation.total)}
             </dd>
           </div>

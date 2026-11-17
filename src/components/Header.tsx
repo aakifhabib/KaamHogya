@@ -14,6 +14,7 @@ import {
   X,
 } from 'lucide-react';
 import { BrandMark } from '@/components/BrandMark';
+import { ScrollProgressBar } from '@/components/MotionPrimitives';
 import { SITE_NAME } from '@/lib/constants';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -32,6 +33,7 @@ const NAV_LINKS = [
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(
     null
   );
@@ -39,6 +41,13 @@ export function Header() {
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -59,14 +68,20 @@ export function Header() {
   };
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-emerald-900/10 bg-white/95 backdrop-blur-md">
+    <header
+      className={`no-print sticky top-0 z-40 border-b transition-all duration-300 ease-spring ${
+        scrolled
+          ? 'border-emerald-950/15 bg-white/90 shadow-md shadow-emerald-950/5 backdrop-blur-xl'
+          : 'border-emerald-900/10 bg-white/95 backdrop-blur-md'
+      }`}
+    >
       {/* Subtle Top Civic Notice Strip */}
       <div className="bg-brand-dark px-3 py-1.5 text-center text-[11px] font-medium text-emerald-100 sm:text-xs">
         <span>Independent Pakistan Citizen Guide — Not an Official Government Website</span>
         <span className="mx-2 hidden text-emerald-400/60 sm:inline">•</span>
         <Link
           href="/disclaimer"
-          className="ml-2 underline decoration-emerald-300/60 underline-offset-2 hover:text-white sm:ml-0"
+          className="ml-2 underline decoration-emerald-300/60 underline-offset-2 transition-colors hover:text-white sm:ml-0"
         >
           Read Disclaimer
         </Link>
@@ -76,12 +91,12 @@ export function Header() {
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          className="group flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
         >
-          <BrandMark className="h-9 w-9 shrink-0" />
+          <BrandMark className="h-9 w-9 shrink-0 transition-transform duration-300 ease-pop group-hover:scale-105 group-hover:-rotate-3" />
           <div className="leading-tight">
             <div className="flex items-center gap-1.5">
-              <span className="text-base font-bold tracking-tight text-ink sm:text-lg">
+              <span className="text-base font-bold tracking-tight text-ink transition-colors group-hover:text-brand sm:text-lg">
                 {SITE_NAME}
               </span>
               <span className="hidden rounded bg-emerald-50 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand sm:inline">
@@ -155,51 +170,63 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <nav
-          aria-label="Mobile navigation"
-          className="border-t border-gray-100 bg-white px-4 pb-4 pt-2 shadow-lg md:hidden"
-        >
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((item) => {
-              const Icon = item.icon;
-              const active =
-                pathname === item.href ||
-                (item.href !== '/' && pathname?.startsWith(item.href));
-              return (
+      {/* Mobile Drawer — smooth CSS grid-row collapse/expand */}
+      <div
+        className="khg-accordion-content md:hidden"
+        data-open={mobileOpen ? 'true' : 'false'}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="khg-accordion-inner">
+          <nav
+            aria-label="Mobile navigation"
+            className="border-t border-gray-100 bg-white px-4 pb-4 pt-2 shadow-lg"
+          >
+            <div className="flex flex-col gap-1">
+              {NAV_LINKS.map((item) => {
+                const Icon = item.icon;
+                const active =
+                  pathname === item.href ||
+                  (item.href !== '/' && pathname?.startsWith(item.href));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    tabIndex={mobileOpen ? 0 : -1}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                      active
+                        ? 'bg-emerald-50 text-brand'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 shrink-0" />
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <div className="my-1 border-t border-gray-100" />
+              <div className="grid grid-cols-2 gap-2 pt-1">
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium ${
-                    active
-                      ? 'bg-emerald-50 text-brand'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
+                  href="/contact"
+                  tabIndex={mobileOpen ? 0 : -1}
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs font-semibold text-gray-700 transition-colors hover:bg-gray-50"
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  {item.label}
+                  Contact / Help
                 </Link>
-              );
-            })}
-            <div className="my-1 border-t border-gray-100" />
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <Link
-                href="/contact"
-                className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs font-semibold text-gray-700 hover:bg-gray-50"
-              >
-                Contact / Help
-              </Link>
-              <Link
-                href="/admin"
-                className="rounded-lg bg-brand px-3 py-2 text-center text-xs font-semibold text-white hover:bg-brand-dark"
-              >
-                Admin Login
-              </Link>
+                <Link
+                  href="/admin"
+                  tabIndex={mobileOpen ? 0 : -1}
+                  className="khg-btn-sheen rounded-lg bg-brand px-3 py-2 text-center text-xs font-semibold text-white hover:bg-brand-dark"
+                >
+                  Admin Login
+                </Link>
+              </div>
             </div>
-          </div>
-        </nav>
-      )}
+          </nav>
+        </div>
+      </div>
+
+      {/* Live reading progress indicator */}
+      <ScrollProgressBar />
     </header>
   );
 }

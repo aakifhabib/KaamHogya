@@ -381,7 +381,10 @@ export function ChecklistGenerator({
         </div>
 
         {/* Printable Checklist Sheet */}
-        <div className="rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm sm:p-6">
+        <div
+          key={currentProcess.slug}
+          className="animate-tab-in rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-card sm:p-6"
+        >
           <div className="flex flex-wrap items-start justify-between gap-3 border-b border-gray-100 pb-4">
             <div>
               <span className="inline-block rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-brand">
@@ -397,10 +400,15 @@ export function ChecklistGenerator({
             </div>
 
             <div className="text-right">
-              <p className="text-2xl font-extrabold text-brand">
+              <p
+                key={completedDocs}
+                className="animate-value-flash text-2xl font-extrabold tabular-nums text-brand"
+              >
                 {completedDocs}/{totalDocs}
               </p>
-              <p className="text-[11px] font-semibold text-gray-500">Items Ready</p>
+              <p className="text-[11px] font-semibold text-gray-500">
+                {pct === 100 ? 'Folder Ready!' : 'Items Ready'}
+              </p>
             </div>
           </div>
 
@@ -408,22 +416,28 @@ export function ChecklistGenerator({
           <div className="mt-4">
             <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-100">
               <div
-                className="h-full rounded-full bg-brand transition-all duration-300"
+                className={`h-full rounded-full transition-all duration-500 ease-spring ${
+                  pct === 100
+                    ? 'bg-gradient-to-r from-brand via-emerald-500 to-accent-yellow'
+                    : 'bg-gradient-to-r from-brand-dark to-brand'
+                }`}
                 style={{ width: `${pct}%` }}
               />
             </div>
           </div>
 
           {/* Required Documents */}
-          <ul className="mt-5 divide-y divide-gray-100 rounded-xl border border-gray-200">
+          <ul className="mt-5 divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200">
             {currentProcess.documents.map((doc) => {
               const checked = Boolean(checkedIds[doc.id]);
               return (
                 <li
                   key={doc.id}
-                  className={checked ? 'bg-emerald-50/50' : 'bg-white hover:bg-surface/60'}
+                  className={`transition-colors duration-200 ${
+                    checked ? 'bg-emerald-50/55' : 'bg-white hover:bg-surface/70'
+                  }`}
                 >
-                  <label className="flex cursor-pointer items-start gap-3 p-3.5 sm:p-4">
+                  <label className="group flex cursor-pointer items-start gap-3 p-3.5 sm:p-4">
                     <input
                       type="checkbox"
                       checked={checked}
@@ -432,10 +446,10 @@ export function ChecklistGenerator({
                     />
                     <span
                       aria-hidden="true"
-                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 ${
+                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-all duration-200 ease-pop ${
                         checked
-                          ? 'border-brand bg-brand text-white'
-                          : 'border-gray-300 bg-white'
+                          ? 'animate-check-pop border-brand bg-brand text-white shadow-sm'
+                          : 'border-gray-300 bg-white group-hover:border-brand/60'
                       }`}
                     >
                       {checked && <Check className="h-3.5 w-3.5 stroke-[3]" />}
