@@ -129,7 +129,7 @@ export default async function HomePage() {
           <div className="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/15 bg-black/15 p-4 backdrop-blur-sm sm:p-5">
             <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent-yellow">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Select Your City Across Pakistan
+              Official NADRA &amp; FBR Offices &amp; Guides — All 8 Cities
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {cities.map((city) => (

@@ -20,7 +20,7 @@ export interface RichFeeSchedule {
 
 /**
  * Detailed official fee schedules (checked 17 Nov 2026) matching the exact
- * multi-tier / category tables for our 10 verified Pakistan guides.
+ * multi-tier / category tables for our verified Pakistan guides across all 8 cities.
  * If an admin later updates a process's fee_normal in Supabase, the UI
  * automatically falls back to the live DB fee_normal / fee_urgent / fee_executive.
  */
@@ -247,7 +247,12 @@ export function getRichFeeSchedule(
   slug: string,
   currentDbNormalFee: number
 ): RichFeeSchedule | null {
-  const schedule = RICH_FEE_SCHEDULES[slug];
+  let schedule = RICH_FEE_SCHEDULES[slug];
+  if (!schedule && slug.startsWith('cnic-renewal-')) {
+    schedule = RICH_FEE_SCHEDULES['cnic-renewal-rawalpindi'];
+  } else if (!schedule && slug.startsWith('fbr-ntn-')) {
+    schedule = RICH_FEE_SCHEDULES['fbr-ntn-for-freelancers'];
+  }
   if (!schedule) return null;
   // If an admin edits fee_normal in Supabase, automatically defer to live DB values
   if (schedule.expectedSeedNormalFee !== currentDbNormalFee) {

@@ -23,9 +23,10 @@ const esc = (v) => {
 
 const seededProcessIdsSql = mod.SEED_PROCESSES.map((p) => esc(p.id)).join(', ');
 
+const guideCount = mod.SEED_PROCESSES.length;
 const lines = [
-  '-- KaamHoGaya.pk — Production Seed Data (8 Cities, 6 Categories, 10 Verified Real Guides, Documents, Steps, Mistakes, FAQs, Wait Times)',
-  '-- Safe to re-run (idempotent upsert + clean child refresh for the 10 seeded guides).',
+  `-- KaamHoGaya.pk — Production Seed Data (${mod.SEED_CITIES.length} Cities, ${mod.SEED_CATEGORIES.length} Categories, ${guideCount} Verified Real Guides, Documents, Steps, Mistakes, FAQs, Wait Times)`,
+  `-- Safe to re-run (idempotent upsert + clean child refresh for the ${guideCount} seeded guides).`,
   '',
   'BEGIN;',
   '',
@@ -45,7 +46,7 @@ for (const c of mod.SEED_CATEGORIES) {
   );
 }
 
-lines.push('', '-- 3. Processes (10 Verified Real Guides — Upsert)');
+lines.push('', `-- 3. Processes (${guideCount} Verified Real Guides — Upsert)`);
 for (const p of mod.SEED_PROCESSES) {
   lines.push(
     `INSERT INTO public.processes (id, slug, title, urdu_title, summary, category, city, fee_normal, fee_urgent, fee_executive, fee_notes, time_required, office_name, office_address, office_timings, best_day_to_go, official_source_url, last_updated, is_verified, is_nationwide, popularity_rank) VALUES (${esc(p.id)}, ${esc(p.slug)}, ${esc(p.title)}, ${esc(p.urdu_title)}, ${esc(p.summary)}, ${esc(p.category)}, ${esc(p.city)}, ${esc(p.fee_normal)}, ${esc(p.fee_urgent)}, ${esc(p.fee_executive)}, ${esc(p.fee_notes)}, ${esc(p.time_required)}, ${esc(p.office_name)}, ${esc(p.office_address)}, ${esc(p.office_timings)}, ${esc(p.best_day_to_go)}, ${esc(p.official_source_url)}, ${esc(p.last_updated)}, ${esc(p.is_verified)}, ${esc(p.is_nationwide)}, ${esc(p.popularity_rank)}) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title, urdu_title = EXCLUDED.urdu_title, summary = EXCLUDED.summary, category = EXCLUDED.category, city = EXCLUDED.city, fee_normal = EXCLUDED.fee_normal, fee_urgent = EXCLUDED.fee_urgent, fee_executive = EXCLUDED.fee_executive, fee_notes = EXCLUDED.fee_notes, time_required = EXCLUDED.time_required, office_name = EXCLUDED.office_name, office_address = EXCLUDED.office_address, office_timings = EXCLUDED.office_timings, best_day_to_go = EXCLUDED.best_day_to_go, official_source_url = EXCLUDED.official_source_url, last_updated = EXCLUDED.last_updated, is_verified = EXCLUDED.is_verified, is_nationwide = EXCLUDED.is_nationwide, popularity_rank = EXCLUDED.popularity_rank;`
@@ -54,7 +55,7 @@ for (const p of mod.SEED_PROCESSES) {
 
 lines.push(
   '',
-  '-- 4. Clean previous starter child rows for these 10 guides before inserting refreshed records',
+  `-- 4. Clean previous starter child rows for these ${guideCount} guides before inserting refreshed records`,
   `DELETE FROM public.documents WHERE process_id IN (${seededProcessIdsSql});`,
   `DELETE FROM public.steps WHERE process_id IN (${seededProcessIdsSql});`,
   `DELETE FROM public.mistakes WHERE process_id IN (${seededProcessIdsSql});`,

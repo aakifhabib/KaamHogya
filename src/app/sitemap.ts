@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${SITE_URL}/city/${city.slug}`,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: city.slug === 'rawalpindi' ? 0.9 : 0.75,
+    priority: 0.9,
   }));
 
   const processRoutes: MetadataRoute.Sitemap = processes.map((proc) => ({

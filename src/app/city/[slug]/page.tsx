@@ -9,10 +9,12 @@ import {
   MapPin,
   Star,
 } from 'lucide-react';
+import { CityOfficialOfficesSection } from '@/components/CityOfficesDirectory';
 import { DisclaimerBox } from '@/components/DisclaimerBox';
 import { PageMetaBar } from '@/components/PageMetaBar';
 import { ProcessCard } from '@/components/ProcessCard';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
+import { getCityOfficialDirectory } from '@/data/city-offices';
 import { CITY_PORTAL_LINKS, OFFICIAL_DIRECTORY_URL, SITE_URL } from '@/lib/constants';
 import { getCities, getOfficeWaitSummaries, getProcessSummaries } from '@/lib/data';
 import {
@@ -35,8 +37,8 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
   const canonical = `${SITE_URL}/city/${city.slug}`;
   return {
-    title: `${city.name} Government Document Guides, Offices & Wait Times`,
-    description: `Complete citizen guides for Passport, CNIC, Driving Licence, Domicile, Birth Certificate, FBR NTN, and Police Character Certificate in ${city.name}, ${city.province}.`,
+    title: `${city.name} NADRA Centers, FBR RTO & Citizen Document Guides`,
+    description: `Verified official NADRA Mega Centers, FBR Regional Tax Office (RTO) addresses & phone numbers, CNIC renewal fees, free IRIS NTN registration, and government document guides in ${city.name}, ${city.province}.`,
     alternates: { canonical },
   };
 }
@@ -78,6 +80,11 @@ export default async function CityPage({ params }: CityPageProps) {
       (latest, p) => (p.last_updated > latest ? p.last_updated : latest),
       allProcesses[0]?.last_updated ?? '2026-11-17T00:00:00Z'
     ) || '2026-11-17T00:00:00Z';
+
+  const officialDirectory = getCityOfficialDirectory(city.slug);
+  const officialOfficeCount = officialDirectory
+    ? officialDirectory.nadraCenters.length + officialDirectory.fbrOffices.length
+    : cityOffices.length;
 
   const portal = CITY_PORTAL_LINKS[city.slug] ?? {
     label: 'pakistan.gov.pk',
@@ -124,15 +131,17 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-3">
                 <p className="text-2xl font-extrabold text-white">
-                  {cityOffices.length}
+                  {officialOfficeCount}
                 </p>
-                <p className="text-[11px] text-emerald-100">Tracked Offices</p>
+                <p className="text-[11px] text-emerald-100">Verified Offices</p>
               </div>
               <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-3">
                 <p className="text-2xl font-extrabold text-accent-yellow">
-                  {cityAvgWait !== null ? `${cityAvgWait}m` : 'Online'}
+                  {cityAvgWait !== null ? `${cityAvgWait}m` : '24/7'}
                 </p>
-                <p className="text-[11px] text-emerald-100">Avg Wait Time</p>
+                <p className="text-[11px] text-emerald-100">
+                  {cityAvgWait !== null ? 'Avg Wait Time' : 'Online & Mega'}
+                </p>
               </div>
             </div>
           </div>
@@ -158,6 +167,11 @@ export default async function CityPage({ params }: CityPageProps) {
       </section>
 
       <div className="mx-auto max-w-6xl space-y-12 px-4 py-10 sm:px-6">
+        {/* Verified Official NADRA & FBR Directory for This City */}
+        {officialDirectory && (
+          <CityOfficialOfficesSection directory={officialDirectory} />
+        )}
+
         {/* City-Specific Processes */}
         {citySpecificProcesses.length > 0 && (
           <section aria-labelledby="city-processes-heading">

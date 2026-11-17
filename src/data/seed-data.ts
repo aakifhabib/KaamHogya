@@ -76,7 +76,359 @@ export const PROCESS_IDS = {
   childPassport: 'a1000000-0000-4000-8000-000000000008',
   nameChangeMarriage: 'a1000000-0000-4000-8000-000000000009',
   eChallan: 'a1000000-0000-4000-8000-000000000010',
+  // City-specific official NADRA CNIC Renewal guides (all remaining 7 cities)
+  cnicRenewalIslamabad: 'a1000000-0000-4000-8000-000000000011',
+  cnicRenewalLahore: 'a1000000-0000-4000-8000-000000000012',
+  cnicRenewalKarachi: 'a1000000-0000-4000-8000-000000000013',
+  cnicRenewalPeshawar: 'a1000000-0000-4000-8000-000000000014',
+  cnicRenewalQuetta: 'a1000000-0000-4000-8000-000000000015',
+  cnicRenewalHyderabad: 'a1000000-0000-4000-8000-000000000016',
+  cnicRenewalMultan: 'a1000000-0000-4000-8000-000000000017',
+  // City-specific official FBR NTN & RTO guides (all remaining 7 cities)
+  fbrNtnRawalpindi: 'a1000000-0000-4000-8000-000000000018',
+  fbrNtnLahore: 'a1000000-0000-4000-8000-000000000019',
+  fbrNtnKarachi: 'a1000000-0000-4000-8000-000000000020',
+  fbrNtnPeshawar: 'a1000000-0000-4000-8000-000000000021',
+  fbrNtnQuetta: 'a1000000-0000-4000-8000-000000000022',
+  fbrNtnHyderabad: 'a1000000-0000-4000-8000-000000000023',
+  fbrNtnMultan: 'a1000000-0000-4000-8000-000000000024',
 } as const;
+
+interface CityNadraGuideSpec {
+  id: string;
+  code: string;
+  slug: string;
+  city: string;
+  urduCity: string;
+  popularityRank: number;
+  primaryCenterName: string;
+  primaryCenterAddress: string;
+  otherCentersSummary: string;
+  timings: string;
+  bestDay: string;
+  waitSummary: string;
+}
+
+interface CityFbrGuideSpec {
+  id: string;
+  code: string;
+  slug: string;
+  city: string;
+  urduCity: string;
+  popularityRank: number;
+  rtoName: string;
+  rtoAddress: string;
+  rtoPhone: string;
+  tfcPhone?: string;
+}
+
+const EXTRA_CITY_NADRA_SPECS: CityNadraGuideSpec[] = [
+  {
+    id: PROCESS_IDS.cnicRenewalIslamabad,
+    code: '11',
+    slug: 'cnic-renewal-islamabad',
+    city: 'Islamabad',
+    urduCity: 'اسلام آباد',
+    popularityRank: 11,
+    primaryCenterName: 'NADRA Mega Center, Blue Area (Khyber Plaza), Islamabad',
+    primaryCenterAddress:
+      '98-West, Khyber Plaza, Jinnah Avenue, Blue Area, Islamabad (3 shifts, open Saturday). Other centers: RHO/PHQ G-10/4 (Plot 30, Mauve Area), Asaan Khidmat Center G-9/1, PFC F-6/1 & G-11/4, or PakID app. 24/7 Helpline: 1777.',
+    otherCentersSummary: 'RHO/PHQ G-10/4 (Plot #30, Mauve Area), Asaan Khidmat Center G-9/1 (open Saturday), and Public Facilitation Centers in F-6/1 & G-11/4',
+    timings: 'Mega Center Blue Area: 3 Shifts / 24-Hour Operations (Mon–Sat) | RHO G-10/4: Mon–Fri 8:30 AM – 4:30 PM | PakID 24/7',
+    bestDay: 'Tuesday to Thursday, 8:30 AM – 10:30 AM or late evening shift at Blue Area Mega Center (avoid Saturday midday)',
+    waitSummary: '35–75 mins at Blue Area Mega Center | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalLahore,
+    code: '12',
+    slug: 'cnic-renewal-lahore',
+    city: 'Lahore',
+    urduCity: 'لاہور',
+    popularityRank: 12,
+    primaryCenterName: 'NADRA Mega Center, Egerton Road (Shimla Pahari), Lahore',
+    primaryCenterAddress:
+      '9-Egerton Road, Near Shimla Pahari, Lahore (3 shifts, open Saturday). Other Mega Centers: Peco Road (Building 39, Block 10, Sector B-1, Quaid-e-Azam Town) & 15-A Sanda Road; plus DHA Phase 1/4 & RHO 73 Trade Centre Johar Town. 24/7 Helpline: 1777.',
+    otherCentersSummary: 'Mega Center Peco Road (Quaid-e-Azam Town), Mega Center 15-A Sanda Road, DHA Phase 1 & Phase 4 (2 shifts), and RHO Lahore (73 Trade Centre, Johar Town)',
+    timings: 'Egerton Road Mega Center: 3 Shifts / 24-Hour Operations (Mon–Sat) | Peco Rd & Sanda Rd: 2 Shifts (Mon–Sat) | PakID 24/7',
+    bestDay: 'Weekday 8:30 AM – 10:30 AM or evening shift at Egerton Road / Peco Road Mega Center (Saturday afternoons are busiest)',
+    waitSummary: '40–90 mins at Lahore Mega Centers | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalKarachi,
+    code: '13',
+    slug: 'cnic-renewal-karachi',
+    city: 'Karachi',
+    urduCity: 'کراچی',
+    popularityRank: 13,
+    primaryCenterName: 'NADRA Mega Center, North Nazimabad / DHA Phase 1 / Siemens Chowrangi, Karachi',
+    primaryCenterAddress:
+      'North Nazimabad: Plot D15/1, Euro Twin Tower, Block L | DHA Phase 1: Plot 147, World Business Center, Main Korangi Rd | Siemens Chowrangi: Plot B/64-A, S.I.T.E. (all 3 shifts / 24-hour, open Saturday). Also Big Center East (University Rd) & Executive Centres in Clifton Block 7, PECHS & Saddar. Helpline: 1777.',
+    otherCentersSummary: 'Mega Center DHA Phase 1 (Korangi Road), Mega Center Siemens Chowrangi (S.I.T.E.), Big Center East (Sector 38-A, University Road), and Executive Centres in Clifton Block 7, PECHS Shahrah-e-Quaideen, and Saddar',
+    timings: 'Karachi Mega Centers (North Nazimabad, DHA Phase 1, Siemens Chowrangi): 3 Shifts / 24-Hour Operations (Mon–Sat) | PakID 24/7',
+    bestDay: 'Tuesday to Thursday morning (8:30 AM – 10:30 AM) or night shift at 3-shift Mega Centers (avoid Mondays & Saturday afternoon)',
+    waitSummary: '45–90 mins at Karachi Mega Centers | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalPeshawar,
+    code: '14',
+    slug: 'cnic-renewal-peshawar',
+    city: 'Peshawar',
+    urduCity: 'پشاور',
+    popularityRank: 14,
+    primaryCenterName: 'NADRA Mega Center, Tehkal (University Road) & Ring Road, Peshawar',
+    primaryCenterAddress:
+      'Tehkal Mega Center: Opposite Runway Peshawar Airport, Tehkal Bala, University Road | Ring Road Mega Center: Adjacent TCS Office, Near Pir Zakori Sharif Flyover, Ring Road (both 2 shifts, open Saturday). Executive Centres: Deans Trade Center (Cantt) & Jamrud Road; PHQ Hayatabad (Phase-V). Helpline: 1777.',
+    otherCentersSummary: 'Mega Center Ring Road (near Pir Zakori Flyover), Executive Centre Deans Trade Center (Peshawar Cantt), Executive Centre Jamrud Road (Phase 3 Chowk), and PHQ Hayatabad (Sector B-1, Phase-V)',
+    timings: 'Tehkal & Ring Road Mega Centers: 2 Shifts (Morning & Evening, Mon–Sat) | Deans Trade Center Cantt: Open Saturday | PakID 24/7',
+    bestDay: 'Tuesday to Thursday morning (8:30 AM – 10:30 AM) at Tehkal or Ring Road Mega Center',
+    waitSummary: '45–80 mins at Peshawar Mega Centers | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalQuetta,
+    code: '15',
+    slug: 'cnic-renewal-quetta',
+    city: 'Quetta',
+    urduCity: 'کوئٹہ',
+    popularityRank: 15,
+    primaryCenterName: 'NADRA Mega Center, Quetta & RHO New Zarghoon Road',
+    primaryCenterAddress:
+      'NADRA Mega Centre, Near Al-Hamd Islamic University, Main Road, Quetta (2 shifts, open Saturday). Other centers: RHO Quetta (Building 1418/530, New Zarghoon Road, 2 shifts), Executive Centre Jinnah Town (Passport Office), and Quetta Cantt (Sarwar Road). Helpline: 1777.',
+    otherCentersSummary: 'RHO Quetta (Building #1418/530, New Zarghoon Road — 2 shifts), Executive Centre Jinnah Town (Passport Office Complex), Quetta Cantt (Sarwar Road), and Model Town (Near TV Station)',
+    timings: 'Mega Center Quetta: 2 Shifts (Mon–Sat) | RHO Zarghoon Road: 2 Shifts (Mon–Fri) | PakID 24/7',
+    bestDay: 'Tuesday to Thursday morning (9:00 AM – 11:00 AM) at Mega Center Quetta or RHO Zarghoon Road',
+    waitSummary: '40–75 mins at Mega Center Quetta | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalHyderabad,
+    code: '16',
+    slug: 'cnic-renewal-hyderabad',
+    city: 'Hyderabad',
+    urduCity: 'حیدرآباد',
+    popularityRank: 16,
+    primaryCenterName: 'NADRA Big NRC, Latifabad (Neha Tower), Hyderabad',
+    primaryCenterAddress:
+      'Neha Tower, Plot # 7, Block E, Unit # 8, Airport Road, Latifabad, Hyderabad (3 shifts, open Saturday). Other centers: State Life Building (Thandi Sarak, 2 shifts, open Saturday), Qasimabad (Labour Court, Naseem Nagar), and Pakka Qila. Helpline: 1777.',
+    otherCentersSummary: 'State Life Building (Thandi Sarak — 2 shifts, open Saturday), Qasimabad (Labour Court, Naseem Nagar), and Pakka Qila (Near Homestead Hall)',
+    timings: 'Big NRC Latifabad (Neha Tower): 3 Shifts (Mon–Sat) | State Life Building Thandi Sarak: 2 Shifts (Mon–Sat) | PakID 24/7',
+    bestDay: 'Weekday morning (9:00 AM – 11:00 AM) or evening shift at Latifabad Neha Tower Big NRC',
+    waitSummary: '40–75 mins at Latifabad Big NRC | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+  {
+    id: PROCESS_IDS.cnicRenewalMultan,
+    code: '17',
+    slug: 'cnic-renewal-multan',
+    city: 'Multan',
+    urduCity: 'ملتان',
+    popularityRank: 17,
+    primaryCenterName: 'NADRA Registration Center, Bosan Road & Executive Centre ChenOne Tower, Multan',
+    primaryCenterAddress:
+      'Bosan Road NRC: Hans Market, Near Shalimar Metro Station, Bosan Road (2 shifts, open Saturday). Executive Centre: 3rd Floor, ChenOne Tower, Abdali Road. Other 2-shift centers: Multan Cantt (Ali Arcade, Katchehry Chowk), M.A. Jinnah Road, Mumtazabad & RHO Shah Rukn-e-Alam. Helpline: 1777.',
+    otherCentersSummary: 'Executive Centre ChenOne Tower (3rd Floor, Abdali Road), Multan Cantt (Shop 15–16, Ali Arcade, Katchehry Chowk — 2 shifts), M.A. Jinnah Road (2 shifts), Mumtazabad (2 shifts), and RHO Multan (221-A Shah Rukn-e-Alam Colony)',
+    timings: 'Bosan Rd, Cantt & M.A. Jinnah Rd NRCs: 2 Shifts (Mon–Sat) | Executive Centre ChenOne Tower: 1 Shift | PakID 24/7',
+    bestDay: 'Tuesday to Thursday morning (9:00 AM – 11:00 AM) at Bosan Road NRC or ChenOne Tower Executive Centre',
+    waitSummary: '40–75 mins at Multan 2-shift NRCs | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
+  },
+];
+
+const EXTRA_CITY_FBR_SPECS: CityFbrGuideSpec[] = [
+  {
+    id: PROCESS_IDS.fbrNtnRawalpindi,
+    code: '18',
+    slug: 'fbr-ntn-rawalpindi',
+    city: 'Rawalpindi',
+    urduCity: 'راولپنڈی',
+    popularityRank: 18,
+    rtoName: 'Regional Tax Office (RTO) Rawalpindi & FBR IRIS Online',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to RTO Rawalpindi Facilitation Counter: 12-Mayo Road, Civil Lines (Near Katchery / Fatima Jinnah Women University), Rawalpindi. Tel: 051-9270405 / TFC: 051-9270408 | National Helpline: 051-111-772-772.',
+    rtoPhone: '051-9270405',
+    tfcPhone: '051-9270408',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnLahore,
+    code: '19',
+    slug: 'fbr-ntn-lahore',
+    city: 'Lahore',
+    urduCity: 'لاہور',
+    popularityRank: 19,
+    rtoName: 'Regional Tax Office (RTO) Lahore — Tax House & FBR IRIS Online',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to RTO Lahore Tax Facilitation Counter: Tax House, Syed Mauj Darya Road (Nabha Road), Near Charing Cross / Mall Road, Lahore. Tel: 042-99211827 / 042-99211830 | National Helpline: 051-111-772-772.',
+    rtoPhone: '042-99211827',
+    tfcPhone: '042-99211830',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnKarachi,
+    code: '20',
+    slug: 'fbr-ntn-karachi',
+    city: 'Karachi',
+    urduCity: 'کراچی',
+    popularityRank: 20,
+    rtoName: 'Regional Tax Offices (RTO-I & II) Karachi & Tax Facilitation Center',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to Ground Floor Tax Facilitation Center (TFC), Income Tax Building, Shahrah-e-Kamal Ataturk (Opposite Sindh Secretariat), Karachi. Tel: 021-99211782 / TFC: 021-99211689 | National Helpline: 051-111-772-772.',
+    rtoPhone: '021-99211782',
+    tfcPhone: '021-99211689',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnPeshawar,
+    code: '21',
+    slug: 'fbr-ntn-peshawar',
+    city: 'Peshawar',
+    urduCity: 'پشاور',
+    popularityRank: 21,
+    rtoName: 'Regional Tax Office (RTO) Peshawar & Ground Floor TFD',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to Ground Floor Taxpayer Facilitation Desk (TFD), Income Tax Building (Tax House), Jamrud Road, University Town, Peshawar. Tel: 091-9216138 / TFD: 091-9216139 | National Helpline: 051-111-772-772.',
+    rtoPhone: '091-9216138',
+    tfcPhone: '091-9216139',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnQuetta,
+    code: '22',
+    slug: 'fbr-ntn-quetta',
+    city: 'Quetta',
+    urduCity: 'کوئٹہ',
+    popularityRank: 22,
+    rtoName: 'Regional Tax Office (RTO) Quetta & FBR IRIS Online',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to RTO Quetta Facilitation Counter: Regional Tax Office Building, Spinny Road, Quetta. Tel: 081-9213117 | National Helpline: 051-111-772-772.',
+    rtoPhone: '081-9213117',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnHyderabad,
+    code: '23',
+    slug: 'fbr-ntn-hyderabad',
+    city: 'Hyderabad',
+    urduCity: 'حیدرآباد',
+    popularityRank: 23,
+    rtoName: 'Regional Tax Office (RTO) Hyderabad & FBR IRIS Online',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to RTO Hyderabad Facilitation Counter: A-49, S.I.T.E. Area, Customs House Building, Hyderabad. Tel: 022-3886950 / 022-9250011 | National Helpline: 051-111-772-772.',
+    rtoPhone: '022-3886950',
+    tfcPhone: '022-9250011',
+  },
+  {
+    id: PROCESS_IDS.fbrNtnMultan,
+    code: '24',
+    slug: 'fbr-ntn-multan',
+    city: 'Multan',
+    urduCity: 'ملتان',
+    popularityRank: 24,
+    rtoName: 'Regional Tax Office (RTO) Multan & Tax Facilitation Center',
+    rtoAddress:
+      'Online 24/7 via iris.fbr.gov.pk (free for Individuals), or walk in free to RTO Multan & TFC: RTO Building, L.M.Q. Road, Chowk Nawan Shehr, Multan. Tel: 061-9200815 / TFC: 061-9239021 | National Helpline: 051-111-772-772.',
+    rtoPhone: '061-9200815',
+    tfcPhone: '061-9239021',
+  },
+];
+
+const EXTRA_NADRA_PROCESSES: ProcessRecord[] = EXTRA_CITY_NADRA_SPECS.map((spec) => ({
+  id: spec.id,
+  slug: spec.slug,
+  title: `CNIC Renewal in ${spec.city}`,
+  urdu_title: `شناختی کارڈ کی تجدید — ${spec.urduCity}`,
+  summary: `Official NADRA guide to renewing your Smart CNIC (SNIC) or Ordinary CNIC in ${spec.city} at ${spec.primaryCenterName} or via the PakID mobile app — verified fees, delivery days, Rule 12 requirements, and local center addresses.`,
+  category: 'Identity',
+  city: spec.city,
+  fee_normal: 750,
+  fee_urgent: 1500,
+  fee_executive: 2500,
+  fee_notes:
+    'Official NADRA renewal fees nationwide (nadra.gov.pk/feeStructure): Smart CNIC (SNIC) is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), and Rs. 2,500 Executive (9 days). Ordinary CNIC (Teslin) is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days). No gazetted attestation is required for renewal (Rule 12). 24/7 NADRA Helpline: 1777 or +92 51 111 786 100.',
+  time_required: spec.waitSummary,
+  office_name: spec.primaryCenterName,
+  office_address: spec.primaryCenterAddress,
+  office_timings: spec.timings,
+  best_day_to_go: spec.bestDay,
+  official_source_url: 'https://www.nadra.gov.pk/feeStructure',
+  last_updated: '2026-11-17T00:00:00Z',
+  is_verified: true,
+  is_nationwide: false,
+  popularity_rank: spec.popularityRank,
+}));
+
+const EXTRA_FBR_PROCESSES: ProcessRecord[] = EXTRA_CITY_FBR_SPECS.map((spec) => ({
+  id: spec.id,
+  slug: spec.slug,
+  title: `FBR NTN Registration in ${spec.city}`,
+  urdu_title: `ایف بی آر این ٹی این رجسٹریشن — ${spec.urduCity}`,
+  summary: `100% free official guide to getting your FBR NTN (13-digit CNIC) in ${spec.city} — either online via FBR IRIS Form 181 (iris.fbr.gov.pk) or in person at ${spec.rtoName}.`,
+  category: 'Tax',
+  city: spec.city,
+  fee_normal: 0,
+  fee_urgent: 0,
+  fee_executive: 0,
+  fee_notes: `Official FBR Fee: Rs. 0 (Free) online via iris.fbr.gov.pk (for Individuals) or in person at ${spec.rtoName} (Tel: ${spec.rtoPhone}${spec.tfcPhone ? ` / TFC: ${spec.tfcPhone}` : ''}). Your 13-digit CNIC (without dashes) IS your Individual NTN. Under Section 154A, IT & freelancer export proceeds are subject to 1% final tax (0.25% if PSEB-registered). National FBR Helpline: 051-111-772-772.`,
+  time_required: 'Order issued in minutes to 3 working days after Form 181 submission (100% online or free at RTO)',
+  office_name: spec.rtoName,
+  office_address: spec.rtoAddress,
+  office_timings: 'IRIS Online 24/7 | RTO Counter Mon–Thu: 8:30 AM – 4:30 PM, Fri: 8:30 AM – 12:30 PM | Helpline Mon–Fri: 8:00 AM – 11:30 PM',
+  best_day_to_go: 'Weekday morning (8:30 AM – 11:00 AM) for fastest IRIS OTPs or shortest walk-in queue at RTO',
+  official_source_url: 'https://iris.fbr.gov.pk/',
+  last_updated: '2026-11-17T00:00:00Z',
+  is_verified: true,
+  is_nationwide: false,
+  popularity_rank: spec.popularityRank,
+}));
+
+const EXTRA_NADRA_DOCUMENTS: ProcessDocument[] = EXTRA_CITY_NADRA_SPECS.flatMap((spec) => [
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, name: 'Original Old CNIC (No Attestation Required)', type: 'original', copies_needed: 1, note: 'Under Rule 12 (NADRA NIC Rules, 2002), no gazetted officer attestation is required for CNIC renewal. Your previous card is surrendered/punched.', sort_order: 1 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, name: 'Old CNIC Photocopy (Front & Back)', type: 'photocopy', copies_needed: 1, note: 'Keep 1 clear photocopy of your expiring/expired CNIC for your personal record.', sort_order: 2 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, name: 'Utility Bill or Rent Agreement (Only If Address Changed)', type: 'photocopy', copies_needed: 1, note: 'Required only if you are changing your current or permanent residential address.', sort_order: 3 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, name: 'Computerized Marriage Certificate (MRC) & Spouse CNIC Copy (Only If Marital Status Changed)', type: 'original', copies_needed: 1, note: 'Required under NADRA Regulation 41 only if updating marital status at the same time.', sort_order: 4 },
+]);
+
+const EXTRA_FBR_DOCUMENTS: ProcessDocument[] = EXTRA_CITY_FBR_SPECS.flatMap((spec) => [
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, name: 'Valid Original CNIC + Front & Back Scan (PDF or JPG Under 2MB)', type: 'photocopy', copies_needed: 1, note: 'Your 13-digit CNIC (without dashes) serves as your Individual NTN / IRIS Registration Number.', sort_order: 1 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, name: 'Active Mobile SIM Registered on Your Own CNIC', type: 'original', copies_needed: 1, note: 'Mandatory under FBR rules — IRIS SMS verification fails if the mobile SIM is registered to another CNIC.', sort_order: 2 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, name: 'Personal Email Address Belonging to You', type: 'original', copies_needed: 1, note: 'Receives the Email verification code alongside your IRIS login password and 4-digit PIN.', sort_order: 3 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, name: 'Personal Bank Account Maintenance Certificate (Scanned PDF)', type: 'photocopy', copies_needed: 1, note: 'Official FBR requirement: bank account maintenance certificate in your own name for Form 181 attachment.', sort_order: 4 },
+  { id: `d1${spec.code}0000-0000-4000-8000-000000000005`, process_id: spec.id, name: 'Business Premises Ownership/Tenancy Proof & Paid Utility Bill <= 3 Months (For Businesses)', type: 'photocopy', copies_needed: 1, note: `Required if registering a business or visiting ${spec.rtoName} for AOP/sole-proprietor enrollment.`, sort_order: 5 },
+]);
+
+const EXTRA_NADRA_STEPS: ProcessStep[] = EXTRA_CITY_NADRA_SPECS.flatMap((spec) => [
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, step_number: 1, title: `Apply via PakID App OR Visit ${spec.primaryCenterName}`, description: `Start online via NADRA’s official PakID mobile app, or walk into ${spec.primaryCenterName} (or any alternative center in ${spec.city}: ${spec.otherCentersSummary}) and take a queue token with your original old CNIC.`, time_minutes: 10 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, step_number: 2, title: 'Biometric Scan, Live Photo & On-Screen Data Check', description: 'When your token is called, complete fingerprints and live photo capture, surrender/punch your previous card, and carefully inspect your English and Urdu name, father’s name, and address on the operator’s screen.', time_minutes: 15 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, step_number: 3, title: 'Pay Official NADRA Fee at Counter (or Digital PSID)', description: 'Choose Smart CNIC (Rs. 750 Normal 31 days | Rs. 1,500 Urgent 23 days | Rs. 2,500 Executive 9 days) or Ordinary CNIC (Rs. 400 Normal 15 days | Rs. 1,150 Urgent 12 days | Rs. 2,150 Executive 6 days). Always take a photo of your tracking receipt.', time_minutes: 10 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, step_number: 4, title: 'Track SMS/PakID Status & Collect Your Renewed CNIC', description: `Track delivery via the PakID app or SMS alerts on your own SIM, then collect your renewed card from the ${spec.city} NADRA delivery counter (or home courier if selected on PakID). For issues, call 24/7 Helpline 1777.`, time_minutes: 15 },
+]);
+
+const EXTRA_FBR_STEPS: ProcessStep[] = EXTRA_CITY_FBR_SPECS.flatMap((spec) => [
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, step_number: 1, title: 'Open FBR IRIS Portal (iris.fbr.gov.pk) & Select Registration for Unregistered Person', description: `Visit https://iris.fbr.gov.pk/ and click "Registration for Unregistered Person" (free Rs. 0 for Individuals across ${spec.city}). If registering an AOP or Company, visit ${spec.rtoName} in person.`, time_minutes: 3 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, step_number: 2, title: 'Enter CNIC, Own-CNIC Mobile Number & Email for Dual OTP Verification', description: 'Enter your 13-digit CNIC (without dashes), full name, mobile carrier + SIM registered strictly on your own CNIC, and personal email. Verify BOTH the SMS code and Email code to receive your IRIS password and 4-digit PIN.', time_minutes: 5 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, step_number: 3, title: 'Log In to IRIS & Complete Form 181 (Registration Application)', description: `Log in to IRIS with your CNIC and password, open Registration -> 181 (Form of Registration filed voluntarily), and fill in your ${spec.city} residential address, bank IBAN, and income source (salaried, freelancer, or business).`, time_minutes: 10 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, step_number: 4, title: 'Attach Scanned Docs Under 2MB & Submit With 4-Digit PIN', description: 'Upload your CNIC scan and bank account maintenance certificate PDF (plus tenancy/utility bill <= 3 months if registering a business), verify with your 4-digit PIN, and click Submit.', time_minutes: 5 },
+  { id: `e1${spec.code}0000-0000-4000-8000-000000000005`, process_id: spec.id, step_number: 5, title: `Download Form 181 Order (or Get Free Help at RTO ${spec.city})`, description: `Open Completed Tasks -> 181 (Order to grant registration) to download your free NTN Registration Certificate — your 13-digit CNIC is your NTN. Need biometric or IRIS login help? Visit ${spec.rtoName} (Tel: ${spec.rtoPhone}) or call 051-111-772-772.`, time_minutes: 5 },
+]);
+
+const EXTRA_NADRA_MISTAKES: ProcessMistake[] = EXTRA_CITY_NADRA_SPECS.flatMap((spec) => [
+  { id: `11${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, title: 'Giving a Mobile Number Registered on Someone Else’s CNIC', description: 'Always provide a SIM registered against your own CNIC so NADRA verification and card-ready SMS notifications arrive reliably.', sort_order: 1 },
+  { id: `11${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, title: 'Skipping the On-Screen Spelling Check Before Final Submit', description: 'Check every letter of your English & Urdu name, father’s name, and address on the counter screen before approving — fixing typos after printing requires paying a fresh modification fee.', sort_order: 2 },
+  { id: `11${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, title: 'Paying Agents or Seeking Unnecessary Attestation', description: `Under NADRA Rule 12, CNIC renewal requires ZERO gazetted attestation and zero agent fees — apply directly at official ${spec.city} NADRA centers or on the official PakID app.`, sort_order: 3 },
+]);
+
+const EXTRA_FBR_MISTAKES: ProcessMistake[] = EXTRA_CITY_FBR_SPECS.flatMap((spec) => [
+  { id: `11${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, title: 'Using a Mobile SIM Not Registered on Your Own CNIC', description: 'FBR IRIS cross-checks SIM ownership against your CNIC — using a family member’s SIM causes instant registration failure.', sort_order: 1 },
+  { id: `11${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, title: 'Paying Middlemen for a Free Online Registration', description: `Individual NTN registration on iris.fbr.gov.pk and at ${spec.rtoName} is 100% free (Rs. 0). Never pay agents for basic Form 181 enrollment.`, sort_order: 2 },
+  { id: `11${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, title: 'Confusing NTN Enrollment With Active Taxpayer List (ATL) Filer Status', description: 'Getting your Form 181 NTN order registers you with FBR, but you only appear on the Active Taxpayer List (ATL) and get lower withholding tax rates after filing your annual Income Tax Return.', sort_order: 3 },
+]);
+
+const EXTRA_NADRA_FAQS: ProcessFaq[] = EXTRA_CITY_NADRA_SPECS.flatMap((spec) => [
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, question: `Which are the best official NADRA centers for CNIC renewal in ${spec.city}?`, answer: `Primary center: ${spec.primaryCenterName} (${spec.primaryCenterAddress}). Alternative official NADRA centers in ${spec.city} include: ${spec.otherCentersSummary}.`, sort_order: 1 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, question: `What are the official NADRA CNIC renewal fees and delivery days in ${spec.city}?`, answer: 'NADRA fees are uniform nationwide (nadra.gov.pk/feeStructure): Smart CNIC (SNIC) is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), and Rs. 2,500 Executive (9 days). Ordinary CNIC (Teslin) is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days).', sort_order: 2 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, question: `Can I renew my CNIC online from ${spec.city} using the PakID app?`, answer: 'Yes! You can apply online via NADRA’s official PakID mobile app (Android & iOS) and have your card delivered or track status in-app. If biometric or live photo recapture is flagged, visit any nearby NADRA Registration Centre (NRC).', sort_order: 3 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, question: 'Do I need gazetted officer attestation for CNIC renewal?', answer: 'No. Under Rule 12 of NADRA (NIC) Rules, 2002, no attestation is required for renewing a CNIC, and you can apply up to 1 month after expiry with just your original old CNIC (plus utility bill/MRC only if changing address or marital status).', sort_order: 4 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000005`, process_id: spec.id, question: `How do I verify NADRA center shifts or report an issue in ${spec.city}?`, answer: 'Call NADRA’s 24/7 Helpline on 1777 (mobile) or +92 51 111 786 100 (landline/overseas), email csd@nadra.gov.pk, or check nadra.gov.pk before visiting.', sort_order: 5 },
+]);
+
+const EXTRA_FBR_FAQS: ProcessFaq[] = EXTRA_CITY_FBR_SPECS.flatMap((spec) => [
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000001`, process_id: spec.id, question: `Where is the official FBR Regional Tax Office (RTO) in ${spec.city}?`, answer: `${spec.rtoName}: ${spec.rtoAddress}`, sort_order: 1 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000002`, process_id: spec.id, question: `How much does FBR NTN registration cost in ${spec.city}?`, answer: `Rs. 0 — completely free! Both online registration via FBR IRIS (iris.fbr.gov.pk) and in-person assistance at ${spec.rtoName} carry zero government fee.`, sort_order: 2 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000003`, process_id: spec.id, question: 'Do individuals get a separate NTN number or is my CNIC my NTN?', answer: 'For Pakistani individuals (salaried, freelancers, sole proprietors), your 13-digit CNIC (without dashes) IS your official NTN / FBR Registration Number. Download your Form 181 Registration Order under Completed Tasks in IRIS.', sort_order: 3 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000004`, process_id: spec.id, question: `When do I need to visit RTO ${spec.city} in person instead of using IRIS online?`, answer: `Individual taxpayers can register 100% online on iris.fbr.gov.pk. Visit ${spec.rtoName} (Tel: ${spec.rtoPhone}) if you are registering an AOP (partnership) or Company, need free walk-in help with Form 181, or are locked out of your IRIS credentials.`, sort_order: 4 },
+  { id: `f1${spec.code}0000-0000-4000-8000-000000000005`, process_id: spec.id, question: 'What is the official FBR tax rate for IT freelancers and how do I reach FBR support?', answer: 'Under Section 154A of the Income Tax Ordinance, IT and IT-enabled services export proceeds are subject to 1% final tax (0.25% if PSEB-registered; confirm current Finance Act provisions on fbr.gov.pk). Contact FBR National Helpline at 051-111-772-772 (Females: 051-9107025) or helpline@fbr.gov.pk.', sort_order: 5 },
+]);
 
 export const SEED_PROCESSES: ProcessRecord[] = [
   // 1. Passport Renewal in Rawalpindi
@@ -122,10 +474,10 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     fee_notes:
       'Official NADRA renewal fees (nadra.gov.pk/feeStructure): Smart CNIC (SNIC) is Rs. 750 Normal (31 days), Rs. 1,500 Urgent (23 days), and Rs. 2,500 Executive (9 days). Ordinary CNIC (Teslin) is Rs. 400 Normal (15 days), Rs. 1,150 Urgent (12 days), and Rs. 2,150 Executive (6 days). No attestation is required for renewal. 24/7 NADRA Helpline: 1777 (mobile) or +92 51 111 786 100.',
     time_required: '45 mins–1.5 hrs at Mega Center (2+ hrs Sat) | Smart: 31/23/9 days | Ordinary: 15/12/6 days',
-    office_name: 'NADRA Mega Center, Saddar, Rawalpindi',
+    office_name: 'NADRA Mega Center, Murree Road (Rehmanabad) / Saddar & Cantt, Rawalpindi',
     office_address:
-      'NADRA Mega Center, Saddar, Rawalpindi (or any NADRA Registration Centre / official PakID mobile app). 24/7 NADRA Helpline: 1777 / +92 51 111 786 100.',
-    office_timings: 'Mon–Sat: 8:00 AM – 8:00 PM (PakID app available 24/7)',
+      'Mega Center: Millennium Mall, 62-A, Rehmanabad, Murree Road, Rawalpindi (3 shifts, open Saturday). Also CSD Lalkurti / Saddar Rawalpindi Cantt (2 shifts) & CFC Kachehri Chowk, or PakID mobile app. 24/7 Helpline: 1777 / +92 51 111 786 100.',
+    office_timings: 'Mega Center Murree Rd: 3 Shifts (Mon–Sat) | Cantt / Saddar: 2 Shifts (Mon–Sat) | PakID 24/7',
     best_day_to_go: 'Weekday 9:00 AM to 11:00 AM (avoid Saturday — 2+ hours wait)',
     official_source_url: 'https://www.nadra.gov.pk/feeStructure',
     last_updated: '2026-11-17T00:00:00Z',
@@ -177,9 +529,9 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     fee_notes:
       'Official FBR Fee: Rs. 0 (Free) online via iris.fbr.gov.pk (for Individuals) or in person at any Tax House / RTO Facilitation Counter. For Pakistani individuals, your 13-digit CNIC (without dashes) IS your NTN. Under FBR Section 154A, IT & IT-enabled services export proceeds are subject to 1% final tax (0.25% if PSEB-registered; confirm current Finance Act rules on fbr.gov.pk). FBR Helpline: 051-111-772-772 | helpline@fbr.gov.pk.',
     time_required: 'Order issued in minutes to 3 working days after Form 181 submission (100% online)',
-    office_name: 'Online — FBR IRIS Portal (iris.fbr.gov.pk) or Any Tax House / RTO Facilitation Counter',
+    office_name: 'FBR IRIS Online (iris.fbr.gov.pk) & RTO Islamabad (G-9/1)',
     office_address:
-      'Online via iris.fbr.gov.pk for Individuals (AOPs and Companies must visit a Tax House / RTO Facilitation Counter). FBR Helpline: 051-111-772-772 (Females: 051-9107025) | helpline@fbr.gov.pk.',
+      'Online 24/7 via iris.fbr.gov.pk for Individuals nationwide. In Islamabad: RTO Islamabad & Tax Facilitation Center, Plot No. 20, Service Road, Mauve Area, Sector G-9/1, Islamabad (Tel: 051-9106387 / TFC: 051-9070000). National Helpline: 051-111-772-772 (Females: 051-9107025) | helpline@fbr.gov.pk.',
     office_timings: 'IRIS Online 24/7 (Weekday mornings are fastest) | FBR Helpline Mon–Fri: 8:00 AM – 11:30 PM',
     best_day_to_go: 'Weekday morning (IRIS responds faster and SMS/Email PINs arrive quickly)',
     official_source_url: 'https://iris.fbr.gov.pk/',
@@ -353,6 +705,9 @@ export const SEED_PROCESSES: ProcessRecord[] = [
     is_nationwide: true,
     popularity_rank: 10,
   },
+
+  ...EXTRA_NADRA_PROCESSES,
+  ...EXTRA_FBR_PROCESSES,
 ];
 
 export const SEED_DOCUMENTS: ProcessDocument[] = [
@@ -425,6 +780,9 @@ export const SEED_DOCUMENTS: ProcessDocument[] = [
   // 10. E-Challan Check and Payment in Punjab
   { id: 'd1100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, name: 'Vehicle Registration Number', type: 'original', copies_needed: 1, note: 'Your vehicle number plate, for example LEA-1234 or GAA-123.', sort_order: 1 },
   { id: 'd1100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, name: 'Owner CNIC Number (13 Digits Without Dashes) or Chassis Number', type: 'original', copies_needed: 1, note: 'Enter the owner’s 13-digit CNIC without dashes, or your vehicle chassis number.', sort_order: 2 },
+
+  ...EXTRA_NADRA_DOCUMENTS,
+  ...EXTRA_FBR_DOCUMENTS,
 ];
 
 export const SEED_STEPS: ProcessStep[] = [
@@ -491,6 +849,9 @@ export const SEED_STEPS: ProcessStep[] = [
   { id: 'e1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, step_number: 3, title: 'Select Challan & Generate 17-Digit PSID in e-Pay Punjab', description: 'If an unpaid challan exists, select it and generate a 17-digit PSID code in the e-Pay Punjab app.', time_minutes: 2 },
   { id: 'e1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, step_number: 4, title: 'Pay PSID Within 24 Hours via App, ATM, or Counter', description: 'Pay your 17-digit PSID through JazzCash, Easypaisa, your bank app, a 1Link ATM, or over the counter within 24 hours before the PSID expires.', time_minutes: 2 },
   { id: 'e1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, step_number: 5, title: 'Save Screenshot of Payment Receipt', description: 'Save a screenshot of your payment receipt. Payment confirmation takes 10 minutes to 2 hours to reflect on the PSCA portal.', time_minutes: 1 },
+
+  ...EXTRA_NADRA_STEPS,
+  ...EXTRA_FBR_STEPS,
 ];
 
 export const SEED_MISTAKES: ProcessMistake[] = [
@@ -543,6 +904,9 @@ export const SEED_MISTAKES: ProcessMistake[] = [
   { id: '11100000-0000-4000-8000-000000000001', process_id: PROCESS_IDS.eChallan, title: 'Paying via a Link Sent in SMS', description: 'Many SMS links claiming you have an unpaid e-challan are scams. Always type echallan.psca.gop.pk directly into your browser yourself.', sort_order: 1 },
   { id: '11100000-0000-4000-8000-000000000002', process_id: PROCESS_IDS.eChallan, title: 'Not Paying PSID Within 24 Hours', description: 'Your 17-digit PSID expires after 24 hours — if you miss the window, you will have to generate a fresh PSID again.', sort_order: 2 },
   { id: '11100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, title: 'Ignoring an Unpaid E-Challan', description: 'Unpaid challans attract extra penalties after 10 days and will block your vehicle transfer and driving licence renewal later.', sort_order: 3 },
+
+  ...EXTRA_NADRA_MISTAKES,
+  ...EXTRA_FBR_MISTAKES,
 ];
 
 export const SEED_FAQS: ProcessFaq[] = [
@@ -615,6 +979,9 @@ export const SEED_FAQS: ProcessFaq[] = [
   { id: 'f1100000-0000-4000-8000-000000000003', process_id: PROCESS_IDS.eChallan, question: 'How many days do I have to pay an e-Challan?', answer: 'Pay within 10 days to avoid extra penalty. Remember that once you generate a 17-digit PSID in e-Pay Punjab, you must pay that PSID within 24 hours before it expires.', sort_order: 3 },
   { id: 'f1100000-0000-4000-8000-000000000004', process_id: PROCESS_IDS.eChallan, question: 'Which payment methods work for the 17-digit PSID?', answer: 'You can pay the 17-digit PSID through JazzCash, Easypaisa, your Pakistani bank app, a 1Link ATM, or over the counter at a bank branch. Always save a screenshot of your payment receipt.', sort_order: 4 },
   { id: 'f1100000-0000-4000-8000-000000000005', process_id: PROCESS_IDS.eChallan, question: 'How long does payment confirmation take to appear on the portal?', answer: 'Checking your challan takes 2 minutes, and payment confirmation takes 10 minutes to 2 hours to reflect on echallan.psca.gop.pk. Ignoring unpaid challans blocks vehicle transfer and driving licence renewal.', sort_order: 5 },
+
+  ...EXTRA_NADRA_FAQS,
+  ...EXTRA_FBR_FAQS,
 ];
 
 // Crowdsourced wait times (visit_date <= 2026-11-16 to satisfy DB CHECK constraint)

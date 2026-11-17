@@ -15,6 +15,7 @@ import {
   Wallet,
 } from 'lucide-react';
 import { AdSenseSlot, isAdSenseEnabled } from '@/components/AdSenseSlot';
+import { AllCitiesOfficeSwitcher } from '@/components/CityOfficesDirectory';
 import { DisclaimerBox } from '@/components/DisclaimerBox';
 import { ProcessCard } from '@/components/ProcessCard';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
@@ -493,6 +494,17 @@ export function ProcessDetailView({
 
           {/* (i) FAQ (5 questions accordion) */}
           <FaqAccordion faqs={process.faqs} />
+
+          {/* Official All-Cities NADRA / FBR Office Switcher */}
+          {(process.category === 'Identity' ||
+            process.category === 'Family' ||
+            process.category === 'Tax') && (
+            <AllCitiesOfficeSwitcher
+              agency={process.category === 'Tax' ? 'fbr' : 'nadra'}
+              currentCityName={process.city}
+              currentProcessSlug={process.slug}
+            />
+          )}
 
           {/* Mobile WhatsApp CTA */}
           <div className="lg:hidden">
