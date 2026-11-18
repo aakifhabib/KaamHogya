@@ -95,8 +95,8 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-ink">How We Verify Our Guides</h2>
           <ol className="mt-4 space-y-3 text-sm leading-relaxed text-gray-700">
             <li>
-              <strong>1. Official Portal Cross-Check:</strong> Every fee schedule,
-              document requirement, and office address is verified against official
+              <strong>1. Official Portal Cross-Check:</strong> Fee schedules,
+              document requirements and office addresses should be confirmed against current official
               government announcements (DGIP, NADRA, FBR, Punjab PITB/DLIMS/PKM).
             </li>
             <li>

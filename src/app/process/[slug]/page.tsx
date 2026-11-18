@@ -34,7 +34,7 @@ export async function generateMetadata({
     process.fee_normal
   )}, ${process.documents.length} required documents, ${
     process.steps.length
-  } counter-by-counter steps, office address (${process.office_name}), and live wait times.`;
+  } counter-by-counter steps, office address (${process.office_name}), and historical citizen wait reports.`;
 
   return {
     title: `${process.title} — Exact Fee, Documents & Step-by-Step Guide`,

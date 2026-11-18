@@ -19,7 +19,7 @@ export default function NotFound() {
         <h1 className="mt-6 text-3xl font-bold text-ink">Page Not Found</h1>
         <p className="mt-3 text-sm text-gray-600 sm:text-base">
           Sorry, we could not find the document guide or city page you were looking for.
-          Search all verified Pakistani government processes below.
+          Search all Pakistani government process guides below.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link

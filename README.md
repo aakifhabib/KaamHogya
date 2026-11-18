@@ -17,7 +17,7 @@ The NADRA service library (`/nadra`) contains nationwide guidance linked to offi
 - **Homepage (`/`)**: Centered instant-search hero (`"Search: Passport Renewal in Rawalpindi"`), 8-city selector (Rawalpindi, Islamabad, Lahore, Karachi, Peshawar, Quetta, Hyderabad, Multan), 6 category cards (Identity, Passport, Driving, Tax, Certificates, Family), Popular This Week, 3-step How It Works, moderated historical Wait Times feed, and Trust & Disclaimer section.
 - **All Processes (`/processes`)**: Instant no-reload search, City, Category, PKR Fee Range, and Time Required filters with live Supabase sync.
 - **Process Detail (`/process/[slug]`)**: Structured in exact citizen-friendly order:
-  1. Header (Title, Urdu subtitle, City & Category badges, Verified badge, Last Updated, Official Source link)
+  1. Header (Title, Urdu subtitle, City & Category badges, Last Updated, Official Source link)
   2. At A Glance Box (Normal Fee, Time Needed, Office Address, Timings, Best Day To Go)
   3. Fee Breakdown Table (Normal, Urgent, Executive in exact PKR)
   4. Interactive Document Checklist (`localStorage` persistence, Original vs Photocopy + Copy count, Print Checklist, Save My Checklist, Download PDF)
@@ -28,6 +28,7 @@ The NADRA service library (`/nadra`) contains nationwide guidance linked to offi
   9. **FAQ Accordion** (5 questions per process)
   10. **Related Processes** (3 cards)
   11. **Non-Government Disclaimer**, links to official sources, and optional AdSense slot
+- **NADRA service library (`/nadra`)**: Ten nationwide guides with official sources, searchable by common names such as B-form and FRC. Each guide includes a device-saved preparation checklist and print option. Local service availability must be confirmed.
 - **City Pages (`/city/[slug]`)**: Dedicated pages for all 8 major Pakistani cities showing local processes, applicable nationwide guides, office addresses, and historical citizen reports where available.
 - **Document Checklist & PDF Generator (`/checklist`)**: Select any process + city, tick off documents (persisted offline in `localStorage`), add personal reminders, **Download PDF** (works on mobile & desktop), print, or **Share on WhatsApp**.
 - **Wait Time Tracker (`/wait-times`)**: Filterable directory of offices across Pakistan with average wait times, last reported dates, and an inline submission drawer.
@@ -74,6 +75,8 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run lint` — Run ESLint
 - `npm run build` — Production build
 - `npm run start` — Start production server
+- `node scripts/check-nadra-search.mjs` — Check NADRA search aliases and city terms
+- `node scripts/check-nadra-routes.mjs http://localhost:3000` — Check city and NADRA routes against a running server
 - `node scripts/generate-seed-sql.mjs` — Regenerate `supabase/seed.sql` from `src/data/seed-data.ts`
 
 ---

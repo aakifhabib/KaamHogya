@@ -130,7 +130,7 @@ export function ClientProcessFallback({
           </div>
           <h1 className="mt-5 text-2xl font-bold text-ink">Process Guide Not Found</h1>
           <p className="mt-2 text-sm text-gray-600">
-            We couldn’t find a guide matching &ldquo;{slug}&rdquo;. Browse all verified
+            We couldn’t find a guide matching &ldquo;{slug}&rdquo;. Browse all
             Pakistani citizen processes below.
           </p>
           <div className="mt-6 flex justify-center gap-3">

@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'All Government Processes in Pakistan — Fees, Documents & Wait Times',
   description:
-    'Search and filter verified Pakistani government document processes by city, category, official PKR fee range, and processing time.',
+    'Search and filter Pakistani government document guides by city, category, official PKR fee range, and processing time.',
   alternates: {
     canonical: `${SITE_URL}/processes`,
   },
@@ -46,9 +46,9 @@ export default async function AllProcessesPage() {
             All Pakistani Citizen Processes
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-gray-600 sm:text-base">
-            Filter instantly by city, category, official PKR fee, or processing time — no
-            page reloads. Click any card for exact fee tables, interactive document
-            checklists, and live office wait times.
+            Filter instantly by city, category, listed PKR fee, or processing time — no
+            page reloads. Click a card for fee tables, interactive document
+            checklists, and historical citizen wait reports. Confirm fees and requirements with the relevant agency.
           </p>
         </div>
 

@@ -354,7 +354,7 @@ export default async function HomePage() {
                 Built for Citizens, Independent &amp; Transparent
               </div>
               <h2 className="mt-3 text-2xl font-bold text-ink">
-                Why Thousands Trust KaamHoGaya.pk
+                Guidance for Pakistani Citizens
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-gray-600">
                 Government websites are often scattered across federal and provincial
@@ -368,7 +368,7 @@ export default async function HomePage() {
                     <AnimatedCounter value={processes.length} />
                   </p>
                   <p className="mt-0.5 text-xs font-medium text-gray-600">
-                    Verified Guides
+                    Citizen Guides
                   </p>
                 </div>
                 <div className="khg-card-lift rounded-xl bg-surface p-3.5">

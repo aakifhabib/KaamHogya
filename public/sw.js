@@ -1,5 +1,5 @@
-const CACHE_NAME = 'kaamhogaya-v2';
-const OFFLINE_SHELL = ['/', '/checklist', '/processes', '/wait-times', '/manifest.webmanifest'];
+const CACHE_NAME = 'kaamhogaya-v3';
+const OFFLINE_SHELL = ['/', '/checklist', '/processes', '/wait-times', '/manifest.webmanifest', '/offline.html'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -46,14 +46,14 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() =>
-          caches.match(request).then((cached) => cached || caches.match('/checklist') || caches.match('/'))
+          caches.match(request).then((cached) => cached || caches.match('/offline.html'))
         )
     );
     return;
   }
 
   // Stale-while-revalidate for same-origin static assets
-  if (url.origin === self.location.origin) {
+  if (url.origin === self.location.origin && (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/'))) {
     event.respondWith(
       caches.match(request).then((cached) => {
         const networkPromise = fetch(request)

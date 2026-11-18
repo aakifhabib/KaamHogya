@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import {
   AlertTriangle,
-  BadgeCheck,
   Building2,
   Calendar,
   CalendarCheck,
@@ -163,12 +162,6 @@ export function ProcessDetailView({
               >
                 {process.category}
               </Link>
-              {process.is_verified && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-brand-dark">
-                  <BadgeCheck className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-                  Verified Guide
-                </span>
-              )}
               {process.is_nationwide && (
                 <span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-900">
                   Applies All Pakistan

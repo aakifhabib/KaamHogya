@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, MapPin, Search } from 'lucide-react';
 import { formatPKR } from '@/lib/format';
+import { findNadraServices } from '@/lib/nadra-search';
 import type { ProcessSummaryCard } from '@/types/database';
 
 interface SearchBarProps {
@@ -25,16 +26,12 @@ export function SearchBar({
 
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) {
-      return processes.slice(0, 5);
-    }
-    return processes
-      .filter((p) => {
-        const haystack =
-          `${p.title} ${p.urdu_title} ${p.city} ${p.category} ${p.office_name} ${p.summary}`.toLowerCase();
-        return haystack.includes(q);
-      })
-      .slice(0, 6);
+    const guides = (!q ? processes.slice(0, 5) : processes.filter((p) => {
+      const haystack = `${p.title} ${p.urdu_title} ${p.city} ${p.category} ${p.office_name} ${p.summary}`.toLowerCase();
+      return haystack.includes(q);
+    }).slice(0, 4)).map((p) => ({ id: p.id, title: p.title, href: `/process/${p.slug}`, detail: `${p.city} · ${p.category} · ${p.documents_count} docs`, badge: formatPKR(p.fee_normal) }));
+    const services = findNadraServices(q).slice(0, 4).map((s) => ({ id: `nadra-${s.slug}`, title: s.title, href: `/nadra/${s.slug}`, detail: 'NADRA · Nationwide guidance', badge: 'Guide' }));
+    return q ? [...services, ...guides].slice(0, 7) : guides;
   }, [processes, query]);
 
   useEffect(() => {
@@ -51,7 +48,7 @@ export function SearchBar({
     e.preventDefault();
     setOpen(false);
     if (activeIndex >= 0 && suggestions[activeIndex]) {
-      router.push(`/process/${suggestions[activeIndex].slug}`);
+      router.push(suggestions[activeIndex].href);
       return;
     }
     const trimmed = query.trim();
@@ -102,6 +99,7 @@ export function SearchBar({
             aria-autocomplete="list"
             aria-expanded={open}
             aria-controls="khg-search-suggestions"
+            aria-activedescendant={open && activeIndex >= 0 ? `khg-search-option-${activeIndex}` : undefined}
             className="w-full bg-transparent px-3 py-2.5 text-sm text-ink placeholder:text-gray-400 focus:outline-none sm:text-base"
           />
           <button
@@ -126,13 +124,13 @@ export function SearchBar({
           </div>
           <ul className="divide-y divide-gray-100">
             {suggestions.map((proc, idx) => (
-              <li key={proc.id} role="option" aria-selected={idx === activeIndex}>
+              <li id={`khg-search-option-${idx}`} key={proc.id} role="option" aria-selected={idx === activeIndex}>
                 <button
                   type="button"
                   onMouseDown={(e) => {
                     e.preventDefault();
                     setOpen(false);
-                    router.push(`/process/${proc.slug}`);
+                    router.push(proc.href);
                   }}
                   className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors ${
                     idx === activeIndex ? 'bg-emerald-50' : 'hover:bg-surface'
@@ -143,18 +141,11 @@ export function SearchBar({
                       {proc.title}
                     </p>
                     <p className="mt-0.5 flex items-center gap-2 text-xs text-gray-500">
-                      <span className="inline-flex items-center gap-0.5">
-                        <MapPin className="h-3 w-3 text-brand" />
-                        {proc.city}
-                      </span>
-                      <span>•</span>
-                      <span>{proc.category}</span>
-                      <span>•</span>
-                      <span>{proc.documents_count} docs</span>
+                      <span className="inline-flex items-center gap-0.5"><MapPin className="h-3 w-3 text-brand" />{proc.detail}</span>
                     </p>
                   </div>
                   <span className="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-bold text-brand">
-                    {formatPKR(proc.fee_normal)}
+                    {proc.badge}
                   </span>
                 </button>
               </li>

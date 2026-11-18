@@ -243,7 +243,7 @@ export default async function CityPage({ params }: CityPageProps) {
                     id="city-offices-heading"
                     className="text-2xl font-bold tracking-tight text-ink"
                   >
-                    {city.name} Offices &amp; Live Wait Times
+                    {city.name} Offices &amp; Wait Reports
                   </h2>
                   <p className="mt-1 text-sm text-gray-600">
                     Office listings and reported queue durations. Confirm office details with the relevant agency before visiting.

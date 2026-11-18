@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import {
   ArrowRight,
-  BadgeCheck,
   Calendar,
   Clock,
   FileText,
@@ -41,15 +40,7 @@ export function ProcessCard({ process }: ProcessCardProps) {
             {process.category}
           </span>
         </div>
-        {process.is_verified && (
-          <span
-            className="inline-flex items-center gap-1 rounded-full bg-emerald-100/80 px-2 py-0.5 text-[11px] font-semibold text-brand-dark"
-            title="Verified against official portal"
-          >
-            <BadgeCheck className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-            Verified
-          </span>
-        )}
+
       </div>
 
       {/* Title & Urdu subtitle */}

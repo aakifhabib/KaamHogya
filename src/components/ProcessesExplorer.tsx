@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { Filter, RotateCcw, Search, SlidersHorizontal } from 'lucide-react';
 import { ProcessCard } from '@/components/ProcessCard';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
 import { buildProcessSummaries } from '@/lib/data';
+import { findNadraServices } from '@/lib/nadra-search';
 import { matchesFeeFilter, matchesTimeFilter } from '@/lib/format';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import type {
@@ -137,6 +139,9 @@ export function ProcessesExplorer({
       return a.popularity_rank - b.popularity_rank;
     });
   }, [processes, query, city, category, feeRange, timeRange, sortBy]);
+
+  const nadraMatches = useMemo(() => findNadraServices(query), [query]);
+  const selectedCitySlug = cities.find((c) => c.name.toLowerCase() === city.toLowerCase())?.slug;
 
   const hasActiveFilters =
     query.trim() !== '' ||
@@ -304,7 +309,7 @@ export function ProcessesExplorer({
           <span className="inline-flex items-center gap-1.5 font-medium">
             <Filter className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
             Showing <strong className="text-ink">{filtered.length}</strong> of{' '}
-            {processes.length} verified processes
+            {processes.length} process guides
           </span>
           {hasActiveFilters && (
             <button
@@ -319,6 +324,13 @@ export function ProcessesExplorer({
         </div>
       </div>
 
+      {nadraMatches.length > 0 && (
+        <section aria-labelledby="nadra-search-results" className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+          <h2 id="nadra-search-results" className="text-lg font-bold text-ink">Matching NADRA service guides ({nadraMatches.length})</h2>
+          <p className="mt-1 text-sm text-gray-700">Nationwide guidance; these matches are separate from the process filters and fee/time sorting below. Confirm local availability with NADRA.</p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">{nadraMatches.map(service => <Link key={service.slug} href={`/nadra/${service.slug}${selectedCitySlug ? `?city=${encodeURIComponent(selectedCitySlug)}` : ''}`} className="rounded-xl border border-emerald-200 bg-white p-3 hover:border-brand"><span className="block font-bold text-brand">{service.title} →</span><span className="mt-1 block text-xs text-gray-600">{service.summary}</span></Link>)}</div>
+        </section>
+      )}
       {/* Results Grid */}
       {filtered.length > 0 ? (
         <div
@@ -331,7 +343,7 @@ export function ProcessesExplorer({
         </div>
       ) : (
         <div className="animate-fade-up rounded-2xl border border-emerald-950/10 bg-white p-10 text-center shadow-sm">
-          <p className="text-lg font-bold text-ink">No matching processes found</p>
+          <p className="text-lg font-bold text-ink">{nadraMatches.length ? 'No matching process cards' : 'No matching processes found'}</p>
           <p className="mx-auto mt-2 max-w-md text-sm text-gray-600">
             Try clearing one of your filters or search with simpler keywords like
             &ldquo;Passport&rdquo;, &ldquo;CNIC&rdquo;, or &ldquo;NTN&rdquo;.
