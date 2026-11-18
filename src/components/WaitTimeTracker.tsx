@@ -384,6 +384,7 @@ export function WaitTimeTracker({
                 </label>
                 <span className="text-gray-500">{tip.length}/200</span>
               </div>
+              <p className="mb-1 text-xs font-semibold text-amber-900">Tips may be published. Do not include names, identity numbers, phone numbers, passwords or other personal details.</p>
               <input
                 id="tracker-tip"
                 type="text"

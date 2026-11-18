@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Calendar, ChevronRight, ExternalLink, Home } from 'lucide-react';
 import { OFFICIAL_DIRECTORY_URL, SITE_URL } from '@/lib/constants';
 import { formatDate, formatDomain, sanitizeHttpUrl } from '@/lib/format';
+import { serializeJsonLd } from '@/lib/json-ld';
 
 export interface BreadcrumbItem {
   label: string;
@@ -52,7 +53,7 @@ export function PageMetaBar({
     <div className="no-print border-b border-emerald-900/10 bg-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2.5 text-xs sm:px-6">
         {/* Breadcrumbs */}

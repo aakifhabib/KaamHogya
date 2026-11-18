@@ -69,7 +69,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link href="/wait-times" className="text-emerald-100 hover:text-white">
-                    Live Office Wait Time Tracker
+                    Office Wait Reports
                   </Link>
                 </li>
                 <li>

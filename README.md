@@ -75,6 +75,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run lint` — Run ESLint
 - `npm run build` — Production build
 - `npm run start` — Start production server
+- `node scripts/check-security.mjs http://localhost:3000` — Check admin navigation, headers and JSON-LD escaping against a running server
 - `node scripts/check-nadra-search.mjs` — Check NADRA search aliases and city terms
 - `node scripts/check-nadra-routes.mjs http://localhost:3000` — Check city and NADRA routes against a running server
 - `node scripts/generate-seed-sql.mjs` — Regenerate `supabase/seed.sql` from `src/data/seed-data.ts`
@@ -95,7 +96,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Public signup is disabled in Supabase Auth. Only users registered in both `auth.users` and `public.admin_users` can sign in to `/admin`.
 
-Manage admin accounts in Supabase Auth and grant access only to trusted users via `public.admin_users`. A credential was previously published in repository history; rotate any account that may have used it, revoke old sessions, and do not store credentials in the repository.
+Manage admin accounts in Supabase Auth and grant access only to trusted users via `public.admin_users`. The admin URL is intentionally absent from public navigation, but it is public knowledge and hiding it is not access control. RLS still enforces authorization.
+
+**Urgent operator actions:** A credential was previously published in repository history. In Supabase Authentication, reset the affected account to a unique strong password using the dashboard or a verified recovery flow, revoke its existing sessions, and review account activity and authorized admins. Do not send passwords in chat or commit them. Verify access and test a non-admin account is denied writes. Enable MFA for administrators and enforce it in database authorization before relying on it; merely enrolling MFA does not enforce it. Configure a verified contact mailbox and review privacy/legal copy. Wait submissions remain enabled and their browser-supplied rate-limit identifier is bypassable: implement trusted server-side abuse controls or disable the RPC until ready. Review historical office information against current official sources. No changes here certify security or legal compliance.
 
 ---
 
