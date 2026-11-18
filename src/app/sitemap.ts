@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { NADRA_REVIEWED, NADRA_SERVICES } from '@/data/nadra-services';
 import { SITE_URL } from '@/lib/constants';
 import { getCities, getProcessSummaries } from '@/lib/data';
 
@@ -13,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     '',
     '/processes',
+    '/nadra',
     '/checklist',
     '/wait-times',
     '/about',
@@ -42,5 +44,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  return [...staticRoutes, ...cityRoutes, ...processRoutes];
+  return [...staticRoutes, ...cityRoutes, ...processRoutes, ...NADRA_SERVICES.map((service) => ({ url: `${SITE_URL}/nadra/${service.slug}`, lastModified: new Date(NADRA_REVIEWED), changeFrequency: 'monthly' as const, priority: 0.8 }))];
 }

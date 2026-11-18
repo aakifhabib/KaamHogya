@@ -9,7 +9,7 @@ const CONTACT_EMAIL = 'hello@kaamhogya.pk';
 const TOPICS = [
   'Report a wrong fee or outdated guide',
   'Submit a correction for your city',
-  'Ask about the document check service',
+  'Ask about a guide',
   'Request data deletion',
   'Report a scam using our name',
 ];
@@ -52,7 +52,7 @@ export function ContactFeedbackForm() {
         >
           {CONTACT_EMAIL}
         </a>
-        . We reply within 2 working days, Monday to Friday.
+        . Responses depend on mailbox availability.
       </p>
 
       {mailtoHref ? (

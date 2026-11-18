@@ -73,23 +73,14 @@ export default function PrivacyPolicyPage() {
                 <strong>Wait Time Submissions:</strong> When you submit a wait time, we
                 collect city, office name, date of visit, wait time in minutes, rating,
                 and your tip. We do not ask for your name, CNIC, passport number, or
-                phone number in this form. Submissions are anonymous.
+                phone number in this form. An identifier stored in your browser is used for basic rate limiting; do not include personal information in your tip.
               </li>
               <li>
                 <strong>Contact Form:</strong> If you contact us, we collect your name,
                 email, and your message so we can reply.
               </li>
               <li>
-                <strong>Document Check Service:</strong> If you pay for a document check
-                on WhatsApp, you may voluntarily send photos of your documents. We use
-                them only to check your file, and we delete them within 7 days after
-                your check is done. We never ask for your CNIC number, passport number,
-                bank PIN, OTP, or password. Never send those to us.
-              </li>
-              <li>
-                <strong>Analytics:</strong> We use Google Analytics to see which guides
-                are useful, which city people come from, and what device they use. This
-                data is aggregated and does not identify you personally.
+                <strong>Analytics:</strong> If enabled, Google Analytics may collect usage and device information.
               </li>
               <li>
                 <strong>Cookies:</strong> See our{' '}
@@ -164,9 +155,7 @@ export default function PrivacyPolicyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-ink">7. Data retention</h2>
             <p>
-              Wait time submissions are kept to calculate averages. Contact messages are
-              kept for 12 months. Document photos for document check service are deleted
-              within 7 days after the check.
+              Wait time submissions are kept to calculate averages. Contact messages are sent using your email application; do not include sensitive identity information.
             </p>
           </section>
 

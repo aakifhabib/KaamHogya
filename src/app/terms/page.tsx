@@ -109,13 +109,7 @@ export default function TermsPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-ink">5. Document Check Service</h2>
             <p>
-              Our paid document check service, if offered, is a manual review of the
-              documents you send us on WhatsApp. It is a checklist service only. We do
-              not guarantee that your application will be accepted by the government
-              office. The final decision is always made by the government office. Fee
-              for this service is Rs. 500, payable in advance via{' '}
-              <strong>JazzCash</strong>, <strong>Easypaisa</strong>, or bank transfer.
-              Once the check is done and delivered, the fee is non-refundable.
+              No paid document review service is currently offered through this site. Never share identity documents, passwords or one-time codes with an unverified contact.
             </p>
           </section>
 

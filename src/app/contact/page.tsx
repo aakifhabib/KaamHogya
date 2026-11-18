@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const CONTACT_USE_CASES = [
   'Report a wrong fee or outdated guide',
   'Submit a correction for your city',
-  'Ask about the document check service',
+  'Ask about a guide',
   'Request data deletion',
   'Report a scam using our name',
 ];
@@ -43,7 +43,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-gray-600 sm:text-base">
-            We reply within 2 working days, Monday to Friday.
+            Responses depend on mailbox availability.
           </p>
         </header>
 
@@ -115,7 +115,7 @@ export default function ContactPage() {
 
               <div className="flex items-center gap-2 border-t border-gray-100 pt-4 text-xs font-semibold text-ink">
                 <Clock className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
-                <span>We reply within 2 working days, Monday to Friday.</span>
+                <span>Responses depend on mailbox availability.</span>
               </div>
             </div>
 

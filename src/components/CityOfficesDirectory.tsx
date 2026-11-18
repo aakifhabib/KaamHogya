@@ -7,7 +7,6 @@ import {
   BadgeCheck,
   Building2,
   Calendar,
-  Clock,
   ExternalLink,
   Landmark,
   MapPin,
@@ -39,18 +38,16 @@ export function CityOfficialOfficesSection({
         <div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-brand">
             <BadgeCheck className="h-3.5 w-3.5" aria-hidden="true" />
-            Verified Official Directory · NADRA &amp; FBR
+            Local Office Listings · NADRA &amp; FBR
           </span>
           <h2
             id="official-offices-heading"
             className="mt-2 text-xl font-bold text-ink sm:text-2xl"
           >
-            Official NADRA Centers &amp; FBR Tax Office in {directory.cityName}
+            NADRA &amp; FBR Office Listings in {directory.cityName}
           </h2>
           <p className="mt-1 text-xs text-gray-600 sm:text-sm">
-            Verified addresses, shift schedules, and official helplines checked against{' '}
-            <span className="font-semibold text-ink">nadra.gov.pk</span> and{' '}
-            <span className="font-semibold text-ink">fbr.gov.pk</span>.
+            These listings are leads, not a live official directory. Confirm address, hours, and service availability with the relevant agency before travelling.
           </p>
         </div>
       </div>
@@ -84,7 +81,7 @@ export function CityOfficialOfficesSection({
           </div>
 
           <p className="mt-3 text-xs leading-relaxed text-gray-700">
-            {directory.nadraOverview}
+            Confirm these listed centres, their hours, and the service you need with NADRA at 1777 before visiting.
           </p>
 
           <ul className="mt-4 space-y-3">
@@ -106,11 +103,7 @@ export function CityOfficialOfficesSection({
                   >
                     {center.badge}
                   </span>
-                  {center.openSaturday && (
-                    <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-800">
-                      Open Saturday
-                    </span>
-                  )}
+
                 </div>
 
                 <p className="mt-1.5 flex items-start gap-1.5 text-xs text-gray-700">
@@ -121,14 +114,7 @@ export function CityOfficialOfficesSection({
                   <span>{center.address}</span>
                 </p>
 
-                <p className="mt-1 flex items-center gap-1.5 text-[11px] font-semibold text-gray-600">
-                  <Clock className="h-3 w-3 shrink-0 text-gray-500" aria-hidden="true" />
-                  <span>{center.shifts}</span>
-                </p>
-
-                {center.notes && (
-                  <p className="mt-1 text-[11px] text-gray-500">{center.notes}</p>
-                )}
+                <p className="mt-1 text-[11px] text-gray-500">Address and hours should be confirmed with NADRA.</p>
               </li>
             ))}
           </ul>
@@ -139,8 +125,7 @@ export function CityOfficialOfficesSection({
               {OFFICIAL_HELPLINES.nadra.landline}
             </p>
             <p className="mt-0.5 text-[11px] text-emerald-900/80">
-              Smart CNIC: Rs. 750 / 1,500 / 2,500 (31 / 23 / 9 days) · Ordinary: Rs. 400 /
-              1,150 / 2,150 (15 / 12 / 6 days) · Or apply online via PakID App.
+              Confirm fees and processing times with NADRA. Its published Smart NIC timeline tables differ; PakID availability depends on your case.
             </p>
           </div>
 
@@ -325,9 +310,9 @@ export function AllCitiesOfficeSwitcher({
               : 'Official FBR Regional Tax Offices (RTOs) Across Pakistan'}
           </h2>
           <p className="mt-0.5 text-xs text-gray-600 sm:text-sm">
-            Select your city to view verified{' '}
+            Select a city to view listed{' '}
             {agency === 'nadra'
-              ? 'NADRA Mega Centers, Executive Centres & shifts'
+              ? 'NADRA centres (confirm address, hours and services with NADRA)'
               : 'FBR Regional Tax Office addresses, phones & facilitation counters'}
             .
           </p>
@@ -372,7 +357,7 @@ export function AllCitiesOfficeSwitcher({
               {selected.cityName} ({selected.province})
             </h3>
             <p className="mt-0.5 text-xs text-gray-600">
-              {agency === 'nadra' ? selected.nadraOverview : selected.fbrOverview}
+              {agency === 'nadra' ? 'Confirm each listed address, hours and service availability with NADRA at 1777 before visiting.' : selected.fbrOverview}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -408,10 +393,7 @@ export function AllCitiesOfficeSwitcher({
                   </span>
                 </div>
                 <p className="mt-1 text-xs text-gray-700">{c.address}</p>
-                <p className="mt-1 text-[11px] font-semibold text-gray-500">
-                  {c.shifts}
-                  {c.openSaturday ? ' · Open Saturday' : ''}
-                </p>
+                <p className="mt-1 text-[11px] text-gray-500">Confirm with NADRA before visiting.</p>
               </li>
             ))}
           </ul>

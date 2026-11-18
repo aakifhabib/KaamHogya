@@ -17,6 +17,7 @@ import {
   Reveal,
 } from '@/components/MotionPrimitives';
 import { PageMetaBar } from '@/components/PageMetaBar';
+import { NadraServiceCards } from '@/components/NadraServiceCards';
 import { ProcessCard } from '@/components/ProcessCard';
 import { WhatsAppCta } from '@/components/WhatsAppCta';
 import { getCityOfficialDirectory } from '@/data/city-offices';
@@ -31,19 +32,20 @@ import {
 export const dynamic = 'force-dynamic';
 
 interface CityPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
   const cities = await getCities();
-  const city = cities.find((c) => c.slug === params.slug.toLowerCase());
+  const { slug } = await params;
+  const city = cities.find((c) => c.slug === slug.toLowerCase());
   if (!city) {
     return { title: 'City Guide Not Found' };
   }
   const canonical = `${SITE_URL}/city/${city.slug}`;
   return {
     title: `${city.name} NADRA Centers, FBR RTO & Citizen Document Guides`,
-    description: `Verified official NADRA Mega Centers, FBR Regional Tax Office (RTO) addresses & phone numbers, CNIC renewal fees, free IRIS NTN registration, and government document guides in ${city.name}, ${city.province}.`,
+    description: `NADRA service summaries, local office listings, CNIC renewal fees, free IRIS NTN registration, and government document guides in ${city.name}, ${city.province}.`,
     alternates: { canonical },
   };
 }
@@ -55,7 +57,8 @@ export default async function CityPage({ params }: CityPageProps) {
     getOfficeWaitSummaries(),
   ]);
 
-  const city = cities.find((c) => c.slug === params.slug.toLowerCase());
+  const { slug } = await params;
+  const city = cities.find((c) => c.slug === slug.toLowerCase());
   if (!city) {
     notFound();
   }
@@ -122,8 +125,8 @@ export default async function CityPage({ params }: CityPageProps) {
                 {city.name} Citizen Process Library
               </h1>
               <p className="mt-2 text-sm leading-relaxed text-emerald-100 sm:text-base">
-                Verified step-by-step guides, exact PKR fee tables, office addresses, and
-                live citizen wait times for {city.name} offices and nationwide portals.
+                Citizen guides, fee information, office listings, and
+                historical citizen reports where available for {city.name} offices and nationwide portals.
               </p>
             </div>
 
@@ -144,14 +147,14 @@ export default async function CityPage({ params }: CityPageProps) {
                 <p className="text-2xl font-extrabold tabular-nums text-white">
                   <AnimatedCounter value={officialOfficeCount} />
                 </p>
-                <p className="text-[11px] text-emerald-100">Verified Offices</p>
+                <p className="text-[11px] text-emerald-100">Listed Offices</p>
               </div>
               <div className="khg-glass-panel rounded-xl px-4 py-3">
                 <p className="text-2xl font-extrabold tabular-nums text-accent-yellow">
-                  {cityAvgWait !== null ? `${cityAvgWait}m` : '24/7'}
+                  {cityAvgWait !== null ? `${cityAvgWait}m` : '—'}
                 </p>
                 <p className="text-[11px] text-emerald-100">
-                  {cityAvgWait !== null ? 'Avg Wait Time' : 'Online & Mega'}
+                  {cityAvgWait !== null ? 'Reported Avg Wait' : 'No Wait Data'}
                 </p>
               </div>
             </div>
@@ -181,6 +184,13 @@ export default async function CityPage({ params }: CityPageProps) {
       </section>
 
       <div className="mx-auto max-w-6xl space-y-12 px-4 py-10 sm:px-6">
+        <section aria-labelledby="nadra-services-heading">
+          <h2 id="nadra-services-heading" className="text-2xl font-bold text-ink">NADRA services for {city.name} residents</h2>
+          <p className="mb-5 mt-2 text-sm leading-relaxed text-gray-600">Explore nationwide NADRA guidance by service. Local counter availability and hours vary; confirm with NADRA before visiting. These research summaries are separate from the process counts below.</p>
+          <NadraServiceCards citySlug={city.slug} />
+          <Link href="/nadra" className="mt-5 inline-block font-semibold text-brand underline">NADRA support, mobile services and other cities →</Link>
+        </section>
+
         {/* Verified Official NADRA & FBR Directory for This City */}
         {officialDirectory && (
           <Reveal>
@@ -236,8 +246,7 @@ export default async function CityPage({ params }: CityPageProps) {
                     {city.name} Offices &amp; Live Wait Times
                   </h2>
                   <p className="mt-1 text-sm text-gray-600">
-                    Verified office addresses, hours, best days to visit, and average queue
-                    duration.
+                    Office listings and reported queue durations. Confirm office details with the relevant agency before visiting.
                   </p>
                 </div>
                 <Link

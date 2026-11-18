@@ -2,15 +2,19 @@
 
 > **"Kaam Ho Gaya - Har Sarkari Kaam, Step by Step"**
 
-Pakistan’s independent, mobile-first **Citizen Process Library** for government documents — built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Supabase (Postgres + Auth + Row Level Security)**, **jsPDF**, and **PWA offline support**.
+Pakistan’s independent, mobile-first **Citizen Process Library** for government documents — built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, **Supabase (Postgres + Auth + Row Level Security)**, **jsPDF**, and **PWA offline support**.
 
 > **Disclaimer:** KaamHoGaya.pk is an independent private informational website and is **NOT** affiliated with the Government of Pakistan, NADRA, DGIP (Passport Office), FBR, Punjab Police, or any federal, provincial, or municipal agency.
 
 ---
 
+## Operational notes
+
+The NADRA service library (`/nadra`) contains nationwide guidance linked to official sources, with local links for the eight cities currently covered. Existing local office details must be checked with the agency. Reports are moderated, not independently verified or real-time. Verify mailbox ownership before relying on contact email and review legal text before launch.
+
 ## Key Features
 
-- **Homepage (`/`)**: Centered instant-search hero (`"Search: Passport Renewal in Rawalpindi"`), 8-city selector (Rawalpindi, Islamabad, Lahore, Karachi, Peshawar, Quetta, Hyderabad, Multan), 6 category cards (Identity, Passport, Driving, Tax, Certificates, Family), Popular This Week, 3-step How It Works, live crowdsourced Wait Times feed, and Trust & Disclaimer section.
+- **Homepage (`/`)**: Centered instant-search hero (`"Search: Passport Renewal in Rawalpindi"`), 8-city selector (Rawalpindi, Islamabad, Lahore, Karachi, Peshawar, Quetta, Hyderabad, Multan), 6 category cards (Identity, Passport, Driving, Tax, Certificates, Family), Popular This Week, 3-step How It Works, moderated historical Wait Times feed, and Trust & Disclaimer section.
 - **All Processes (`/processes`)**: Instant no-reload search, City, Category, PKR Fee Range, and Time Required filters with live Supabase sync.
 - **Process Detail (`/process/[slug]`)**: Structured in exact citizen-friendly order:
   1. Header (Title, Urdu subtitle, City & Category badges, Verified badge, Last Updated, Official Source link)
@@ -20,11 +24,11 @@ Pakistan’s independent, mobile-first **Citizen Process Library** for governmen
   5. Gate-to-Collection Step-by-Step Guide (with per-step minutes & mobile AdSense slot after Step 3)
   6. **3 Mistakes That Waste Your Day** (red alert box)
   7. Interactive **Fee Calculator** (Service type + City → Official fee + Photocopy + Photo estimate)
-  8. **Live Wait Times** (average wait time, 7-day chart, approved citizen tips, validated & rate-limited submission form)
+  8. **Citizen Wait Reports** (average wait time, 7-day chart, approved citizen tips, validated & rate-limited submission form)
   9. **FAQ Accordion** (5 questions per process)
   10. **Related Processes** (3 cards)
-  11. **Non-Government Disclaimer** + WhatsApp Rs. 500 Document Check CTA (`https://wa.me/923000000000`) + desktop sidebar AdSense slot
-- **City Pages (`/city/[slug]`)**: Dedicated pages for all 8 major Pakistani cities showing local processes, applicable nationwide guides, office addresses, and live wait times.
+  11. **Non-Government Disclaimer**, links to official sources, and optional AdSense slot
+- **City Pages (`/city/[slug]`)**: Dedicated pages for all 8 major Pakistani cities showing local processes, applicable nationwide guides, office addresses, and historical citizen reports where available.
 - **Document Checklist & PDF Generator (`/checklist`)**: Select any process + city, tick off documents (persisted offline in `localStorage`), add personal reminders, **Download PDF** (works on mobile & desktop), print, or **Share on WhatsApp**.
 - **Wait Time Tracker (`/wait-times`)**: Filterable directory of offices across Pakistan with average wait times, last reported dates, and an inline submission drawer.
 - **Protected Admin Dashboard (`/admin`)**: Email/password login via Supabase Auth (public signup disabled, enforced by `public.is_admin()` RLS):
@@ -67,7 +71,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - `npm run dev` — Start local development server
 - `npm run typecheck` — Run strict TypeScript check (`tsc --noEmit`)
-- `npm run lint` — Run Next.js ESLint (`next lint`)
+- `npm run lint` — Run ESLint
 - `npm run build` — Production build
 - `npm run start` — Start production server
 - `node scripts/generate-seed-sql.mjs` — Regenerate `supabase/seed.sql` from `src/data/seed-data.ts`
@@ -81,14 +85,14 @@ Open [http://localhost:3000](http://localhost:3000).
   - Triggers: Auto-updates `processes.last_updated` whenever a process or any child document/step/mistake/FAQ is modified
   - RPC: `public.submit_wait_time(...)` validates visit date (`<= CURRENT_DATE`, within 90 days), wait minutes (`5–480`), rating (`1–5`), strips HTML tags, caps tips at 200 characters, and enforces rate limiting (max 3 reports/hour, max 1 per 15 min per office)
   - RLS: Public read on processes/cities/categories/approved wait times; public insert via `submit_wait_time`; admin-only writes checked by `public.is_admin()`
-- **Seed File**: `supabase/seed.sql` (idempotent `ON CONFLICT DO NOTHING`)
+- **Seed File**: `supabase/seed.sql` refreshes seeded guide content. Do not run it casually on production: it overwrites guide records and refreshes child rows. It does not create example wait reports.
+- **Production cleanup**: `supabase/migrations/20261116000002_hide_demo_waits.sql` rejects the known demo reports and removes direct public inserts; real reports are submitted by RPC for moderation. The browser-provided rate-limit identifier is not strong abuse prevention; add server-side protection before relying on it.
 
 ### Admin Login (`/admin`)
 
 Public signup is disabled in Supabase Auth. Only users registered in both `auth.users` and `public.admin_users` can sign in to `/admin`.
 
-- **Seeded Admin Email**: `admin@kaamhogaya.pk`
-- **Initial Password**: `KaamHoGaya@2026` *(rotate immediately in Supabase Auth before public launch)*
+Manage admin accounts in Supabase Auth and grant access only to trusted users via `public.admin_users`. A credential was previously published in repository history; rotate any account that may have used it, revoke old sessions, and do not store credentials in the repository.
 
 ---
 
@@ -100,4 +104,4 @@ Public signup is disabled in Supabase Auth. Only users registered in both `auth.
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `NEXT_PUBLIC_SITE_URL` (e.g. `https://kaamhogaya.pk`)
    - `NEXT_PUBLIC_GA_MEASUREMENT_ID` *(optional — enables Google Analytics 4)*
-3. Deploy — Next.js 14 builds out of the box with zero extra configuration.
+3. Deploy with Node.js 20.9 or newer.

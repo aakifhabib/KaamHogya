@@ -529,6 +529,7 @@ export function WaitTimeTracker({
         <h2 id="recent-reports-heading" className="text-xl font-bold text-ink">
           Latest Approved Citizen Check-Ins
         </h2>
+        {recentReports.length === 0 && <p className="mt-3 text-sm text-gray-600">No approved citizen reports yet. New submissions appear after moderation.</p>}
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {recentReports.slice(0, 9).map((rep) => (
             <div

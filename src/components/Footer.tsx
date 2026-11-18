@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { ExternalLink, Info, MessageCircle } from 'lucide-react';
+import { ExternalLink, Info } from 'lucide-react';
 import { BrandMark } from '@/components/BrandMark';
 import {
   DISCLAIMER_SHORT,
   FEE_CHECK_DISCLAIMER,
   SITE_NAME,
   SITE_TAGLINE,
-  WHATSAPP_URL,
 } from '@/lib/constants';
 
 const POPULAR_CITIES = [
@@ -49,15 +48,7 @@ export function Footer() {
               <p className="font-urdu text-sm leading-loose text-emerald-100/90" dir="rtl">
                 ہر سرکاری کام، قدم بہ قدم آسان رہنمائی
               </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="khg-btn-sheen inline-flex items-center gap-2 rounded-lg bg-accent-yellow px-3.5 py-2 text-xs font-bold text-brand-dark hover:bg-amber-400"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Rs. 500 Document Check on WhatsApp
-              </a>
+              <Link href="/nadra" className="inline-flex items-center gap-2 rounded-lg bg-accent-yellow px-3.5 py-2 text-xs font-bold text-brand-dark hover:bg-amber-400">Browse NADRA services →</Link>
             </div>
 
             {/* Tools & Guides */}

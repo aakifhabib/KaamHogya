@@ -66,13 +66,13 @@ export function LiveWaitFeed({ initialReports }: LiveWaitFeedProps) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
-            {liveConnected ? 'Live Citizen Reports' : 'Recent Citizen Reports'}
+            {liveConnected ? 'Database Connected · Citizen Reports' : 'Recent Citizen Reports'}
           </div>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
             Latest Office Wait Times
           </h2>
           <p className="mt-1 text-sm text-gray-600">
-            Real waiting times and tips reported by citizens who visited offices this week.
+            Approved citizen submissions are historical, not live queue measurements. Actual waits can differ.
           </p>
         </div>
         <Link
@@ -84,6 +84,7 @@ export function LiveWaitFeed({ initialReports }: LiveWaitFeedProps) {
         </Link>
       </div>
 
+      {reports.length === 0 && <p className="mb-4 rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-600">No approved reports yet. Be the first to submit a visit for review.</p>}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {reports.slice(0, 6).map((report, idx) => {
           const badge = getWaitTimeBadgeColor(report.wait_minutes);

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { DisclaimerBox } from '@/components/DisclaimerBox';
 import { PageMetaBar } from '@/components/PageMetaBar';
 import { ProcessesExplorer } from '@/components/ProcessesExplorer';
@@ -51,6 +52,7 @@ export default async function AllProcessesPage() {
           </p>
         </div>
 
+        <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-950">Looking for CRC, FRC, NICOP, POC or other NADRA services? <Link href="/nadra" className="font-bold underline">Browse the NADRA service library →</Link> These research guides are separate from the process filters below.</div>
         <Suspense
           fallback={
             <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center text-sm text-gray-500">

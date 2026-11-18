@@ -41,9 +41,7 @@ export default async function WaitTimesPage() {
             Pakistan Office Wait Time Tracker
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-gray-600 sm:text-base">
-            Know how busy NADRA, Passport Office, Traffic Licensing, and e-Khidmat
-            counters are before you leave home. Submit your own visit duration to help
-            fellow citizens.
+            Browse historical, moderated citizen reports, not live queue measurements. Waits vary and reports are not independently verified. Submit your own visit duration to help fellow citizens.
           </p>
         </div>
 

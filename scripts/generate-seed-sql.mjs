@@ -60,7 +60,6 @@ lines.push(
   `DELETE FROM public.steps WHERE process_id IN (${seededProcessIdsSql});`,
   `DELETE FROM public.mistakes WHERE process_id IN (${seededProcessIdsSql});`,
   `DELETE FROM public.faqs WHERE process_id IN (${seededProcessIdsSql});`,
-  `DELETE FROM public.wait_times WHERE id IN (${mod.SEED_WAIT_TIMES.map((w) => esc(w.id)).join(', ')});`,
   '',
   '-- 5. Documents'
 );

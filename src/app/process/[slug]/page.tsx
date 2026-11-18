@@ -14,13 +14,14 @@ import { formatPKR } from '@/lib/format';
 export const dynamic = 'force-dynamic';
 
 interface ProcessPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: ProcessPageProps): Promise<Metadata> {
-  const { data: process } = await getProcessBySlug(params.slug);
+  const { slug } = await params;
+  const { data: process } = await getProcessBySlug(slug);
   if (!process) {
     return {
       title: `Process Guide | ${SITE_NAME}`,
@@ -52,7 +53,8 @@ export async function generateMetadata({
 }
 
 export default async function ProcessDetailPage({ params }: ProcessPageProps) {
-  const { data: process, source } = await getProcessBySlug(params.slug);
+  const { slug } = await params;
+  const { data: process, source } = await getProcessBySlug(slug);
 
   if (!process) {
     if (source === 'supabase') {
@@ -61,7 +63,7 @@ export default async function ProcessDetailPage({ params }: ProcessPageProps) {
     const { data: allProcs } = await getProcessSummaries();
     return (
       <ClientProcessFallback
-        slug={params.slug}
+        slug={slug}
         fallbackRelated={allProcs.slice(0, 3)}
       />
     );

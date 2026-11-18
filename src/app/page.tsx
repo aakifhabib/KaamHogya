@@ -122,6 +122,7 @@ export default async function HomePage() {
             <span className="text-emerald-200">Quick guides:</span>
             {[
               { label: 'Passport Renewal', href: '/process/passport-renewal-rawalpindi' },
+              { label: 'NADRA Services', href: '/nadra' },
               { label: 'CNIC Renewal', href: '/process/cnic-renewal-rawalpindi' },
               { label: 'FBR NTN (Free)', href: '/process/fbr-ntn-for-freelancers' },
               { label: 'Police Character', href: '/process/police-character-certificate-rawalpindi' },
@@ -237,7 +238,7 @@ export default async function HomePage() {
                   Popular This Week
                 </h2>
                 <p className="mt-1 text-sm text-gray-600">
-                  Verified fees, document counts, and live office wait times for top guides.
+                  Fee information, document counts, and citizen-reported wait times where available.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">

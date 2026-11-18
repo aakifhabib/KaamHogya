@@ -3,16 +3,17 @@ import { SEED_PROCESSES } from '@/data/seed-data';
 import { SITE_NAME } from '@/lib/constants';
 import { formatPKR } from '@/lib/format';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export default async function ProcessOpenGraphImage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const proc = SEED_PROCESSES.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const proc = SEED_PROCESSES.find((p) => p.slug === slug);
   const title = proc?.title ?? 'Pakistani Citizen Document Guide';
   const city = proc?.city ?? 'Pakistan';
   const category = proc?.category ?? 'Process Guide';

@@ -142,6 +142,11 @@ export function ProcessDetailView({
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Main Column — EXACT SECTION ORDER (a) through (k) */}
         <div className="space-y-8 lg:col-span-8">
+          {(process.category.toLowerCase() === 'identity' || process.category.toLowerCase() === 'family') && (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-950">
+              Please confirm office addresses, hours, requirements and processing times with NADRA before visiting. NADRA’s published Smart NIC timeline tables differ. <Link href="/nadra" className="font-bold underline">See the updated NADRA service library</Link> and its official sources.
+            </div>
+          )}
           {/* (a) Header: Title, City badge, Category, Last Updated, Official Source link */}
           <header className="rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm sm:p-7">
             <div className="flex flex-wrap items-center gap-2">

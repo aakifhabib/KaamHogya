@@ -3,15 +3,11 @@ export const SITE_TAGLINE = 'Kaam Ho Gaya - Har Sarkari Kaam, Step by Step';
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://kaamhogaya.pk';
 
-export const WHATSAPP_NUMBER = '923000000000';
-export const WHATSAPP_URL = 'https://wa.me/923000000000';
-export const WHATSAPP_CTA_TEXT =
-  'Confused? Get your documents checked for Rs. 500 on WhatsApp';
 
 export const OFFICIAL_DIRECTORY_URL = 'https://pakistan.gov.pk';
 
 export const FEE_CHECK_DISCLAIMER =
-  'Fees checked on 17 Nov 2026 from DGIP, NADRA, DLIMS, PKM, and FBR public schedules. Fees change. Always confirm on official site before paying.';
+  'Fees, requirements and office details can change. Always confirm with the relevant official agency before travelling or paying.';
 
 export const DISCLAIMER_SHORT =
   'KaamHoGaya.pk is an independent citizen information guide — NOT an official Government of Pakistan, NADRA, DGIP, DLIMS, PKM, or FBR website.';

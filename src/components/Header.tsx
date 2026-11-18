@@ -24,6 +24,7 @@ interface BeforeInstallPromptEvent extends Event {
 
 const NAV_LINKS = [
   { href: '/processes', label: 'All Processes', icon: FileText },
+  { href: '/nadra', label: 'NADRA Services', icon: Shield },
   { href: '/checklist', label: 'Checklist', icon: CheckSquare },
   { href: '/wait-times', label: 'Wait Times', icon: Clock },
   { href: '/city/rawalpindi', label: 'Rawalpindi', icon: MapPin },

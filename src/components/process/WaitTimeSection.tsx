@@ -185,7 +185,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
         <div className="flex flex-wrap items-center gap-2">
           <div className={`rounded-xl px-3.5 py-2 text-right ${waitBadge.bg}`}>
             <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-600">
-              Current Average
+              Reported Average
             </p>
             <p className={`text-lg font-extrabold ${waitBadge.text}`}>
               {formatWaitMinutes(avgWait)}
@@ -264,7 +264,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
       {approved.length > 0 && (
         <div className="mt-5 space-y-2.5">
           <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">
-            Recent Verified Citizen Reports
+            Recent Approved Citizen Reports
           </h3>
           <div className="grid gap-3 sm:grid-cols-2">
             {approved.slice(0, 4).map((item) => (
@@ -312,7 +312,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
           Visited Recently? Report Your Wait Time
         </h3>
         <p className="mt-0.5 text-xs text-gray-600">
-          Help the next Pakistani citizen know how crowded {process.office_name} is today.
+          Share a past visit. Reports are reviewed but not independently verified and cannot predict today’s queue.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-4" noValidate>
