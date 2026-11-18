@@ -138,12 +138,6 @@ export function Header() {
               Install App
             </button>
           )}
-          <Link
-            href="/admin"
-            className="ml-1 rounded-lg border border-gray-200 px-3 py-2 text-xs font-semibold text-gray-600 transition-colors hover:border-brand hover:text-brand"
-          >
-            Admin
-          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -205,20 +199,13 @@ export function Header() {
                 );
               })}
               <div className="my-1 border-t border-gray-100" />
-              <div className="grid grid-cols-2 gap-2 pt-1">
+              <div className="pt-1">
                 <Link
                   href="/contact"
                   tabIndex={mobileOpen ? 0 : -1}
                   className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs font-semibold text-gray-700 transition-colors hover:bg-gray-50"
                 >
                   Contact / Help
-                </Link>
-                <Link
-                  href="/admin"
-                  tabIndex={mobileOpen ? 0 : -1}
-                  className="khg-btn-sheen rounded-lg bg-brand px-3 py-2 text-center text-xs font-semibold text-white hover:bg-brand-dark"
-                >
-                  Admin Login
                 </Link>
               </div>
             </div>

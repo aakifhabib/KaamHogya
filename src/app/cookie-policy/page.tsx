@@ -43,9 +43,7 @@ export default function CookiePolicyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-ink">1. What cookies are</h2>
             <p>
-              Cookies are small files saved on your phone or computer when you visit a
-              website. They help the site remember your checklist ticks and understand
-              which pages are useful.
+              Cookies are small files saved by your browser. This site also uses local storage and a service-worker cache, which are different browser storage mechanisms.
             </p>
           </section>
 
@@ -53,13 +51,10 @@ export default function CookiePolicyPage() {
             <h2 className="text-lg font-bold text-ink">2. Cookies we use</h2>
             <ul className="list-disc space-y-2 pl-5">
               <li>
-                <strong>Essential cookies:</strong> Remember your checklist ticks, keep
-                the site secure, remember your city filter. These are required for the
-                site to work.
+                <strong>Local storage and cache:</strong> Checklist ticks and optional reminders may be saved on your device. The site caches some pages and assets for offline use. A browser identifier may be saved when submitting a wait report. Administrator authentication can also use browser storage.
               </li>
               <li>
-                <strong>Analytics cookies:</strong> Google Analytics cookies to see
-                which guides are popular. These do not identify you by name.
+                <strong>Analytics:</strong> If enabled by the site operator, Google Analytics may use cookies and collect device and usage information.
               </li>
               <li>
                 <strong>Advertising cookies:</strong> If we show Google AdSense ads,
@@ -71,9 +66,7 @@ export default function CookiePolicyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-ink">3. Your choice</h2>
             <p>
-              You can block cookies in your browser settings. If you block essential
-              cookies, the checklist save feature may not work. You can delete cookies
-              anytime from your browser.
+              You can manage cookies, local storage and cached site data in your browser settings. Clearing site data may remove saved checklists and sign out administrators. Analytics or ads should not be enabled until any applicable consent requirements are addressed.
             </p>
           </section>
 

@@ -175,7 +175,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 id="wait-times-heading" className="text-xl font-bold text-ink sm:text-2xl">
-            Live Office Wait Times
+            Historical Office Wait Reports
           </h2>
           <p className="mt-1 text-xs text-gray-600 sm:text-sm">
             Crowdsourced wait duration at <strong>{process.office_name}</strong> ({process.city}).
@@ -312,7 +312,7 @@ export function WaitTimeSection({ process, waitTimes }: WaitTimeSectionProps) {
           Visited Recently? Report Your Wait Time
         </h3>
         <p className="mt-0.5 text-xs text-gray-600">
-          Share a past visit. Reports are reviewed but not independently verified and cannot predict today’s queue.
+          Share a past visit. Reports are reviewed but not independently verified and cannot predict today’s queue. Tips may be published: never include names, CNIC or passport numbers, phone numbers, passwords or other personal details.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-4" noValidate>

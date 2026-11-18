@@ -10,6 +10,7 @@ import {
   getRelatedProcesses,
 } from '@/lib/data';
 import { formatPKR } from '@/lib/format';
+import { serializeJsonLd } from '@/lib/json-ld';
 
 export const dynamic = 'force-dynamic';
 
@@ -119,12 +120,12 @@ export default async function ProcessDetailPage({ params }: ProcessPageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(howToJsonLd) }}
       />
       {faqJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
         />
       )}
 

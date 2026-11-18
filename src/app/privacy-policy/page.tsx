@@ -103,12 +103,10 @@ export default function PrivacyPolicyPage() {
               />
               <div className="space-y-1.5">
                 <h2 className="text-base font-bold text-red-950">
-                  3. What we never collect
+                  3. Protect sensitive information
                 </h2>
                 <p className="text-red-950">
-                  We never collect or store your CNIC number, passport number, bank
-                  account details, passwords, or OTPs. If anyone asks you for these in
-                  the name of KaamHoGaya.pk, it is a scam. Report it to us immediately.
+                  Public forms do not require identity numbers, bank details, passwords or OTPs. Do not include them in free-text tips, messages or checklist reminders: information you enter may be stored on your device, submitted for moderation, or sent through your email app. The separate administrator sign-in sends its credentials to Supabase Auth. If someone asks for sensitive details in our name, treat the request with caution.
                 </p>
               </div>
             </div>
@@ -155,7 +153,7 @@ export default function PrivacyPolicyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-ink">7. Data retention</h2>
             <p>
-              Wait time submissions are kept to calculate averages. Contact messages are sent using your email application; do not include sensitive identity information.
+              Wait time submissions are kept to calculate averages. Contact messages are sent only if you send the prepared email using your own email application; do not include sensitive identity information. Checklist selections and optional reminders are stored locally in your browser, where available. Retention periods for submitted reports have not yet been established.
             </p>
           </section>
 
@@ -175,8 +173,7 @@ export default function PrivacyPolicyPage() {
               >
                 hello@kaamhogya.pk
               </a>{' '}
-              with subject &ldquo;Data Request&rdquo; and we will reply within 7 working
-              days.
+              with subject &ldquo;Data Request&rdquo;. Delivery and response depend on mailbox availability; this address has not yet been verified.
             </p>
           </section>
 

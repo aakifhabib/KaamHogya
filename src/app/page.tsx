@@ -79,7 +79,7 @@ export default async function HomePage() {
         <div className="relative mx-auto max-w-6xl px-4 py-12 text-center sm:px-6 sm:py-16 lg:py-20">
           <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1 text-xs font-semibold text-emerald-50 backdrop-blur-md">
             <ShieldCheck className="h-3.5 w-3.5 text-accent-yellow" aria-hidden="true" />
-            <span>Pakistan’s Citizen Process Library • Exact PKR Fees &amp; Checklists</span>
+            <span>Pakistan’s Citizen Process Library • Fee Information &amp; Checklists</span>
           </div>
 
           <h1
@@ -101,9 +101,7 @@ export default async function HomePage() {
             className="animate-fade-up mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-emerald-100/95 sm:text-base"
             style={{ animationDelay: '180ms' }}
           >
-            Stop wasting full days at government counters due to one missing photocopy.
-            Check exact PKR fees, required originals, counter-by-counter steps, and real
-            office wait times before you leave home.
+            Explore document checklists, listed fees, and historical citizen reports. Information may change: confirm requirements and office details with the responsible agency before travelling.
           </p>
 
           {/* Centered Search Bar */}
@@ -144,7 +142,7 @@ export default async function HomePage() {
           >
             <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent-yellow">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Official NADRA &amp; FBR Offices &amp; Guides — All 8 Cities
+              NADRA &amp; FBR Guidance — 8 Cities
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {cities.map((city) => (
@@ -296,7 +294,7 @@ export default async function HomePage() {
               title: '1. Search Your Process',
               urdu: 'اپنا کام تلاش کریں',
               icon: Search,
-              desc: 'Find your exact document and city — see official Normal, Urgent, and Executive fees in exact PKR plus office address and best day to visit.',
+              desc: 'Find a guide by document and city. Check listed fees and office details with the responsible agency before visiting.',
             },
             {
               step: '02',
@@ -310,7 +308,7 @@ export default async function HomePage() {
               title: '3. Go Prepared',
               urdu: 'مکمل تیاری کے ساتھ جائیں',
               icon: CheckCircle2,
-              desc: 'Follow our gate-to-collection steps, avoid the 3 common day-wasting mistakes, check real wait times — aur kaam ek hi chakkar mein mukammal karein!',
+              desc: 'Follow our gate-to-collection steps, avoid the 3 common day-wasting mistakes, review historical citizen wait reports — aur kaam ek hi chakkar mein mukammal karein!',
             },
           ].map((item, idx) => {
             const Icon = item.icon;

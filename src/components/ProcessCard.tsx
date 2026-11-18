@@ -63,7 +63,7 @@ export function ProcessCard({ process }: ProcessCardProps) {
           <dt className="text-gray-500">
             {process.slug === 'e-challan-check-and-payment'
               ? 'Typical Fine'
-              : 'Official Fee'}
+              : 'Listed Fee'}
           </dt>
           <dd className="mt-0.5 font-bold text-ink">
             {process.slug === 'e-challan-check-and-payment' &&
@@ -84,7 +84,7 @@ export function ProcessCard({ process }: ProcessCardProps) {
           <dt className="text-gray-500">Documents</dt>
           <dd className="mt-0.5 flex items-center gap-1 font-semibold text-ink">
             <FileText className="h-3.5 w-3.5 shrink-0 text-brand" aria-hidden="true" />
-            <span>{process.documents_count} required</span>
+            <span>{process.documents_count} listed</span>
           </dd>
         </div>
         <div>

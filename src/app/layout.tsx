@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    'Pakistan’s independent citizen process library for CNIC, Passport, Driving Licence, FBR NTN, Domicile, Birth Certificate, and Police Character Certificate — exact PKR fees, documents checklist, step-by-step guides, and real office wait times.',
+    'Pakistan’s independent citizen process library for CNIC, Passport, Driving Licence, FBR NTN, Domicile, Birth Certificate, and Police Character Certificate — fee information, document checklists, step-by-step guides, and historical citizen reports.',
   keywords: [
     'Pakistan government documents guide',
     'Passport renewal Rawalpindi',
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description:
-      'Step-by-step Pakistani citizen process library with exact PKR fees, interactive document checklists, and real office wait times.',
+      'Step-by-step Pakistani citizen process library with fee information, interactive document checklists, and historical citizen reports.',
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description:
-      'Har Sarkari Kaam, Step by Step — Exact PKR fees, document checklists, and live office wait times across Pakistan.',
+      'Har Sarkari Kaam, Step by Step — Fee information, document checklists, and historical citizen reports across Pakistan.',
   },
   alternates: {
     canonical: SITE_URL,
